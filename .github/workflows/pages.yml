@@ -1,0 +1,63 @@
+name: Deploy Aurelia Slides to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pages-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - name: Validate JavaScript syntax
+        run: npm run check
+      - name: Run kernel tests
+        run: npm test
+      - name: Build standalone site
+        run: npm run build:site
+      - name: Verify committed application matches source
+        run: git diff --exit-code -- index.html
+      - name: Upload GitHub Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Configure Pages
+        id: pages
+        uses: actions/configure-pages@v5
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+      - name: Explain first-time setup if Pages is unavailable
+        if: failure() && steps.pages.conclusion == 'failure'
+        run: |
+          echo '::error::Enable Pages in repository Settings > Pages > Build and deployment > Source: GitHub Actions, then re-run this workflow. First-time enablement requires repository administration permission, which GITHUB_TOKEN does not provide.'
