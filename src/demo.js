@@ -1,0 +1,36 @@
+import {uid,makeElement,makeSlide} from './core.js';
+export function createDemo(){
+ const doc={format:'aurelia',version:1,id:uid('deck'),title:'The shape of what’s next',width:1280,height:720,theme:'studio',slides:[]};
+ const slide=(name,bg='@bg')=>{const s=makeSlide();s.name=name;s.bg=bg;doc.slides.push(s);return s;};
+ const add=(s,type,p)=>{const e=makeElement(type,p);s.elements.push(e);return e;};
+ const text=(s,text,x,y,w,h,size=28,p={})=>add(s,'text',{text,x,y,w,h,fontSize:size,padding:0,...p});
+ const rect=(s,x,y,w,h,fill,p={})=>add(s,'rect',{x,y,w,h,fill,...p});
+ const foot=(s,n,light=false)=>{rect(s,80,641,1120,1,light?'@muted':'@line');text(s,'AURELIA  /  IDEAS IN MOTION',80,662,780,25,13,{fill:light?'@secondary':'@muted'});text(s,String(n).padStart(2,'0'),1120,660,78,28,15,{align:'right',fill:light?'@secondary':'@muted'});};
+ let s=slide('The shape of what’s next');
+ text(s,'A NEW PERSPECTIVE     /     2026',82,66,750,30,17,{fill:'@muted'});
+ text(s,'The shape of\nwhat’s next.',77,210,720,218,88,{bold:true,lineHeight:1.06,name:'Presentation title'});
+ text(s,'Make space for your next big idea.',84,459,650,50,27,{fill:'@muted'});
+ add(s,'roundRect',{x:84,y:550,w:180,h:43,fill:'@accent',radius:22});text(s,'A STORY IN 7 SLIDES',98,563,152,22,12,{fill:'@light',bold:true,align:'center'});
+ const group=uid('g');
+ const sculpture=(type,p)=>add(s,type,{...p,groupId:group,name:'Architectural study'});
+ sculpture('ellipse',{x:763,y:567,w:435,h:28,fill:'@dark',opacity:.07});
+ sculpture('ellipse',{x:1060,y:114,w:98,h:98,fill:'@accent'});
+ sculpture('roundRect',{x:836,y:211,w:300,h:376,fill:'@dark',radius:150});sculpture('rect',{x:836,y:410,w:300,h:177,fill:'@dark'});
+ sculpture('roundRect',{x:908,y:283,w:156,h:304,fill:'@bg',radius:78});sculpture('rect',{x:908,y:425,w:156,h:162,fill:'@bg'});
+ sculpture('rect',{x:767,y:464,w:138,h:123,fill:'@accent',rotation:-10});sculpture('rect',{x:789,y:463,w:138,h:123,fill:'@secondary',rotation:-10});
+ sculpture('ellipse',{x:779,y:182,w:22,h:22,fill:'@secondary'});sculpture('line',{x:1149,y:304,w:94,h:2,fill:'@accent',rotation:90});
+ foot(s,1);s.notes='Welcome. Start with a pause. This deck is entirely editable: double-click any text, or select the artwork to move it. Use the ribbon to tell your own story.';
+ s=slide('A little clarity goes a long way');text(s,'01  /  THE OPPORTUNITY',82,68,700,32,17,{fill:'@muted'});text(s,'A little clarity\ngoes a long way.',79,136,950,174,68,{bold:true,lineHeight:1.07});
+ const cards=[['01','Find the signal.','Turn complexity into a\nclear, compelling idea.'],['02','Build momentum.','Bring people together\naround what comes next.'],['03','Make it matter.','Leave your audience with\nsomething to act on.']];
+ cards.forEach(([n,title,body],i)=>{const x=82+i*383;add(s,'roundRect',{x,y:365,w:352,h:220,fill:i===1?'@dark':'@line',radius:13});text(s,n,x+26,388,120,40,23,{fill:i===1?'@secondary':'@muted'});text(s,title,x+26,450,310,47,30,{bold:true,fill:i===1?'@light':'@ink'});text(s,body,x+26,511,310,68,21,{fill:i===1?'@secondary':'@muted'});});foot(s,2);s.notes='The three moves: simplify, align, act. Use each card as a discussion point rather than reading the slide.';
+ s=slide('A story told in numbers');text(s,'02  /  THE MOMENTUM',82,68,750,30,17,{fill:'@muted'});text(s,'A story told\nin numbers.',79,160,590,175,69,{bold:true,lineHeight:1.06});text(s,'2.4×',82,402,470,125,106,{fill:'@accent',bold:true});text(s,'Growth starts with a better story.',85,545,540,40,23,{fill:'@muted'});
+ add(s,'chart',{name:'Quarterly momentum',x:655,y:181,w:544,h:385,fill:'@accent',chartType:'bar',labels:['Q1','Q2','Q3','Q4'],values:[32,49,64,78],showValues:true});text(s,'ILLUSTRATIVE DATA  /  MOMENTUM INDEX',710,589,480,25,12,{fill:'@muted'});foot(s,3);s.notes='Illustrative data, not a factual company claim. Double-click the chart to edit its data. Use the chart inspector to switch between bars, line, and donut.';
+ s=slide('Different perspectives. Shared ambition.','@dark');text(s,'03  /  THE APPROACH',82,68,750,32,17,{fill:'@secondary'});text(s,'Different perspectives.\nShared ambition.',78,150,1120,185,68,{fill:'@light',bold:true,lineHeight:1.08});
+ const cols=[['Think boldly.','Ask a better question.\nChallenge the obvious.'],['Design simply.','Make the complex clear.\nGive every detail a purpose.'],['Move together.','Create shared direction.\nMake the next step tangible.']];
+ cols.forEach(([title,body],i)=>{const x=84+i*390;rect(s,x,405,44,5,i===1?'@accent':'@secondary');text(s,title,x,445,360,45,30,{fill:'@light',bold:true});text(s,body,x,510,355,85,24,{fill:'@secondary'});});foot(s,4,true);s.notes='Invite one person to share a different perspective. Alignment does not mean sameness.';
+ s=slide('From possibility to progress');text(s,'04  /  THE ROAD AHEAD',82,68,750,32,17,{fill:'@muted'});text(s,'From possibility\nto progress.',78,145,1100,170,67,{bold:true,lineHeight:1.08});rect(s,145,410,982,2,'@line');
+ [['Explore','Listen. Learn.\nAsk what could be.'],['Shape','Prototype the idea.\nMake it tangible.'],['Launch','Start small.\nCreate momentum.'],['Evolve','Measure what matters.\nKeep getting better.']].forEach(([a,b],i)=>{const x=98+i*293;add(s,'ellipse',{x:x+12,y:391,w:40,h:40,fill:i===0?'@accent':'@secondary'});text(s,String(i+1),x+12,402,40,26,17,{fill:'@light',bold:true,align:'center'});text(s,a,x,469,270,45,30,{bold:true});text(s,b,x,529,275,64,22,{fill:'@muted'});});foot(s,5);s.notes='Walk through the next four phases. Replace this timeline with your milestones and dates.';
+ s=slide('Give your ideas room');text(s,'“',80,92,230,182,192,{fontFamily:'Georgia',fill:'@accent'});text(s,'The best way to see\nwhat’s possible is to\nstart making it.',104,278,1110,253,70,{fontFamily:'Georgia',lineHeight:1.12});text(s,'A LITTLE CURIOSITY.  A LOT OF POSSIBILITY.',111,581,950,30,16,{fill:'@muted'});foot(s,6);s.notes='A simple thought to carry into the conversation. Pause here before the closing slide.';
+ s=slide('Let’s make something matter.','@dark');text(s,'THE NEXT CHAPTER STARTS HERE',84,74,1050,35,17,{fill:'@secondary'});text(s,'Let’s make\nsomething matter.',78,227,1150,233,88,{fill:'@light',bold:true,lineHeight:1.08});add(s,'ellipse',{x:1090,y:108,w:90,h:90,fill:'@accent'});text(s,'Your ideas. Your voice. Your next move.',86,519,1060,50,27,{fill:'@secondary'});foot(s,7,true);s.notes='Open the conversation. Ask: what is the one thing we should do next?';
+ return doc;
+}

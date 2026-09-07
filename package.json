@@ -1,0 +1,17 @@
+{
+  "name": "aurelia-slides",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Dependency-free presentation editor with WebGPU rendering and Canvas 2D fallback",
+  "scripts": {
+    "test": "node --test tests/*.test.mjs",
+    "start": "python3 -m http.server 8000",
+    "build": "node scripts/build.mjs",
+    "build:site": "node scripts/build.mjs --site",
+    "check": "node --check src/core.js && node --check src/renderer.js && node --check src/demo.js && node --check src/icons.js && node --check src/pptx.js && node --check src/app.js"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}

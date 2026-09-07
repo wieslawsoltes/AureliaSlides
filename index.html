@@ -1,0 +1,1087 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light dark"><meta name="theme-color" content="#faf9f6">
+<title>Aurelia Slides — Ideas in motion</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='10' fill='%23bd5943'/%3E%3Cpath d='M8 30 20 8h8L16 30zm16-10 6 10h-9z' fill='white'/%3E%3C/svg%3E">
+<style>
+:root{--accent:#b95741;--accent-hover:#a84a37;--accent-soft:#f6e6e0;--bg:#faf9f6;--panel:#fff;--panel-alt:#f7f7f5;--canvas-bg:#eaeae7;--text:#293537;--muted:#7b8383;--line:#e5e6e2;--hover:#f0f0ec;--input:#fff;--shadow:0 14px 50px #24323614;--font:Inter,"Segoe UI",Arial,sans-serif;color-scheme:light}
+*{box-sizing:border-box}body{margin:0;font:13px var(--font);color:var(--text);background:var(--bg);overflow:hidden}button,input,textarea,select{font:inherit;color:inherit}button{display:inline-flex;align-items:center;justify-content:center;gap:7px;border:1px solid transparent;background:transparent;border-radius:5px;cursor:pointer;padding:6px 8px;white-space:nowrap;user-select:none}button:hover{background:var(--hover)}button:active{transform:translateY(.5px)}button:disabled{opacity:.3;cursor:default}button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:2px solid var(--accent);outline-offset:2px}button svg{flex:none}button.active{color:var(--accent);background:var(--accent-soft)}input,select,textarea{background:var(--input);border:1px solid var(--line);border-radius:4px;padding:6px 8px;outline:none}input:hover,select:hover{border-color:#bfc5c2}input:focus,select:focus,textarea:focus{border-color:var(--accent)}input[type=number]{min-width:0;width:100%;font-variant-numeric:tabular-nums}input[type=color]{appearance:none;-webkit-appearance:none;width:27px;height:27px;padding:3px;cursor:pointer;vertical-align:middle}input[type=color]::-webkit-color-swatch-wrapper{padding:0}input[type=color]::-webkit-color-swatch{border:0;border-radius:3px}input[type=range]{accent-color:var(--accent);padding:0;cursor:pointer}input[type=checkbox]{accent-color:var(--accent)}select{padding:5px 24px 5px 8px;cursor:pointer}svg{vertical-align:middle}kbd{font:10px var(--font);border:1px solid var(--line);padding:2px 4px;border-radius:4px;color:var(--muted);white-space:nowrap}.primary{background:var(--accent);color:#fff;padding:8px 14px;font-weight:600}.primary:hover{background:var(--accent-hover)}.secondary{border:1px solid var(--line);background:var(--panel);padding:8px 14px}.subtle{color:var(--muted)}[hidden]{display:none!important}#app{display:flex;flex-direction:column;height:100dvh;min-width:760px}.titlebar{height:58px;display:flex;align-items:center;padding:0 17px;gap:13px;flex:none;background:var(--bg)}.brand{display:flex;align-items:center;gap:9px;font-size:17px;font-weight:650;letter-spacing:-.5px}.brand-mark{display:flex;background:var(--accent);border-radius:7px;align-items:center;justify-content:center;width:32px;height:32px;color:#fff}.brand-sub{font-weight:400;color:var(--muted);font-size:14px;letter-spacing:-.2px}.title-divider{height:21px;width:1px;background:var(--line);margin:0 1px}.quick-actions{display:flex;gap:1px}.quick-actions button{padding:6px;color:var(--muted)}.quick-actions svg{width:16px;height:16px}.document-title{display:flex;align-items:center;gap:13px;min-width:150px;flex:1;margin-left:8px}.document-title input{width:245px;max-width:100%;padding:5px 2px;border-color:transparent;background:transparent;font-size:13px;font-weight:550;text-overflow:ellipsis}.document-title input:focus{border-color:var(--line);padding:5px 7px;background:var(--panel)}.save-indicator{color:var(--muted);display:flex;align-items:center;gap:5px;font-size:11px;white-space:nowrap}.save-indicator svg{width:14px;height:14px;color:#5d8978}.search-button{font-size:11px;color:var(--muted);gap:9px;border:1px solid var(--line);border-radius:6px;padding:6px 9px}.search-button svg{width:14px;height:14px}.local-badge{font-size:10px;letter-spacing:.1px;white-space:nowrap;color:var(--muted);display:flex;align-items:center;gap:6px}.local-badge i{width:5px;height:5px;background:#6e9483;border-radius:50%}.present-top{font-size:12px;padding:8px 13px;border-radius:5px}.present-top svg{width:15px;height:15px}.avatar{border-radius:50%;width:28px;height:28px;background:#e9e3dc;color:#7c6b5c;padding:0;font-size:11px}.tabs{height:37px;padding:0 16px;display:flex;gap:5px;align-items:stretch;border-bottom:1px solid var(--line);background:var(--bg);flex:none}#ribbonTabs{display:flex;gap:3px}.tabs button{border-radius:0;padding:7px 12px;font-size:12px;position:relative;background:transparent}.tabs button.active{color:var(--accent);font-weight:600}.tabs button.active:after{content:'';position:absolute;bottom:-1px;height:3px;background:var(--accent);border-radius:2px 2px 0 0;left:12px;right:12px}.tabs button:hover{color:var(--accent)}.file-tab{color:var(--accent);font-weight:600!important}.tabs-spacer{flex:1}.tab-helper{font-size:11px!important}.tab-helper svg{width:14px;height:14px}.ribbon{height:102px;display:flex;align-items:stretch;padding:9px 16px 5px;gap:0;flex:none;background:var(--panel);border-bottom:1px solid var(--line);overflow-x:auto;overflow-y:hidden;scrollbar-width:thin}.ribbon-group{position:relative;border-right:1px solid var(--line);padding:0 14px 18px;display:flex;gap:5px;align-items:center;flex:none}.ribbon-group:first-child{padding-left:0}.ribbon-group:last-child{border-right:0}.group-title{position:absolute;bottom:0;left:0;right:0;text-align:center;font-size:9px;color:var(--muted);letter-spacing:.3px}.ribbon-large{flex-direction:column;gap:6px;min-width:48px;padding:7px 8px;font-size:10px;height:63px;justify-content:center}.ribbon-large svg{width:24px;height:24px}.ribbon-large .label-with-chevron{display:flex;align-items:center;gap:2px}.ribbon-large .label-with-chevron svg{width:10px;height:10px}.ribbon-stack{display:flex;flex-direction:column;gap:4px}.ribbon-stack>button{font-size:10px;justify-content:flex-start;padding:4px 6px}.ribbon-stack>button svg{width:15px;height:15px}.ribbon-row{display:flex;gap:3px;align-items:center}.ribbon-row button{height:27px;padding:4px 6px}.ribbon-row button svg{width:15px;height:15px}.ribbon-row input[type=color]{width:24px;height:24px}.ribbon-font{width:137px;height:27px;font-size:11px}.ribbon-size{width:52px!important;height:27px;font-size:11px}.ribbon-select{font-size:11px;height:28px}.ribbon-color{display:flex;align-items:center;gap:3px;margin-left:4px}.ribbon-color>span{font-size:11px}.ribbon-font-group{min-width:235px}.ribbon-mini-shapes{display:grid;grid-template-columns:repeat(4,27px);gap:2px}.ribbon-mini-shapes button{width:27px;height:26px;padding:4px}.ribbon-mini-shapes svg{width:19px;height:19px}.ribbon-preview{width:92px;height:58px;position:relative;border:1px solid var(--line);padding:5px;overflow:hidden;display:block;text-align:left;border-radius:5px}.ribbon-preview .preview-big{font-size:18px;font-weight:700;display:block;margin-bottom:4px}.ribbon-preview .preview-line{display:block;width:34px;height:2px;background:currentColor;opacity:.3;margin-top:3px}.ribbon-preview small{position:absolute;bottom:4px;left:6px;font-size:9px;font-weight:500}.ribbon-preview i{position:absolute;width:23px;height:30px;border-radius:20px 20px 0 0;right:8px;bottom:8px}.ribbon-preview.selected{outline:2px solid var(--accent);outline-offset:1px}.effect-button{display:flex;flex-direction:column;width:72px;height:61px;gap:7px;font-size:10px}.effect-button svg{width:24px;height:24px}.workspace{display:flex;flex:1;min-height:0}.filmstrip{width:210px;background:var(--panel-alt);border-right:1px solid var(--line);display:flex;flex-direction:column;flex:none}.filmstrip-heading{display:flex;align-items:center;justify-content:space-between;padding:11px 15px 8px 20px;height:45px;font-size:11px;font-weight:650}.filmstrip-heading button{padding:3px;color:var(--muted)}.filmstrip-heading svg{width:15px;height:15px}.count{color:var(--muted);font-weight:400;margin-left:5px}.thumbnails{overflow-y:auto;flex:1;padding:4px 13px 16px 9px;scrollbar-width:thin}.thumb{display:flex;gap:7px;padding:8px 4px;width:100%;position:relative;border:none;background:none;flex-direction:row;align-items:flex-start;cursor:pointer}.thumb:hover{background:transparent}.thumb-number{font-size:10px;color:var(--muted);width:16px;text-align:right;padding-top:4px;font-variant-numeric:tabular-nums}.thumb-preview{border:1px solid #d8dcd7;border-radius:3px;flex:1;overflow:hidden;box-shadow:0 2px 4px #25302b08;position:relative;background:#fff}.thumb-preview canvas{width:100%;height:auto;aspect-ratio:16/9;display:block}.thumb.active .thumb-preview{outline:2px solid var(--accent);outline-offset:2px;border-color:transparent}.thumb.active .thumb-number{color:var(--accent);font-weight:700}.thumb.active{background:transparent}.thumb-label{position:absolute;left:0;bottom:0;right:0;padding:4px 7px;background:#17313acc;color:white;font-size:9px;opacity:0;transition:opacity .15s;text-align:left;overflow:hidden;text-overflow:ellipsis}.thumb:hover .thumb-label{opacity:1}.thumb.dragover .thumb-preview{outline:2px dashed var(--accent);outline-offset:3px}.thumb.dragging{opacity:.4}.add-slide{margin:0 15px 15px 33px;border:1px dashed #c8cdca;border-radius:5px;font-size:10px;color:var(--muted);padding:9px}.add-slide svg{width:13px;height:13px}.center-panel{min-width:0;display:flex;flex-direction:column;flex:1;background:var(--canvas-bg)}.canvas-heading{display:flex;align-items:center;justify-content:space-between;height:43px;padding:0 25px;color:var(--muted);font-size:10px;flex:none;gap:10px}.canvas-heading>div:first-child{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}#slideBreadcrumb{font-size:9px;letter-spacing:1px;font-weight:600}.breadcrumb-divider{margin:0 11px;color:#adb3ae}#slideName{font-size:10px}.canvas-actions{display:flex;gap:4px}.canvas-actions button{padding:4px;color:var(--muted)}.canvas-actions svg{width:14px;height:14px}.viewport{position:relative;flex:1;overflow:auto;outline:none!important;scrollbar-width:thin;touch-action:none}.viewport.space-pan{cursor:grab}.viewport.space-pan.dragging{cursor:grabbing}#stageSizer{position:relative;width:100%;height:100%;min-width:100%;min-height:100%}.stage{position:absolute;box-shadow:0 3px 7px #2632290a,0 20px 50px #26322913;background:#fff;isolation:isolate;touch-action:none}.stage canvas{position:absolute;inset:0;width:100%;height:100%;display:block}.stage #interaction{position:absolute;inset:0;width:100%;height:100%;overflow:visible;touch-action:none;user-select:none}.stage.drawing{cursor:crosshair}.text-editor{position:absolute;resize:none;border:0;border-radius:0;outline:1px solid var(--accent)!important;outline-offset:3px!important;background:transparent;overflow:hidden;white-space:pre-wrap;overflow-wrap:break-word;box-shadow:none;z-index:5;min-height:0;transform-origin:50% 50%;box-sizing:border-box}.canvas-hint{position:sticky;left:0;bottom:11px;width:100%;text-align:center;color:#969f99;font-size:9px;pointer-events:none;letter-spacing:.05px;white-space:nowrap;line-height:15px;margin-top:-15px}.notes-panel{flex:none;background:var(--panel);border-top:1px solid var(--line);height:104px;display:flex;flex-direction:column;padding:0 24px}.notes-heading{display:flex;align-items:center;gap:7px;height:34px;font-size:10px;font-weight:600;color:var(--muted)}.notes-heading>span>svg{width:13px;height:13px}.notes-private{font-size:9px;font-weight:400;color:#a1a8a3;margin-left:3px}.notes-heading button{margin-left:auto;padding:3px}.notes-heading button svg{width:13px;height:13px}.notes-panel textarea{flex:1;resize:none;border:0;border-radius:0;padding:2px 0 12px;background:transparent;font-size:11px;line-height:1.65;outline:none;color:var(--muted)}.notes-panel textarea::placeholder{color:#a4aaa6}.inspector{width:262px;flex:none;background:var(--panel);border-left:1px solid var(--line);display:flex;flex-direction:column}.inspector-heading{height:46px;display:flex;align-items:center;justify-content:space-between;padding:0 17px;font-size:12px;font-weight:650}.inspector-heading button{padding:3px;color:var(--muted)}.inspector-heading svg{width:15px;height:15px}.inspector-tabs{display:flex;margin:0 16px;border-bottom:1px solid var(--line);gap:20px}.inspector-tabs button{border-radius:0;font-size:10px;padding:8px 0;color:var(--muted);background:transparent}.inspector-tabs button.active{color:var(--accent);border-bottom:2px solid var(--accent)}.inspector-content{overflow-y:auto;flex:1;scrollbar-width:thin;padding-bottom:15px}.property-section{padding:18px 18px 16px;border-bottom:1px solid var(--line)}.property-section:last-child{border-bottom:0}.property-section h3{margin:0 0 13px;font-size:10px;font-weight:650;display:flex;align-items:center;justify-content:space-between;letter-spacing:.1px}.property-section h3 span{font-size:9px;font-weight:400;color:var(--muted)}.property-section p{font-size:10px;line-height:1.65;color:var(--muted);margin:8px 0}.design-preview{aspect-ratio:16/10;border-radius:6px;border:1px solid var(--line);position:relative;overflow:hidden;padding:19px 17px}.design-preview .tag{font-size:7px;letter-spacing:1px;margin-bottom:20px}.design-preview .words{font-size:23px;font-weight:650;line-height:1.1;letter-spacing:-.6px}.design-preview .arch{position:absolute;right:23px;bottom:19px;width:40px;height:64px;border:10px solid currentColor;border-bottom:0;border-radius:25px 25px 0 0}.design-preview .dot{position:absolute;right:16px;top:18px;width:15px;height:15px;border-radius:100%}.theme-caption{display:flex;align-items:center;justify-content:space-between;font-size:10px;margin-top:10px}.theme-caption .tag-pill{font-size:8px;padding:3px 6px;background:var(--panel-alt);color:var(--muted);border-radius:4px}.theme-swatches{display:flex;gap:9px;margin-top:15px}.theme-swatch{display:flex;padding:0;width:35px;height:25px;overflow:hidden;border:1px solid #00000015;border-radius:5px}.theme-swatch span{flex:1;height:100%}.theme-swatch.active{outline:2px solid var(--accent);outline-offset:2px}.color-row{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:10px;margin-bottom:10px}.color-row .color-field{display:flex;align-items:center;gap:7px;border:1px solid var(--line);padding:2px 7px 2px 2px;border-radius:5px;font-size:10px;color:var(--muted)}.color-field input{width:24px;height:24px;border:0}.color-palette{display:flex;flex-wrap:wrap;gap:7px}.color-palette button{padding:0;width:20px;height:20px;border-radius:50%;border:1px solid #00000012;position:relative}.color-palette button.selected{outline:2px solid var(--accent);outline-offset:2px}.layout-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px}.layout-choice{display:flex;flex-direction:column;padding:0;gap:5px;font-size:9px;color:var(--muted);background:transparent!important}.layout-mini{background:var(--panel-alt);border:1px solid var(--line);border-radius:4px;width:100%;height:57px;position:relative;display:block}.layout-mini:before{content:'';position:absolute;left:12%;top:22%;height:5px;width:61%;background:#95a69e;border-radius:1px}.layout-mini:after{content:'';position:absolute;left:12%;top:39%;height:3px;width:43%;background:#c6cdc7;border-radius:1px}.layout-mini.blank:before,.layout-mini.blank:after{display:none}.layout-mini.content:after{height:21px;width:76%;top:41%;background:linear-gradient(#c6cdc7 2px,transparent 2px,transparent 6px,#c6cdc7 6px,#c6cdc7 8px,transparent 8px,transparent 12px,#c6cdc7 12px,#c6cdc7 14px,transparent 14px)}.layout-mini.split:after{width:35%;height:23px;left:53%;top:38%}.layout-choice:hover .layout-mini{border-color:var(--accent)}.layout-choice.active .layout-mini{outline:2px solid var(--accent);outline-offset:1px}.property-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.property-field{display:flex;flex-direction:column;gap:5px;font-size:9px;color:var(--muted);min-width:0}.property-field input,.property-field select{width:100%;height:30px;font-size:11px;color:var(--text);min-width:0}.property-field.full{grid-column:1/-1}.property-inline{display:flex;align-items:center;gap:8px;margin-bottom:12px}.property-inline input[type=range]{width:130px}.property-inline span{font-size:10px;color:var(--muted)}.property-button{width:100%;justify-content:center;font-size:10px;padding:8px;border:1px solid var(--line);background:var(--panel-alt);margin-top:10px}.property-button svg{width:14px;height:14px}.inline-actions{display:flex;gap:4px;flex-wrap:wrap}.inline-actions button{border:1px solid var(--line);font-size:10px;padding:5px 8px}.inline-actions svg{width:14px;height:14px}.empty-selection{padding:28px 19px;color:var(--muted);font-size:11px;line-height:1.7}.layer{display:flex;align-items:center;gap:8px;padding:9px 12px;border-bottom:1px solid var(--line);cursor:pointer}.layer.active{background:var(--accent-soft);color:var(--accent)}.layer-icon{color:var(--muted);flex:none}.layer-icon svg{width:16px;height:16px}.layer-name{font-size:10px;flex:1;text-overflow:ellipsis;overflow:hidden;white-space:nowrap}.layer button{padding:3px;color:var(--muted)}.layer button svg{width:13px;height:13px}.layer.hidden-layer .layer-name{opacity:.4}.layer-tools{display:flex;align-items:center;justify-content:space-between;padding:10px 13px;font-size:9px;color:var(--muted)}.statusbar{height:30px;background:var(--bg);border-top:1px solid var(--line);display:flex;align-items:center;gap:10px;padding:0 17px;font-size:10px;flex:none;color:var(--muted)}.statusbar button{font-size:10px;padding:4px 5px}.statusbar button svg{width:14px;height:14px}.status-separator{height:12px;width:1px;background:var(--line)}.status-spacer{flex:1}.renderer-status{font-size:9px!important;gap:5px!important}.renderer-status i{width:5px;height:5px;border-radius:50%;background:#73a18a}.zoom-control{display:flex;align-items:center;gap:5px}.zoom-control input{width:102px;height:2px;margin:0 3px}.zoom-control #zoomLabel{font-size:10px;min-width:41px}.menu{position:fixed;z-index:1000;background:var(--panel);border:1px solid var(--line);box-shadow:0 8px 35px #1b30262a;border-radius:8px;padding:6px;min-width:210px;max-height:calc(100vh - 30px);overflow-y:auto}.menu button.menu-item{width:100%;justify-content:flex-start;font-size:11px;padding:9px 10px;gap:10px}.menu button.menu-item svg{width:16px;height:16px;color:var(--muted)}.menu-item kbd{margin-left:auto}.menu-separator{border-top:1px solid var(--line);margin:5px 4px}.menu-title{color:var(--muted);font-size:9px;text-transform:uppercase;letter-spacing:1px;padding:9px 10px 6px}.menu-grid{display:grid;grid-template-columns:repeat(4,52px);padding:7px;gap:4px}.menu-grid button{height:52px;flex-direction:column;font-size:8px;padding:4px}.menu-grid svg{width:23px;height:23px}.toast-region{position:fixed;bottom:48px;left:50%;transform:translateX(-50%);z-index:5000;display:flex;flex-direction:column;gap:8px;pointer-events:none;max-width:min(580px,90vw)}.toast{background:#243e35;color:#fff;border-radius:7px;box-shadow:var(--shadow);padding:12px 18px;font-size:12px;line-height:1.5;animation:toast-in .2s ease}.toast.error{background:#963e32}@keyframes toast-in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}dialog{background:var(--panel);color:var(--text);border:1px solid var(--line);border-radius:12px;padding:0;max-width:min(940px,94vw);width:520px;box-shadow:0 30px 100px #0004}dialog::backdrop{background:#1e302d60;backdrop-filter:blur(4px)}.modal-heading{display:flex;align-items:center;justify-content:space-between;padding:20px 23px 15px}.modal-heading h2{margin:0;font-size:17px;font-weight:650;letter-spacing:-.4px}.modal-heading button{padding:4px}.modal-heading svg{width:18px;height:18px}#modalContent{padding:0 24px 20px;max-height:70vh;overflow:auto;font-size:12px;line-height:1.7}.modal-actions{display:flex;gap:8px;justify-content:flex-end;border-top:1px solid var(--line);padding:14px 23px}.modal-actions:empty{display:none}.modal-description{color:var(--muted);font-size:11px;line-height:1.7;margin:0 0 17px}.modal-form{display:flex;flex-direction:column;gap:13px}.modal-form label{display:flex;flex-direction:column;gap:6px;font-size:11px;color:var(--muted)}.data-table{border-collapse:collapse;width:100%;margin:10px 0}.data-table th{padding:6px;text-align:left;font-size:10px;color:var(--muted);font-weight:500}.data-table td{padding:3px}.data-table input{width:100%;font-size:11px;min-width:40px}.data-table button{padding:5px}.data-table button svg{width:14px;height:14px}.code-textarea{width:100%;height:190px;font:12px/1.7 monospace;resize:vertical}.help-table{width:100%;border-collapse:collapse;font-size:11px}.help-table td{padding:8px 0;border-bottom:1px solid var(--line)}.help-table td:last-child{text-align:right;color:var(--muted)}.help-table tr:last-child td{border:0}.about-logo{display:flex;align-items:center;gap:15px;margin:4px 0 20px}.about-logo .brand-mark{width:48px;height:48px;border-radius:12px}.about-logo strong{font-size:24px;letter-spacing:-1px}.about-logo span.version{font-size:10px;color:var(--muted);display:block}.feature-chips{display:flex;gap:6px;flex-wrap:wrap;margin:15px 0}.feature-chips span{padding:3px 8px;background:var(--panel-alt);border:1px solid var(--line);border-radius:5px;font-size:10px}.command-search{width:100%;height:41px;margin-bottom:12px}.command-result{width:100%;padding:10px 7px;font-size:12px;justify-content:flex-start}.command-result svg{width:17px;height:17px;color:var(--muted)}.command-result kbd{margin-left:auto}.sorter-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.sorter-card{display:flex;flex-direction:column;gap:7px;align-items:flex-start;padding:6px;overflow:hidden;font-size:10px}.sorter-card canvas{width:100%;border:1px solid var(--line);border-radius:4px}.sorter-card span{max-width:100%;overflow:hidden;text-overflow:ellipsis}.present-overlay{position:fixed;inset:0;z-index:900;background:#101411;display:flex;align-items:center;justify-content:center;overflow:hidden}.present-stage{position:relative;aspect-ratio:16/9;width:100%;max-height:100%;flex:none}.present-stage canvas{width:100%;height:100%;display:block}#blackout{position:absolute;inset:0;background:#000;z-index:4}#laser{position:absolute;width:11px;height:11px;background:#ff493a;border-radius:50%;box-shadow:0 0 3px 2px #ff8e6888,0 0 20px #ff5d3a;pointer-events:none;z-index:8;transform:translate(-50%,-50%)}.present-controls{position:absolute;bottom:17px;left:50%;transform:translateX(-50%);padding:7px 11px;display:flex;align-items:center;gap:8px;background:#14241eef;backdrop-filter:blur(15px);border:1px solid #ffffff18;color:#e5eae5;border-radius:9px;font-size:11px;z-index:10;opacity:.1;transition:opacity .2s}.present-overlay:hover .present-controls,.present-controls:focus-within{opacity:1}.present-controls button{padding:6px;color:#e5eae5}.present-controls button:hover{background:#ffffff18}.present-controls svg{width:15px;height:15px}.present-control-divider{height:18px;width:1px;background:#ffffff26}.present-hint{font-size:9px;color:#aabbb0;margin-left:10px;white-space:nowrap}.presenter-notes{align-self:stretch;background:#1e2e27;color:#f4f7f5;width:300px;flex:none;padding:25px;overflow:auto}.presenter-notes h2{font-size:18px;margin:0 0 25px}.presenter-notes h3{font-size:12px;margin:25px 0 12px}.presenter-notes canvas{width:100%;border-radius:4px}.presenter-notes .eyebrow{font-size:9px;letter-spacing:1.5px;color:#98aca0}.presenter-notes #presentNotesText{font-size:13px;line-height:1.8;white-space:pre-wrap;color:#cbd8d0}.presenter-note-warning{font-size:10px;color:#869f8f;line-height:1.6;margin-top:35px}#presentTimer{font-variant-numeric:tabular-nums;color:#a5b8ac;font-size:10px}.diagnostic-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.diagnostic-grid>div{padding:15px;background:var(--panel-alt);border:1px solid var(--line);border-radius:6px}.diagnostic-grid strong{font-size:22px;display:block}.diagnostic-grid span{font-size:10px;color:var(--muted)}.error-banner{background:#fce8e1;color:#a44434;padding:12px;font-size:12px;border-radius:5px}
+body.dark{--bg:#202623;--panel:#252d28;--panel-alt:#222923;--canvas-bg:#161f1a;--text:#dce4dc;--muted:#9ba89e;--line:#394139;--hover:#333e34;--input:#202923;--accent:#e38c76;--accent-hover:#cc7863;--accent-soft:#553d34;color-scheme:dark}body.dark .thumb-preview{border-color:#526057}body.dark .avatar{background:#59443a;color:#edc7ae}body.dark .canvas-hint{color:#637569}body.dark .primary{color:#221e19}
+@media(max-width:1450px){.save-indicator span:last-child{display:none}.local-badge{display:none}.ribbon-group{padding-left:10px;padding-right:10px}.brand-sub{display:none}.document-title input{width:220px}.ribbon-font-group{min-width:213px}.filmstrip{width:192px}.inspector{width:248px}}
+@media(max-width:1150px){.search-button{width:30px;padding:5px;border:0}.search-button span:not(:first-child),.search-button kbd{display:none}.document-title{margin:0}.titlebar{gap:10px}.inspector{width:230px}.filmstrip{width:172px}.ribbon-group{padding-left:9px;padding-right:9px}.ribbon-group.optional-group{display:none}.canvas-heading{padding-left:19px}.present-hint{display:none}.save-indicator{display:none}.brand{font-size:15px}.tabs button{padding-left:10px;padding-right:10px}}
+@media(max-width:930px){.inspector{display:none}.filmstrip{width:160px}.quick-actions{gap:0}.quick-actions button{padding:4px}.document-title input{width:190px}.tabs{padding-left:8px}.tabs button{font-size:11px;padding-left:8px;padding-right:8px}.canvas-hint{font-size:8px}.ribbon-group{padding-left:7px;padding-right:7px}.statusbar{gap:6px}.statusbar .renderer-status{font-size:8px!important}.statusbar #selectionStatus{max-width:120px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}}
+@media(prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+
+</style>
+</head>
+<body>
+<div id="app">
+<header class="titlebar">
+ <div class="brand" title="Aurelia Slides"><span class="brand-mark" data-icon="logo"></span><span>Aurelia<span class="brand-sub"> Slides</span></span></div>
+ <div class="title-divider"></div>
+ <div class="quick-actions"><button data-cmd="save" title="Save presentation (⌘/Ctrl S)" aria-label="Save presentation" data-icon="save"></button><button data-cmd="undo" title="Undo (⌘/Ctrl Z)" aria-label="Undo" data-icon="undo"></button><button data-cmd="redo" title="Redo (⌘/Ctrl Shift Z)" aria-label="Redo" data-icon="redo"></button></div>
+ <div class="document-title"><input id="documentTitle" aria-label="Presentation title" spellcheck="false"><span id="saveIndicator" class="save-indicator" title="Saved only on this device"><span data-icon="check"></span><span id="saveText">Local presentation</span></span></div>
+ <button class="search-button" data-cmd="commands" title="Search commands (⌘/Ctrl K)"><span data-icon="search"></span><span>Find a command</span><kbd>⌘ K</kbd></button>
+ <div class="local-badge"><i></i> Private & local</div>
+ <button class="primary present-top" data-cmd="present" title="Present from current slide (Shift F5)"><span data-icon="play"></span>Present</button>
+ <button class="avatar" data-cmd="about" title="About Aurelia">A</button>
+</header>
+<nav class="tabs" aria-label="Ribbon tabs"><button class="file-tab" data-cmd="file">File</button><div id="ribbonTabs" role="tablist"></div><div class="tabs-spacer"></div><button class="subtle tab-helper" data-cmd="help"><span data-icon="help"></span>Help</button></nav>
+<section id="ribbon" class="ribbon" aria-label="Editing ribbon"></section>
+<main class="workspace">
+ <aside class="filmstrip" aria-label="Slide navigator"><div class="filmstrip-heading"><span>Slides <span id="slideCount" class="count">7</span></span><button data-cmd="sorter" title="Slide sorter" aria-label="Slide sorter" data-icon="grid"></button></div><div id="thumbnails" class="thumbnails" role="listbox" aria-label="Slides"></div><button class="add-slide" data-cmd="new-slide"><span data-icon="plus"></span>New slide</button></aside>
+ <section class="center-panel">
+  <div class="canvas-heading"><div><span id="slideBreadcrumb">SLIDE 01</span><span class="breadcrumb-divider">/</span><span id="slideName">The shape of what’s next</span></div><div class="canvas-actions"><button id="gridButton" data-cmd="toggle-grid" title="Toggle grid" aria-label="Toggle grid" data-icon="grid"></button><button data-cmd="toggle-inspector" title="Toggle properties panel" aria-label="Toggle properties panel" data-icon="layout"></button></div></div>
+  <div id="viewport" class="viewport" tabindex="0" aria-label="Slide editing workspace"><div id="stageSizer"><div id="stage" class="stage"><canvas id="surface" aria-label="Presentation slide"></canvas><svg id="interaction" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Selection and drawing controls"></svg><textarea id="textEditor" class="text-editor" aria-label="Edit slide text" spellcheck="true" hidden></textarea></div></div><div id="canvasHint" class="canvas-hint">Double-click text to edit · Drag to move · Shift-click to select multiple</div></div>
+  <section id="notesPanel" class="notes-panel"><div class="notes-heading"><span data-icon="notes"></span><span>Speaker notes</span><span class="notes-private">Just for you, not your audience</span><button data-cmd="toggle-notes" aria-label="Hide speaker notes" title="Hide notes" data-icon="chevron"></button></div><textarea id="notes" placeholder="Add a thought. Tell a better story." aria-label="Speaker notes"></textarea></section>
+ </section>
+ <aside id="inspector" class="inspector" aria-label="Object properties"><div class="inspector-heading"><span id="inspectorTitle">Slide design</span><button data-cmd="toggle-inspector" title="Close properties" aria-label="Close properties" data-icon="close"></button></div><div class="inspector-tabs"><button id="propertiesTab" class="active" data-cmd="panel:format">Properties</button><button id="layersTab" data-cmd="panel:layers">Selection pane</button></div><div id="inspectorContent" class="inspector-content"></div></aside>
+</main>
+<footer class="statusbar"><button id="slideStatus" data-cmd="sorter">Slide 1 of 7</button><span class="status-separator"></span><span id="selectionStatus">Ready</span><div class="status-spacer"></div><button id="rendererStatus" class="renderer-status" data-cmd="diagnostics"><i></i>Initializing renderer</button><button data-cmd="toggle-notes" title="Toggle speaker notes"><span data-icon="notes"></span>Notes</button><div class="status-separator"></div><button data-cmd="sorter" title="Slide sorter" aria-label="Slide sorter" data-icon="grid"></button><button data-cmd="present" title="Present slide show" aria-label="Present slide show" data-icon="screen"></button><div class="zoom-control"><button data-cmd="zoom-out" title="Zoom out" aria-label="Zoom out" data-icon="minus"></button><input type="range" id="zoomSlider" min="25" max="200" value="75" aria-label="Canvas zoom"><button data-cmd="zoom-in" title="Zoom in" aria-label="Zoom in" data-icon="plus"></button><button id="zoomLabel" data-cmd="zoom-fit" title="Fit slide to window">Fit</button><button data-cmd="zoom-fit" title="Fit slide to window" aria-label="Fit slide to window" data-icon="fit"></button></div></footer>
+</div>
+<div id="menu" class="menu" hidden></div>
+<div id="toastRegion" class="toast-region" aria-live="polite"></div>
+<dialog id="modal"><div class="modal-heading"><h2 id="modalTitle"></h2><button id="modalClose" title="Close dialog" aria-label="Close dialog" data-icon="close"></button></div><div id="modalContent"></div><div id="modalActions" class="modal-actions"></div></dialog>
+<div id="presentOverlay" class="present-overlay" hidden><div id="presentStage" class="present-stage"><canvas id="presentCanvas"></canvas><div id="laser" hidden></div><div id="blackout" hidden></div></div><aside id="presenterNotes" class="presenter-notes" hidden><h2>Presenter view</h2><p class="eyebrow">UP NEXT</p><canvas id="nextSlidePreview"></canvas><h3>Speaker notes</h3><div id="presentNotesText"></div><p class="presenter-note-warning">This panel is visible on this screen. Hide it before sharing your screen.</p></aside><div class="present-controls"><button data-present="exit" title="Exit presentation (Esc)" data-icon="close"></button><span class="present-control-divider"></span><button data-present="prev" title="Previous slide" aria-label="Previous slide">←</button><span id="presentCounter">1 / 7</span><button data-present="next" title="Next slide" aria-label="Next slide">→</button><span class="present-control-divider"></span><button data-present="notes" title="Toggle presenter notes" aria-label="Toggle presenter notes" data-icon="notes"></button><button data-present="laser" title="Laser pointer (L)" aria-label="Laser pointer" data-icon="pointer"></button><button data-present="black" title="Black screen (B)" aria-label="Black screen" data-icon="moon"></button><span id="presentTimer">00:00</span><span class="present-hint">Arrow keys to navigate · Esc to exit</span></div></div>
+<input type="file" id="openFile" accept=".aurelia,.json,.pptx" hidden><input type="file" id="imageFile" accept="image/png,image/jpeg,image/webp,image/gif" multiple hidden>
+<script id="aurelia-bundle">
+(()=>{
+'use strict';
+
+// ─── src/core.js ───
+/** Aurelia document/geometry/command kernel. No browser or renderer dependencies. */
+const VERSION = 1;
+const THEMES = {
+  studio: { name:'Terracotta', bg:'#F5F2EC', ink:'#17313A', dark:'#17313A', light:'#F5F2EC', accent:'#DA735B', secondary:'#A5B8AF', muted:'#71827F', line:'#DDDCD4' },
+  midnight: { name:'Midnight', bg:'#EDF0F7', ink:'#202941', dark:'#202941', light:'#EDF0F7', accent:'#8992DF', secondary:'#B4C9E2', muted:'#7B829A', line:'#D3D7E4' },
+  forest: { name:'Botanical', bg:'#F2F3EA', ink:'#203B32', dark:'#203B32', light:'#F2F3EA', accent:'#99AA69', secondary:'#C7D4B8', muted:'#6C8271', line:'#D5DCCD' },
+  cobalt: { name:'Blueprint', bg:'#F3F6FF', ink:'#172B51', dark:'#172B51', light:'#F3F6FF', accent:'#446CE9', secondary:'#ADC8EF', muted:'#7183A5', line:'#D7DFF0' },
+  rose: { name:'Atelier', bg:'#FBF3F1', ink:'#4C313C', dark:'#4C313C', light:'#FBF3F1', accent:'#CC788D', secondary:'#D9BEA6', muted:'#997B85', line:'#ECD7DD' }
+};
+const clone = value => structuredClone(value);
+const uid = (prefix='e') => `${prefix}_${globalThis.crypto?.randomUUID?.() || Math.random().toString(36).slice(2)+Date.now().toString(36)}`;
+const clamp = (n,a,b) => Math.max(a,Math.min(b,n));
+const color = (value,theme='studio') => value?.startsWith('@') ? (THEMES[theme]?.[value.slice(1)] || '#17313A') : (value || '#000000');
+const escapeHTML = s => String(s ?? '').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+function makeElement(type='rect', props={}) {
+  return { id:uid(), type, name:({text:'Text box',rect:'Rectangle',roundRect:'Rounded rectangle',ellipse:'Ellipse',line:'Line',triangle:'Triangle',diamond:'Diamond',arrow:'Arrow',star:'Star',image:'Picture',chart:'Chart',table:'Table'})[type]||type,
+    x:100,y:100,w:320,h:160,rotation:0,opacity:1,fill:'@accent',stroke:'none',strokeWidth:0,radius:22,locked:false,hidden:false,groupId:null,animation:'none',
+    ...(type==='text'?{text:'Your next great idea',fill:'@ink',fontFamily:'Arial',fontSize:40,bold:false,italic:false,underline:false,align:'left',valign:'top',lineHeight:1.2,padding:4}:{}),...props };
+}
+function makeSlide(layout='blank', theme='studio') {
+  const s={id:uid('s'),name:layout==='blank'?'Blank slide':'Untitled slide',bg:'@bg',notes:'',transition:'fade',duration:0.45,elements:[]};
+  if(layout==='title') s.elements=[makeElement('text',{name:'Title',x:88,y:215,w:1100,h:160,text:'A new perspective.',fontSize:92,bold:true}),makeElement('text',{name:'Subtitle',x:94,y:415,w:1000,h:80,text:'An idea worth sharing.',fontSize:28,fill:'@muted'})];
+  if(layout==='content'||layout==='split') {
+    s.elements.push(makeElement('text',{name:'Title',x:78,y:65,w:1110,h:100,text:'Make your point.',fontSize:62,bold:true}));
+    s.elements.push(makeElement('text',{name:'Content',x:82,y:225,w:layout==='split'?515:1100,h:385,text:'Start with what matters.\n\nConnect the dots.\n\nGive your audience a reason to care.',fontSize:31,fill:'@muted'}));
+    if(layout==='split')s.elements.push(makeElement('roundRect',{name:'Visual',x:660,y:222,w:530,h:380,fill:'@secondary',radius:24}));
+  }
+  if(layout==='quote') s.elements=[makeElement('text',{x:90,y:110,w:180,h:180,text:'“',fontSize:180,fill:'@accent',fontFamily:'Georgia'}),makeElement('text',{name:'Quote',x:120,y:270,w:1000,h:240,text:'Great stories make\ncomplex ideas feel simple.',fontSize:64,fontFamily:'Georgia'}),makeElement('text',{x:125,y:570,w:700,h:50,text:'YOUR NAME  /  YOUR PERSPECTIVE',fontSize:18,fill:'@muted'})];
+  return s;
+}
+function makeDocument() { return {format:'aurelia',version:VERSION,id:uid('deck'),title:'Untitled presentation',width:1280,height:720,theme:'studio',slides:[makeSlide('title')]}; }
+const VALID_TYPES=new Set(['rect','roundRect','ellipse','triangle','diamond','arrow','star','line','text','image','chart','table']);
+const VALID_COLORS=/^(?:@[a-z]+|#[0-9a-fA-F]{6}|#[0-9a-fA-F]{8}|none)$/;
+function validateDocument(raw) {
+  if(!raw||raw.format!=='aurelia'||raw.version!==VERSION)throw new Error('This is not a supported Aurelia presentation.');
+  if(!Array.isArray(raw.slides)||raw.slides.length<1||raw.slides.length>500)throw new Error('A presentation must contain 1–500 slides.');
+  const d=makeDocument(); d.id=String(raw.id||d.id);d.title=String(raw.title||'Untitled presentation').slice(0,200);d.width=clamp(Number(raw.width)||1280,320,4096);d.height=clamp(Number(raw.height)||720,240,4096);d.theme=THEMES[raw.theme]?raw.theme:'studio';
+  const seen=new Set();
+  function safeId(id){if(typeof id!=='string'||seen.has(id))id=uid();seen.add(id);return id;}
+  const safeColor=(v,fallback)=>typeof v==='string'&&VALID_COLORS.test(v)?v:fallback;
+  d.slides=raw.slides.map((s,index)=>{
+    if(!Array.isArray(s.elements)||s.elements.length>5000)throw new Error(`Slide ${index+1} exceeds the 5,000-object limit.`);
+    const out={id:safeId(s.id),name:String(s.name||`Slide ${index+1}`).slice(0,200),bg:safeColor(s.bg,'@bg'),notes:String(s.notes||'').slice(0,100000),transition:['none','fade','push','zoom'].includes(s.transition)?s.transition:'none',duration:clamp(+s.duration||0.45,0.1,5),elements:[]};
+    out.elements=s.elements.map(v=>{
+      if(!VALID_TYPES.has(v.type))throw new Error(`Unsupported object type: ${v.type}`);
+      const e=makeElement(v.type);e.id=safeId(v.id);e.name=String(v.name||e.name).slice(0,200);
+      for(const p of ['x','y','w','h','rotation','opacity','strokeWidth','radius'])if(Number.isFinite(v[p]))e[p]=clamp(v[p],-100000,100000);
+      e.w=clamp(e.w,1,16384);e.h=clamp(e.h,1,16384);e.opacity=clamp(e.opacity,0,1);e.strokeWidth=clamp(e.strokeWidth,0,100);
+      e.fill=safeColor(v.fill,e.fill);e.stroke=safeColor(v.stroke,'none');e.locked=!!v.locked;e.hidden=!!v.hidden;e.groupId=typeof v.groupId==='string'?v.groupId.slice(0,100):null;e.animation=['none','fade','rise','zoom'].includes(v.animation)?v.animation:'none';
+      if(e.type==='text') {e.text=String(v.text||'').slice(0,100000);e.fontFamily=String(v.fontFamily||'Arial').replace(/[^a-zA-Z0-9 ,\-]/g,'').slice(0,100);e.fontSize=clamp(+v.fontSize||40,4,600);e.bold=!!v.bold;e.italic=!!v.italic;e.underline=!!v.underline;e.align=['left','center','right'].includes(v.align)?v.align:'left';e.valign=['top','middle','bottom'].includes(v.valign)?v.valign:'top';e.lineHeight=clamp(+v.lineHeight||1.2,0.8,3);e.padding=clamp(+v.padding||0,0,200);}
+      if(e.type==='image'){if(typeof v.src!=='string'||!/^data:image\/(png|jpeg|webp);base64,[A-Za-z0-9+/=]+$/.test(v.src)||v.src.length>30000000)throw new Error('Pictures must be embedded PNG, JPEG or WebP files, at most 22 MB each.');e.src=v.src;e.fit=v.fit==='contain'?'contain':'cover';}
+      if(e.type==='chart'){e.chartType=['bar','line','donut'].includes(v.chartType)?v.chartType:'bar';e.labels=(v.labels||['A','B','C']).slice(0,30).map(x=>String(x).slice(0,80));e.values=(v.values||[20,40,70]).slice(0,e.labels.length).map(x=>clamp(Number(x)||0,0,1e12));while(e.values.length<e.labels.length)e.values.push(0);e.showValues=v.showValues!==false;}
+      if(e.type==='table'){if(!Array.isArray(v.cells)||!v.cells.length)throw new Error('Invalid table.');e.cells=v.cells.slice(0,30).map(r=>Array.isArray(r)?r.slice(0,12).map(c=>String(c).slice(0,1000)):['']);e.fontSize=clamp(+v.fontSize||22,8,100);}
+      return e;
+    });return out;
+  });return d;
+}
+function localPoint(e,p) {
+  const a=-(e.rotation||0)*Math.PI/180,c=Math.cos(a),s=Math.sin(a),dx=p.x-e.x-e.w/2,dy=p.y-e.y-e.h/2;
+  return {x:dx*c-dy*s+e.w/2,y:dx*s+dy*c+e.h/2};
+}
+function hitElement(e,p,tolerance=4) {
+  if(e.hidden)return false;
+  const q=localPoint(e,p),cx=q.x-e.w/2,cy=q.y-e.h/2;
+  if(e.type==='ellipse')return (cx/(e.w/2+tolerance))**2+(cy/(e.h/2+tolerance))**2<=1;
+  if(e.type==='diamond')return Math.abs(cx)/(e.w/2+tolerance)+Math.abs(cy)/(e.h/2+tolerance)<=1;
+  if(e.type==='line')return Math.abs(q.y-e.h/2)<=Math.max(tolerance,e.h/2)&&q.x>=-tolerance&&q.x<=e.w+tolerance;
+  if(e.type==='triangle'){const allowance=(q.y/e.h)*(e.w/2)+tolerance;return q.y>=-tolerance&&q.y<=e.h+tolerance&&Math.abs(cx)<=allowance;}
+  return q.x>=-tolerance&&q.y>=-tolerance&&q.x<=e.w+tolerance&&q.y<=e.h+tolerance;
+}
+function elementBounds(e) {
+  const a=(e.rotation||0)*Math.PI/180,c=Math.abs(Math.cos(a)),s=Math.abs(Math.sin(a)),w=e.w*c+e.h*s,h=e.w*s+e.h*c;
+  return {x:e.x+(e.w-w)/2,y:e.y+(e.h-h)/2,w,h};
+}
+function unionBounds(elements) {
+  if(!elements.length)return null; const bs=elements.map(elementBounds),x=Math.min(...bs.map(b=>b.x)),y=Math.min(...bs.map(b=>b.y));
+  return {x,y,w:Math.max(...bs.map(b=>b.x+b.w))-x,h:Math.max(...bs.map(b=>b.y+b.h))-y};
+}
+function rectIntersects(a,b) {return a.x<=b.x+b.w&&a.x+a.w>=b.x&&a.y<=b.y+b.h&&a.y+a.h>=b.y;}
+function snapMove(bounds,others,width,height,threshold=7) {
+  const xs=[0,width/2,width],ys=[0,height/2,height];for(const e of others){const b=elementBounds(e);xs.push(b.x,b.x+b.w/2,b.x+b.w);ys.push(b.y,b.y+b.h/2,b.y+b.h);}
+  function match(points,targets){let best={delta:0,line:null,d:threshold};for(const p of points)for(const t of targets){const d=Math.abs(t-p);if(d<best.d)best={delta:t-p,line:t,d};}return best;}
+  const x=match([bounds.x,bounds.x+bounds.w/2,bounds.x+bounds.w],xs),y=match([bounds.y,bounds.y+bounds.h/2,bounds.y+bounds.h],ys);
+  return {dx:x.delta,dy:y.delta,lines:[...(x.line===null?[]:[{axis:'x',value:x.line}]),...(y.line===null?[]:[{axis:'y',value:y.line}])]};
+}
+class Store {
+  constructor(doc=makeDocument()){this.doc=doc;this.active=doc.slides[0].id;this.selection=new Set();this.past=[];this.future=[];this.listeners=new Set();this.pending=null;this.revision=0;this.maxHistory=100;this.maxHistoryBytes=40*1024*1024;}
+  get slide(){return this.doc.slides.find(s=>s.id===this.active)||this.doc.slides[0];}
+  get selected(){return this.slide.elements.filter(e=>this.selection.has(e.id));}
+  onChange(fn){this.listeners.add(fn);return()=>this.listeners.delete(fn);}
+  emit(kind='change'){for(const fn of this.listeners)fn(kind);}
+  select(ids){this.selection=new Set(ids);this.emit('selection');}
+  activate(id){if(!this.doc.slides.some(s=>s.id===id))return;this.active=id;this.selection.clear();this.emit('active');}
+  snapshot(){return JSON.stringify({doc:this.doc,active:this.active});}
+  begin(label='Edit'){if(!this.pending)this.pending={label,before:this.snapshot()};}
+  commit(){if(!this.pending)return false;const {label,before}=this.pending;this.pending=null;const after=this.snapshot();if(before===after)return false;this.past.push({label,before,after});this.future=[];let size=this.past.reduce((n,x)=>n+x.before.length+x.after.length,0);while(this.past.length>1&&(this.past.length>this.maxHistory||size>this.maxHistoryBytes)){const x=this.past.shift();size-=x.before.length+x.after.length;}this.revision++;this.emit('commit');return true;}
+  cancel(){if(!this.pending)return;const snap=this.pending.before;this.pending=null;this.restore(snap);}
+  transaction(label,fn){this.begin(label);try{fn(this.doc,this.slide);this.commit();}catch(e){this.cancel();throw e;}}
+  restore(snapshot){const state=JSON.parse(snapshot);this.doc=state.doc;this.active=state.active;this.selection=new Set([...this.selection].filter(id=>this.slide.elements.some(e=>e.id===id)));this.revision++;this.emit('restore');}
+  undo(){if(this.pending)this.commit();const cmd=this.past.pop();if(!cmd)return;this.future.push(cmd);this.restore(cmd.before);}
+  redo(){const cmd=this.future.pop();if(!cmd)return;this.past.push(cmd);this.restore(cmd.after);}
+  replace(doc){this.transaction('Open presentation',()=>{this.doc=doc;this.active=doc.slides[0].id;this.selection.clear();});}
+  add(element){this.transaction(`Insert ${element.type}`,()=>this.slide.elements.push(element));this.select([element.id]);return element;}
+  updateSelected(props,label='Format objects'){this.transaction(label,()=>{for(const e of this.selected)if(!e.locked)Object.assign(e,props);});}
+  deleteSelected(){this.transaction('Delete objects',()=>{this.slide.elements=this.slide.elements.filter(e=>!this.selection.has(e.id)||e.locked);});this.select([]);}
+  duplicateSelected(){const groups=new Map(),els=clone(this.selected).filter(e=>!e.locked).map(e=>{e.id=uid();e.x+=24;e.y+=24;if(e.groupId){if(!groups.has(e.groupId))groups.set(e.groupId,uid('g'));e.groupId=groups.get(e.groupId);}return e;});this.transaction('Duplicate objects',()=>this.slide.elements.push(...els));this.select(els.map(e=>e.id));}
+  addSlide(layout='blank'){const s=makeSlide(layout,this.doc.theme);this.transaction('New slide',()=>{const i=this.doc.slides.findIndex(s=>s.id===this.active);this.doc.slides.splice(i+1,0,s);this.active=s.id;});this.select([]);return s;}
+  duplicateSlide(){const s=clone(this.slide);s.id=uid('s');s.name+=' copy';const groups=new Map();for(const e of s.elements){e.id=uid();if(e.groupId){if(!groups.has(e.groupId))groups.set(e.groupId,uid('g'));e.groupId=groups.get(e.groupId);}}this.transaction('Duplicate slide',()=>{const i=this.doc.slides.findIndex(x=>x.id===this.active);this.doc.slides.splice(i+1,0,s);this.active=s.id;});this.select([]);}
+  deleteSlide(){if(this.doc.slides.length===1)return false;this.transaction('Delete slide',()=>{const i=this.doc.slides.findIndex(s=>s.id===this.active);this.doc.slides.splice(i,1);this.active=this.doc.slides[Math.min(i,this.doc.slides.length-1)].id;});this.select([]);return true;}
+  reorderSlide(from,to){this.transaction('Reorder slides',()=>{const [slide]=this.doc.slides.splice(from,1);this.doc.slides.splice(to,0,slide);});}
+  align(mode){const els=this.selected.filter(e=>!e.locked);if(!els.length)return;const b=els.length===1?{x:0,y:0,w:this.doc.width,h:this.doc.height}:unionBounds(els);this.transaction('Align objects',()=>{for(const e of els){const r=elementBounds(e);if(mode==='left')e.x+=b.x-r.x;if(mode==='center')e.x+=b.x+b.w/2-r.x-r.w/2;if(mode==='right')e.x+=b.x+b.w-r.x-r.w;if(mode==='top')e.y+=b.y-r.y;if(mode==='middle')e.y+=b.y+b.h/2-r.y-r.h/2;if(mode==='bottom')e.y+=b.y+b.h-r.y-r.h;}});}
+  distribute(axis){const es=this.selected.filter(e=>!e.locked).sort((a,b)=>elementBounds(a)[axis]-elementBounds(b)[axis]);if(es.length<3)return;const k=axis==='x'?'w':'h',bs=es.map(elementBounds),total=bs.reduce((n,b)=>n+b[k],0),gap=(bs.at(-1)[axis]+bs.at(-1)[k]-bs[0][axis]-total)/(es.length-1);this.transaction('Distribute objects',()=>{let p=bs[0][axis];es.forEach((e,i)=>{e[axis]+=p-bs[i][axis];p+=bs[i][k]+gap;});});}
+  arrange(mode){this.transaction('Arrange objects',()=>{const list=this.slide.elements,chosen=list.filter(e=>this.selection.has(e.id));if(mode==='front')this.slide.elements=[...list.filter(e=>!this.selection.has(e.id)),...chosen];else if(mode==='back')this.slide.elements=[...chosen,...list.filter(e=>!this.selection.has(e.id))];else if(mode==='forward'){for(let i=list.length-2;i>=0;i--)if(this.selection.has(list[i].id)&&!this.selection.has(list[i+1].id))[list[i],list[i+1]]=[list[i+1],list[i]];}else{for(let i=1;i<list.length;i++)if(this.selection.has(list[i].id)&&!this.selection.has(list[i-1].id))[list[i],list[i-1]]=[list[i-1],list[i]];}});}
+  group(){if(this.selected.length<2)return;this.updateSelected({groupId:uid('g')},'Group objects');}
+  ungroup(){this.updateSelected({groupId:null},'Ungroup objects');}
+}
+
+
+// ─── src/renderer.js ───
+/** Ordered retained-scene renderer: analytic GPU shapes + cached, shaped text/image tiles. */
+const SHAPE_IDS={rect:0,roundRect:1,ellipse:2,triangle:3,diamond:4,arrow:5,star:6,line:7};
+const GPU_SHADER=`
+struct View { size: vec4f, }
+struct Instance { rect:vec4f, transform:vec4f, fill:vec4f, stroke:vec4f, params:vec4f, }
+@group(0) @binding(0) var<uniform> view:View;
+@group(0) @binding(1) var<storage,read> items:array<Instance>;
+struct Vertex { @builtin(position) position:vec4f, @location(0) local:vec2f, @location(1) @interpolate(flat) index:u32, }
+fn corner(i:u32)->vec2f { let p=array<vec2f,6>(vec2f(0,0),vec2f(1,0),vec2f(0,1),vec2f(0,1),vec2f(1,0),vec2f(1,1));return p[i]; }
+fn project(p:vec2f)->vec4f{return vec4f(p.x/view.size.x*2.-1.,1.-p.y/view.size.y*2.,0.,1.);}
+@vertex fn shapeVertex(@builtin(vertex_index) vi:u32,@builtin(instance_index) ii:u32)->Vertex {
+ let e=items[ii];let p=(corner(vi)-.5)*(e.rect.zw+vec2f(4));let r=vec2f(p.x*e.transform.x-p.y*e.transform.y,p.x*e.transform.y+p.y*e.transform.x);var o:Vertex;o.position=project(e.rect.xy+e.rect.zw*.5+r);o.local=p;o.index=ii;return o;
+}
+fn polygon(p:vec2f,points:array<vec2f,10>,count:u32)->f32 {
+ var d=dot(p-points[0],p-points[0]);var sign=1.;var j=count-1u;
+ for(var i=0u;i<count;i++) {let a=points[i];let b=points[j];let e=b-a;let v=p-a;let q=v-e*clamp(dot(v,e)/max(dot(e,e),.0001),0.,1.);d=min(d,dot(q,q));let c=vec3<bool>(p.y>=a.y,p.y<b.y,e.x*v.y>e.y*v.x);if(all(c)||all(!c)){sign=-sign;}j=i;}
+ return sign*sqrt(d);
+}
+fn distance(p:vec2f,h:vec2f,kind:u32,r:f32)->f32 {
+ if(kind==2u){return (length(p/max(h,vec2f(.01)))-1.)*min(h.x,h.y);}
+ var pts:array<vec2f,10>;
+ if(kind==3u){pts[0]=vec2f(0,-h.y);pts[1]=h;pts[2]=vec2f(-h.x,h.y);return polygon(p,pts,3u);}
+ if(kind==4u){pts[0]=vec2f(0,-h.y);pts[1]=vec2f(h.x,0);pts[2]=vec2f(0,h.y);pts[3]=vec2f(-h.x,0);return polygon(p,pts,4u);}
+ if(kind==5u){pts[0]=vec2f(-h.x,-h.y*.36);pts[1]=vec2f(h.x*.2,-h.y*.36);pts[2]=vec2f(h.x*.2,-h.y);pts[3]=vec2f(h.x,0);pts[4]=vec2f(h.x*.2,h.y);pts[5]=vec2f(h.x*.2,h.y*.36);pts[6]=vec2f(-h.x,h.y*.36);return polygon(p,pts,7u);}
+ if(kind==6u){for(var i=0u;i<10u;i++){let a=f32(i)*.62831853-1.57079633;let rad=select(.44,1.,i%2u==0u);pts[i]=vec2f(cos(a),sin(a))*h*rad;}return polygon(p,pts,10u);}
+ let radius=select(0.,min(r,min(h.x,h.y)),kind==1u);let q=abs(p)-h+radius;return length(max(q,vec2f(0)))+min(max(q.x,q.y),0.)-radius;
+}
+@fragment fn shapeFragment(v:Vertex)->@location(0) vec4f {
+ let e=items[v.index];let d=distance(v.local,e.rect.zw*.5,u32(e.transform.w),e.params.x);let aa=max(fwidth(d),.5);let coverage=1.-smoothstep(-aa*.5,aa*.5,d);var c=e.fill;
+ if(e.params.y>0.){let border=smoothstep(-e.params.y-aa*.5,-e.params.y+aa*.5,d);c=mix(c,e.stroke,border);}
+ let alpha=c.a*coverage*e.transform.z;return vec4f(c.rgb*alpha,alpha);
+}
+@group(1) @binding(0) var textureSampler:sampler;
+@group(1) @binding(1) var tile:texture_2d<f32>;
+@vertex fn textureVertex(@builtin(vertex_index) vi:u32,@builtin(instance_index) ii:u32)->Vertex {
+ let e=items[ii];let uv=corner(vi);let p=(uv-.5)*e.rect.zw;let r=vec2f(p.x*e.transform.x-p.y*e.transform.y,p.x*e.transform.y+p.y*e.transform.x);var o:Vertex;o.position=project(e.rect.xy+e.rect.zw*.5+r);o.local=uv;o.index=ii;return o;
+}
+@fragment fn textureFragment(v:Vertex)->@location(0) vec4f {return textureSample(tile,textureSampler,v.local)*items[v.index].transform.z;}
+`;
+function rgba(value,theme){const c=color(value,theme);if(c==='none')return[0,0,0,0];const h=c.slice(1);return[parseInt(h.slice(0,2),16)/255,parseInt(h.slice(2,4),16)/255,parseInt(h.slice(4,6),16)/255,h.length===8?parseInt(h.slice(6,8),16)/255:1];}
+function fontCSS(e){return `${e.italic?'italic ':''}${e.bold?'700':'400'} ${e.fontSize||24}px "${e.fontFamily||'Arial'}", sans-serif`;}
+function wrapText(ctx,text,maxWidth){
+  const lines=[];maxWidth=Math.max(1,maxWidth);
+  for(const para of String(text).replace(/\r\n?/g,'\n').split('\n')){
+    if(!para){lines.push('');continue;}let line='';
+    for(const token of para.match(/\S+\s*|\s+/gu)||[]){
+      if(ctx.measureText(line+token.trimEnd()).width<=maxWidth){line+=token;continue;}
+      if(line.trim()){lines.push(line.trimEnd());line='';}
+      if(ctx.measureText(token.trimEnd()).width<=maxWidth){line=token.trimStart();continue;}
+      const chars=globalThis.Intl?.Segmenter?[...new Intl.Segmenter(undefined,{granularity:'grapheme'}).segment(token)].map(x=>x.segment):Array.from(token);
+      for(const ch of chars){if(line&&ctx.measureText(line+ch).width>maxWidth){lines.push(line);line='';}line+=ch;}
+    }lines.push(line.trimEnd());
+  }return lines;
+}
+function drawText2D(ctx,e,theme){
+  ctx.font=fontCSS(e);ctx.textBaseline='alphabetic';ctx.fillStyle=color(e.fill,theme);ctx.textAlign=e.align||'left';
+  const pad=e.padding??4,fs=e.fontSize||24,lh=fs*(e.lineHeight||1.2),lines=wrapText(ctx,e.text,e.w-2*pad),height=lines.length*lh;
+  let top=pad;if(e.valign==='middle')top=Math.max(pad,(e.h-height)/2);if(e.valign==='bottom')top=Math.max(pad,e.h-height-pad);
+  const x=e.align==='center'?e.w/2:e.align==='right'?e.w-pad:pad;
+  for(let i=0;i<lines.length;i++){const y=top+i*lh+fs*.85;if(y-fs>e.h)break;ctx.fillText(lines[i],x,y);if(e.underline){const w=ctx.measureText(lines[i]).width,xx=x-(e.align==='center'?w/2:e.align==='right'?w:0);ctx.fillRect(xx,y+fs*.12,w,Math.max(1,fs/20));}}
+}
+function primitivePath(ctx,e){
+  const w=e.w,h=e.h;ctx.beginPath();
+  if(e.type==='ellipse'){ctx.ellipse(w/2,h/2,w/2,h/2,0,0,Math.PI*2);return;}
+  if(e.type==='roundRect'){ctx.roundRect(0,0,w,h,Math.min(e.radius||0,w/2,h/2));return;}
+  let p;
+  if(e.type==='triangle')p=[[w/2,0],[w,h],[0,h]];
+  else if(e.type==='diamond')p=[[w/2,0],[w,h/2],[w/2,h],[0,h/2]];
+  else if(e.type==='arrow')p=[[0,h*.32],[w*.6,h*.32],[w*.6,0],[w,h/2],[w*.6,h],[w*.6,h*.68],[0,h*.68]];
+  else if(e.type==='star')p=Array.from({length:10},(_,i)=>{const a=i*Math.PI/5-Math.PI/2,r=i%2?.44:1;return[w/2+Math.cos(a)*w/2*r,h/2+Math.sin(a)*h/2*r];});
+  else{ctx.rect(0,0,w,h);return;}
+  p.forEach(([x,y],i)=>i?ctx.lineTo(x,y):ctx.moveTo(x,y));ctx.closePath();
+}
+function childElement(parent,local,id){
+  const a=(parent.rotation||0)*Math.PI/180,c=Math.cos(a),s=Math.sin(a),dx=local.x+local.w/2-parent.w/2,dy=local.y+local.h/2-parent.h/2;
+  return{opacity:1,stroke:'none',strokeWidth:0,rotation:0,...local,id:parent.id+':'+id,x:parent.x+parent.w/2+dx*c-dy*s-local.w/2,y:parent.y+parent.h/2+dx*s+dy*c-local.h/2,rotation:(parent.rotation||0)+(local.rotation||0),opacity:(parent.opacity??1)*(local.opacity??1)};
+}
+function expandElement(e){
+  const out=[];const add=(v)=>out.push(childElement(e,v,out.length));
+  const txt=(text,x,y,w,h,extra={})=>add({type:'text',text:String(text),x,y,w,h,fontFamily:'Arial',fontSize:17,fill:'@muted',padding:0,align:'left',lineHeight:1.2,...extra});
+  if(e.type==='table'){
+    const rows=e.cells||[['A','B'],['C','D']],cols=Math.max(1,...rows.map(r=>r.length)),cw=e.w/cols,rh=e.h/rows.length;
+    rows.forEach((row,r)=>{for(let c=0;c<cols;c++){add({type:'rect',x:c*cw,y:r*rh,w:cw,h:rh,fill:r===0?(e.fill||'@dark'):(r%2?'@bg':'@line'),stroke:'@light',strokeWidth:1});txt(row[c]??'',c*cw+14,r*rh+8,cw-28,rh-16,{fontSize:e.fontSize||22,fill:r===0?'@light':'@ink',bold:r===0,valign:'middle'});}});return out;
+  }
+  if(e.type!=='chart'||e.chartType==='donut')return[e];
+  const labels=e.labels||['A','B','C'],values=e.values||[30,50,70],mx=Math.max(1,...values),max=Math.ceil(mx/5)*5,left=54,top=24,right=20,bottom=48,W=Math.max(1,e.w-left-right),H=Math.max(1,e.h-top-bottom),bw=W/Math.max(1,labels.length);
+  for(let i=0;i<=4;i++){const y=top+H-H*i/4;add({type:'line',x:left,y,w:W,h:1,fill:'@line'});txt(Math.round(max*i/4),0,y-10,43,22,{fontSize:14,align:'right'});}
+  values.forEach((v,i)=>{
+    const x=left+i*bw,y=top+H-H*v/max;
+    if(e.chartType==='bar')add({type:'roundRect',x:x+bw*.18,y,w:bw*.64,h:Math.max(1,top+H-y),fill:i===values.length-1?(e.fill||'@accent'):'@secondary',radius:5});
+    else{const cx=x+bw/2;if(i>0){const px=cx-bw,py=top+H-H*values[i-1]/max,dx=cx-px,dy=y-py,len=Math.hypot(dx,dy);add({type:'line',x:(px+cx)/2-len/2,y:(py+y)/2-2,w:len,h:4,rotation:Math.atan2(dy,dx)*180/Math.PI,fill:e.fill||'@accent'});}add({type:'ellipse',x:cx-5,y:y-5,w:10,h:10,fill:e.fill||'@accent'});}
+    if(e.showValues!==false)txt(v,x,y-26,bw,23,{fontSize:16,align:'center',fill:'@ink',bold:true});
+    txt(labels[i]||'',x,top+H+15,bw,30,{fontSize:15,align:'center'});
+  });return out;
+}
+function flattenScene(elements){return elements.filter(e=>!e.hidden).flatMap(expandElement);}
+class ImagePool{
+  constructor(onLoad=()=>{}){this.items=new Map();this.onLoad=onLoad;}
+  get(src){if(this.items.has(src))return this.items.get(src);const image=new Image();image.onload=()=>this.onLoad();image.onerror=()=>this.onLoad();image.src=src;this.items.set(src,image);return image;}
+  async ready(elements){await Promise.all(elements.filter(e=>e.type==='image').map(e=>{const im=this.get(e.src);return im.decode().catch(()=>{});}));}
+  retain(sources){for(const src of this.items.keys())if(!sources.has(src))this.items.delete(src);}
+}
+function drawDonut(ctx,e,theme){
+  const values=e.values||[],total=values.reduce((a,b)=>a+b,0)||1,cx=e.w*.35,cy=e.h/2,r=Math.min(e.w*.28,e.h*.4),colors=[e.fill||'@accent','@secondary','@dark','@muted','@line'];let a=-Math.PI/2;
+  values.forEach((v,i)=>{const end=a+v/total*Math.PI*2;ctx.beginPath();ctx.arc(cx,cy,r,a,end);ctx.arc(cx,cy,r*.63,end,a,true);ctx.closePath();ctx.fillStyle=color(colors[i%colors.length],theme);ctx.fill();a=end;ctx.fillRect(e.w*.72,35+i*37,12,12);ctx.font='16px Arial';ctx.fillStyle=color('@ink',theme);ctx.fillText(`${e.labels?.[i]||''}  ${v}`,e.w*.72+22,46+i*37);});ctx.textAlign='center';ctx.font='bold 42px Arial';ctx.fillStyle=color('@ink',theme);ctx.fillText(values.reduce((a,b)=>a+b,0),cx,cy+10);ctx.font='14px Arial';ctx.fillStyle=color('@muted',theme);ctx.fillText('TOTAL',cx,cy+36);
+}
+function drawLeaf2D(ctx,e,theme,images){
+  if(e.hidden)return;ctx.save();ctx.globalAlpha=e.opacity??1;ctx.translate(e.x+e.w/2,e.y+e.h/2);ctx.rotate((e.rotation||0)*Math.PI/180);ctx.translate(-e.w/2,-e.h/2);
+  if(e.type==='text'||e.type==='image'||e.type==='chart'){
+    ctx.beginPath();ctx.rect(0,0,e.w,e.h);ctx.clip();
+    if(e.type==='text')drawText2D(ctx,e,theme);
+    if(e.type==='chart')drawDonut(ctx,e,theme);
+    if(e.type==='image'){
+      const image=images.get(e.src);if(image.complete&&image.naturalWidth){const s=e.fit==='contain'?Math.min(e.w/image.naturalWidth,e.h/image.naturalHeight):Math.max(e.w/image.naturalWidth,e.h/image.naturalHeight),w=image.naturalWidth*s,h=image.naturalHeight*s;ctx.drawImage(image,(e.w-w)/2,(e.h-h)/2,w,h);}else{ctx.fillStyle='#e3e6e7';ctx.fillRect(0,0,e.w,e.h);}
+    }
+  }else{primitivePath(ctx,e);if(e.fill!=='none'){ctx.fillStyle=color(e.fill,theme);ctx.fill();}if(e.strokeWidth>0&&e.stroke!=='none'){ctx.clip();ctx.lineWidth=e.strokeWidth*2;ctx.strokeStyle=color(e.stroke,theme);ctx.stroke();}}
+  ctx.restore();
+}
+function paintSlide2D(canvas,slide,doc,images,{scale=1,ignoreId=null}={}){
+  const ctx=canvas.getContext('2d');ctx.save();ctx.setTransform(scale,0,0,scale,0,0);ctx.clearRect(0,0,doc.width,doc.height);ctx.fillStyle=color(slide.bg,doc.theme);ctx.fillRect(0,0,doc.width,doc.height);
+  for(const e of flattenScene(slide.elements))if(e.id!==ignoreId)drawLeaf2D(ctx,e,doc.theme,images);ctx.restore();
+}
+function tileSignature(e,theme,resolution){
+  if(e.type==='image')return `${e.id}|${e.w}|${e.h}|${e.fit}|${e.src.length}|${resolution}`;
+  return JSON.stringify([e.type,e.text,e.w,e.h,e.fill,e.fontSize,e.fontFamily,e.bold,e.italic,e.underline,e.align,e.valign,e.lineHeight,e.padding,e.chartType,e.labels,e.values,theme,resolution]);
+}
+class SceneRenderer{
+  constructor(canvas,onStatus=()=>{},onInvalidate=()=>{}){
+    this.canvas=canvas;this.onStatus=onStatus;this.onInvalidate=onInvalidate;this.mode='initializing';this.device=null;this.cache=new Map();this.cacheBytes=0;this.budget=96*1024*1024;this.frame=0;this.capacity=0;this.images=new ImagePool(()=>{this.invalidateTiles();this.onInvalidate();});this.lastStats={objects:0,draws:0,ms:0,uploads:0};this.disposed=false;
+  }
+  async init(){
+    try{
+      if(new URLSearchParams(location.search).get('renderer')==='canvas')throw new Error('Canvas 2D selected');
+      if(!navigator.gpu)throw new Error('WebGPU is unavailable');const adapter=await navigator.gpu.requestAdapter({powerPreference:'high-performance'});if(!adapter)throw new Error('No WebGPU adapter');
+      const device=await adapter.requestDevice();this.device=device;this.context=this.canvas.getContext('webgpu');if(!this.context)throw new Error('Cannot initialize GPU canvas');
+      this.format=navigator.gpu.getPreferredCanvasFormat();this.context.configure({device,format:this.format,alphaMode:'premultiplied'});
+      const shader=device.createShaderModule({label:'Aurelia analytic geometry + texture compositor',code:GPU_SHADER});const info=await shader.getCompilationInfo();const errs=info.messages.filter(m=>m.type==='error');if(errs.length)throw new Error(errs.map(m=>m.message).join('\n'));
+      this.sceneLayout=device.createBindGroupLayout({entries:[{binding:0,visibility:GPUShaderStage.VERTEX,buffer:{type:'uniform'}},{binding:1,visibility:GPUShaderStage.VERTEX|GPUShaderStage.FRAGMENT,buffer:{type:'read-only-storage'}}]});
+      this.tileLayout=device.createBindGroupLayout({entries:[{binding:0,visibility:GPUShaderStage.FRAGMENT,sampler:{type:'filtering'}},{binding:1,visibility:GPUShaderStage.FRAGMENT,texture:{sampleType:'float'}}]});
+      const blend={color:{srcFactor:'one',dstFactor:'one-minus-src-alpha',operation:'add'},alpha:{srcFactor:'one',dstFactor:'one-minus-src-alpha',operation:'add'}};
+      this.shapePipeline=await device.createRenderPipelineAsync({label:'Analytic instanced shapes',layout:device.createPipelineLayout({bindGroupLayouts:[this.sceneLayout]}),vertex:{module:shader,entryPoint:'shapeVertex'},fragment:{module:shader,entryPoint:'shapeFragment',targets:[{format:this.format,blend}]},primitive:{topology:'triangle-list'}});
+      this.texturePipeline=await device.createRenderPipelineAsync({label:'Cached text and image quads',layout:device.createPipelineLayout({bindGroupLayouts:[this.sceneLayout,this.tileLayout]}),vertex:{module:shader,entryPoint:'textureVertex'},fragment:{module:shader,entryPoint:'textureFragment',targets:[{format:this.format,blend}]},primitive:{topology:'triangle-list'}});
+      this.uniform=device.createBuffer({size:16,usage:GPUBufferUsage.UNIFORM|GPUBufferUsage.COPY_DST});this.sampler=device.createSampler({magFilter:'linear',minFilter:'linear'});this.ensureCapacity(128);
+      device.lost.then(info=>{if(!this.disposed){console.warn('Aurelia GPU device lost:',info.message);this.fallback('GPU device lost — safe rendering enabled');}});device.addEventListener('uncapturederror',event=>{console.error('WebGPU validation:',event.error.message);if(!this.disposed)this.fallback(event.error.message);});
+      this.mode='webgpu';this.adapterInfo=adapter.info?.description||adapter.info?.architecture||'WebGPU device';this.onStatus('WebGPU',this.adapterInfo);
+    }catch(error){this.fallback(error.message);}
+    return this.mode;
+  }
+  fallback(reason){
+    if(this.disposed)return;this.invalidateTiles();
+    if(this.context){this.context.unconfigure();const old=this.canvas,replacement=old.cloneNode(false);old.replaceWith(replacement);this.canvas=replacement;this.context=null;}
+    this.mode='canvas';this.onStatus('Canvas 2D',reason);this.onInvalidate();
+  }
+  ensureCapacity(count){
+    if(count<=this.capacity)return;this.capacity=2**Math.ceil(Math.log2(Math.max(128,count)));this.instances?.destroy();this.instances=this.device.createBuffer({label:'Growable retained scene instances',size:this.capacity*80,usage:GPUBufferUsage.STORAGE|GPUBufferUsage.COPY_DST});this.data=new Float32Array(this.capacity*20);
+    this.sceneGroup=this.device.createBindGroup({layout:this.sceneLayout,entries:[{binding:0,resource:{buffer:this.uniform}},{binding:1,resource:{buffer:this.instances}}]});
+  }
+  invalidateTiles(){for(const v of this.cache.values())v.texture.destroy();this.cache.clear();this.cacheBytes=0;}
+  tile(e,theme,resolution){
+    const maxSize=Math.min(4096,this.device.limits.maxTextureDimension2D);resolution=Math.min(resolution,maxSize/e.w,maxSize/e.h);resolution=Math.max(.03,resolution);const key=e.id,signature=tileSignature(e,theme,resolution);let v=this.cache.get(key);
+    if(v&&v.signature===signature){v.used=this.frame;return v;}
+    if(v){v.texture.destroy();this.cacheBytes-=v.bytes;this.cache.delete(key);}
+    const c=document.createElement('canvas');c.width=Math.max(1,Math.ceil(e.w*resolution));c.height=Math.max(1,Math.ceil(e.h*resolution));const ctx=c.getContext('2d');ctx.scale(c.width/e.w,c.height/e.h);drawLeaf2D(ctx,{...e,x:0,y:0,rotation:0,opacity:1},theme,this.images);
+    const texture=this.device.createTexture({label:`Tile: ${e.type}`,size:[c.width,c.height],format:'rgba8unorm',usage:GPUTextureUsage.TEXTURE_BINDING|GPUTextureUsage.COPY_DST|GPUTextureUsage.RENDER_ATTACHMENT});this.device.queue.copyExternalImageToTexture({source:c},{texture,premultipliedAlpha:true},[c.width,c.height]);
+    const bindGroup=this.device.createBindGroup({layout:this.tileLayout,entries:[{binding:0,resource:this.sampler},{binding:1,resource:texture.createView()}]});v={texture,bindGroup,signature,used:this.frame,bytes:c.width*c.height*4};this.cache.set(key,v);this.cacheBytes+=v.bytes;this.lastStats.uploads++;return v;
+  }
+  render(slide,doc,{cssWidth=1280,cssHeight=720,dpr=window.devicePixelRatio||1,ignoreId=null}={}){
+    if(this.mode==='initializing'||this.disposed)return;const start=performance.now();this.frame++;this.lastStats.uploads=0;
+    const width=Math.max(1,Math.round(cssWidth*dpr)),height=Math.max(1,Math.round(cssHeight*dpr));if(this.canvas.width!==width||this.canvas.height!==height){this.canvas.width=width;this.canvas.height=height;}
+    if(this.mode==='canvas'){paintSlide2D(this.canvas,slide,doc,this.images,{scale:width/doc.width,ignoreId});this.lastStats={...this.lastStats,ms:performance.now()-start,objects:slide.elements.length,draws:slide.elements.length};return;}
+    const elements=flattenScene(slide.elements).filter(e=>e.id!==ignoreId);this.ensureCapacity(elements.length||1);const data=this.data;
+    elements.forEach((e,i)=>{const n=i*20,a=(e.rotation||0)*Math.PI/180;data.set([e.x,e.y,e.w,e.h,Math.cos(a),Math.sin(a),e.opacity??1,SHAPE_IDS[e.type]??0,...rgba(e.fill,doc.theme),...rgba(e.stroke||'none',doc.theme),e.radius||0,e.strokeWidth||0,0,0],n);});
+    this.device.queue.writeBuffer(this.uniform,0,new Float32Array([doc.width,doc.height,width,height]));if(elements.length)this.device.queue.writeBuffer(this.instances,0,data.buffer,0,elements.length*80);
+    const encoder=this.device.createCommandEncoder({label:'Aurelia frame'}),clear=rgba(slide.bg,doc.theme),pass=encoder.beginRenderPass({colorAttachments:[{view:this.context.getCurrentTexture().createView(),clearValue:{r:clear[0],g:clear[1],b:clear[2],a:1},loadOp:'clear',storeOp:'store'}]});let draws=0;
+    const resolution=clamp(Math.ceil(width/doc.width*2)/2,.5,3);
+    for(let i=0;i<elements.length;){const e=elements[i];if(e.type in SHAPE_IDS){let j=i+1;while(j<elements.length&&elements[j].type in SHAPE_IDS)j++;pass.setPipeline(this.shapePipeline);pass.setBindGroup(0,this.sceneGroup);pass.draw(6,j-i,0,i);draws++;i=j;}else{const t=this.tile(e,doc.theme,resolution);pass.setPipeline(this.texturePipeline);pass.setBindGroup(0,this.sceneGroup);pass.setBindGroup(1,t.bindGroup);pass.draw(6,1,0,i);draws++;i++;}}
+    pass.end();this.device.queue.submit([encoder.finish()]);
+    if(this.cacheBytes>this.budget){const entries=[...this.cache].sort((a,b)=>a[1].used-b[1].used);for(const [key,v]of entries){if(this.cacheBytes<=this.budget||v.used===this.frame)break;v.texture.destroy();this.cache.delete(key);this.cacheBytes-=v.bytes;}}
+    this.lastStats={...this.lastStats,objects:elements.length,draws,ms:performance.now()-start};
+  }
+  dispose(){this.disposed=true;this.invalidateTiles();this.instances?.destroy();this.uniform?.destroy();this.device?.destroy();}
+}
+
+
+// ─── src/demo.js ───
+function createDemo(){
+ const doc={format:'aurelia',version:1,id:uid('deck'),title:'The shape of what’s next',width:1280,height:720,theme:'studio',slides:[]};
+ const slide=(name,bg='@bg')=>{const s=makeSlide();s.name=name;s.bg=bg;doc.slides.push(s);return s;};
+ const add=(s,type,p)=>{const e=makeElement(type,p);s.elements.push(e);return e;};
+ const text=(s,text,x,y,w,h,size=28,p={})=>add(s,'text',{text,x,y,w,h,fontSize:size,padding:0,...p});
+ const rect=(s,x,y,w,h,fill,p={})=>add(s,'rect',{x,y,w,h,fill,...p});
+ const foot=(s,n,light=false)=>{rect(s,80,641,1120,1,light?'@muted':'@line');text(s,'AURELIA  /  IDEAS IN MOTION',80,662,780,25,13,{fill:light?'@secondary':'@muted'});text(s,String(n).padStart(2,'0'),1120,660,78,28,15,{align:'right',fill:light?'@secondary':'@muted'});};
+ let s=slide('The shape of what’s next');
+ text(s,'A NEW PERSPECTIVE     /     2026',82,66,750,30,17,{fill:'@muted'});
+ text(s,'The shape of\nwhat’s next.',77,210,720,218,88,{bold:true,lineHeight:1.06,name:'Presentation title'});
+ text(s,'Make space for your next big idea.',84,459,650,50,27,{fill:'@muted'});
+ add(s,'roundRect',{x:84,y:550,w:180,h:43,fill:'@accent',radius:22});text(s,'A STORY IN 7 SLIDES',98,563,152,22,12,{fill:'@light',bold:true,align:'center'});
+ const group=uid('g');
+ const sculpture=(type,p)=>add(s,type,{...p,groupId:group,name:'Architectural study'});
+ sculpture('ellipse',{x:763,y:567,w:435,h:28,fill:'@dark',opacity:.07});
+ sculpture('ellipse',{x:1060,y:114,w:98,h:98,fill:'@accent'});
+ sculpture('roundRect',{x:836,y:211,w:300,h:376,fill:'@dark',radius:150});sculpture('rect',{x:836,y:410,w:300,h:177,fill:'@dark'});
+ sculpture('roundRect',{x:908,y:283,w:156,h:304,fill:'@bg',radius:78});sculpture('rect',{x:908,y:425,w:156,h:162,fill:'@bg'});
+ sculpture('rect',{x:767,y:464,w:138,h:123,fill:'@accent',rotation:-10});sculpture('rect',{x:789,y:463,w:138,h:123,fill:'@secondary',rotation:-10});
+ sculpture('ellipse',{x:779,y:182,w:22,h:22,fill:'@secondary'});sculpture('line',{x:1149,y:304,w:94,h:2,fill:'@accent',rotation:90});
+ foot(s,1);s.notes='Welcome. Start with a pause. This deck is entirely editable: double-click any text, or select the artwork to move it. Use the ribbon to tell your own story.';
+ s=slide('A little clarity goes a long way');text(s,'01  /  THE OPPORTUNITY',82,68,700,32,17,{fill:'@muted'});text(s,'A little clarity\ngoes a long way.',79,136,950,174,68,{bold:true,lineHeight:1.07});
+ const cards=[['01','Find the signal.','Turn complexity into a\nclear, compelling idea.'],['02','Build momentum.','Bring people together\naround what comes next.'],['03','Make it matter.','Leave your audience with\nsomething to act on.']];
+ cards.forEach(([n,title,body],i)=>{const x=82+i*383;add(s,'roundRect',{x,y:365,w:352,h:220,fill:i===1?'@dark':'@line',radius:13});text(s,n,x+26,388,120,40,23,{fill:i===1?'@secondary':'@muted'});text(s,title,x+26,450,310,47,30,{bold:true,fill:i===1?'@light':'@ink'});text(s,body,x+26,511,310,68,21,{fill:i===1?'@secondary':'@muted'});});foot(s,2);s.notes='The three moves: simplify, align, act. Use each card as a discussion point rather than reading the slide.';
+ s=slide('A story told in numbers');text(s,'02  /  THE MOMENTUM',82,68,750,30,17,{fill:'@muted'});text(s,'A story told\nin numbers.',79,160,590,175,69,{bold:true,lineHeight:1.06});text(s,'2.4×',82,402,470,125,106,{fill:'@accent',bold:true});text(s,'Growth starts with a better story.',85,545,540,40,23,{fill:'@muted'});
+ add(s,'chart',{name:'Quarterly momentum',x:655,y:181,w:544,h:385,fill:'@accent',chartType:'bar',labels:['Q1','Q2','Q3','Q4'],values:[32,49,64,78],showValues:true});text(s,'ILLUSTRATIVE DATA  /  MOMENTUM INDEX',710,589,480,25,12,{fill:'@muted'});foot(s,3);s.notes='Illustrative data, not a factual company claim. Double-click the chart to edit its data. Use the chart inspector to switch between bars, line, and donut.';
+ s=slide('Different perspectives. Shared ambition.','@dark');text(s,'03  /  THE APPROACH',82,68,750,32,17,{fill:'@secondary'});text(s,'Different perspectives.\nShared ambition.',78,150,1120,185,68,{fill:'@light',bold:true,lineHeight:1.08});
+ const cols=[['Think boldly.','Ask a better question.\nChallenge the obvious.'],['Design simply.','Make the complex clear.\nGive every detail a purpose.'],['Move together.','Create shared direction.\nMake the next step tangible.']];
+ cols.forEach(([title,body],i)=>{const x=84+i*390;rect(s,x,405,44,5,i===1?'@accent':'@secondary');text(s,title,x,445,360,45,30,{fill:'@light',bold:true});text(s,body,x,510,355,85,24,{fill:'@secondary'});});foot(s,4,true);s.notes='Invite one person to share a different perspective. Alignment does not mean sameness.';
+ s=slide('From possibility to progress');text(s,'04  /  THE ROAD AHEAD',82,68,750,32,17,{fill:'@muted'});text(s,'From possibility\nto progress.',78,145,1100,170,67,{bold:true,lineHeight:1.08});rect(s,145,410,982,2,'@line');
+ [['Explore','Listen. Learn.\nAsk what could be.'],['Shape','Prototype the idea.\nMake it tangible.'],['Launch','Start small.\nCreate momentum.'],['Evolve','Measure what matters.\nKeep getting better.']].forEach(([a,b],i)=>{const x=98+i*293;add(s,'ellipse',{x:x+12,y:391,w:40,h:40,fill:i===0?'@accent':'@secondary'});text(s,String(i+1),x+12,402,40,26,17,{fill:'@light',bold:true,align:'center'});text(s,a,x,469,270,45,30,{bold:true});text(s,b,x,529,275,64,22,{fill:'@muted'});});foot(s,5);s.notes='Walk through the next four phases. Replace this timeline with your milestones and dates.';
+ s=slide('Give your ideas room');text(s,'“',80,92,230,182,192,{fontFamily:'Georgia',fill:'@accent'});text(s,'The best way to see\nwhat’s possible is to\nstart making it.',104,278,1110,253,70,{fontFamily:'Georgia',lineHeight:1.12});text(s,'A LITTLE CURIOSITY.  A LOT OF POSSIBILITY.',111,581,950,30,16,{fill:'@muted'});foot(s,6);s.notes='A simple thought to carry into the conversation. Pause here before the closing slide.';
+ s=slide('Let’s make something matter.','@dark');text(s,'THE NEXT CHAPTER STARTS HERE',84,74,1050,35,17,{fill:'@secondary'});text(s,'Let’s make\nsomething matter.',78,227,1150,233,88,{fill:'@light',bold:true,lineHeight:1.08});add(s,'ellipse',{x:1090,y:108,w:90,h:90,fill:'@accent'});text(s,'Your ideas. Your voice. Your next move.',86,519,1060,50,27,{fill:'@secondary'});foot(s,7,true);s.notes='Open the conversation. Ask: what is the one thing we should do next?';
+ return doc;
+}
+
+
+// ─── src/icons.js ───
+const ICONS={
+ logo:'<path d="M5 25 15 5h8L13 25z" fill="currentColor" stroke="none"/><path d="m20 15 5 10h-8z" fill="currentColor" stroke="none"/>',
+ save:'<path d="M5 3h12l4 4v14H3V3z"/><path d="M7 3v6h10V3M7 21v-8h10v8"/>',
+ undo:'<path d="m8 4-5 5 5 5M3 9h11a6 6 0 0 1 0 12"/>',redo:'<path d="m16 4 5 5-5 5m5-5H10a6 6 0 0 0 0 12"/>',
+ chevron:'<path d="m7 10 5 5 5-5"/>',plus:'<path d="M12 5v14M5 12h14"/>',close:'<path d="m6 6 12 12M18 6 6 18"/>',
+ play:'<path d="m8 4 13 8L8 20z"/>',screen:'<rect x="3" y="4" width="18" height="13" rx="1"/><path d="M12 17v4m-4 0h8"/>',
+ search:'<circle cx="10" cy="10" r="6"/><path d="m15 15 5 5"/>',grid:'<rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/>',
+ slide:'<rect x="3" y="4" width="18" height="15" rx="1"/><path d="M7 8h10M7 12h6"/>',newslide:'<rect x="3" y="7" width="15" height="14" rx="1"/><path d="M6 11h8M6 15h5M19 1v8m-4-4h8"/>',
+ layout:'<rect x="3" y="4" width="18" height="16" rx="1"/><path d="M3 9h18M12 9v11"/>',copy:'<rect x="8" y="8" width="13" height="13" rx="1"/><path d="M16 5V3H3v13h2"/>',
+ paste:'<path d="M8 5H4v16h16V5h-4"/><rect x="8" y="2" width="8" height="5" rx="1"/><path d="M8 12h8M8 16h6"/>',
+ text:'<path d="M4 5V3h16v2M12 3v18m-4 0h8"/>',image:'<rect x="3" y="3" width="18" height="18" rx="1"/><circle cx="8" cy="8" r="2"/><path d="m3 17 6-6 4 4 3-3 5 5"/>',
+ shapes:'<rect x="3" y="3" width="11" height="11" rx="1"/><circle cx="16" cy="16" r="6"/>',chart:'<path d="M3 3v18h18M7 17v-6m5 6V5m5 12V9"/>',table:'<rect x="3" y="4" width="18" height="16" rx="1"/><path d="M3 9h18M3 14h18M9 4v16m6-16v16"/>',
+ rect:'<rect x="3" y="5" width="18" height="14" rx=".5"/>',roundRect:'<rect x="3" y="5" width="18" height="14" rx="4"/>',ellipse:'<ellipse cx="12" cy="12" rx="9" ry="8"/>',triangle:'<path d="m12 3 10 18H2z"/>',diamond:'<path d="m12 2 10 10-10 10L2 12z"/>',arrow:'<path d="M2 8h12V3l9 9-9 9v-5H2z"/>',star:'<path d="m12 2 3 7 7 1-5 5 1 7-6-4-6 4 1-7-5-5 7-1z"/>',line:'<path d="M3 20 21 4"/>',
+ bold:'<path d="M7 3h6a4 4 0 0 1 0 8H7m0 0h7a5 5 0 0 1 0 10H7V3" stroke-width="2.5"/>',italic:'<path d="M11 3h9M4 21h9m3-18L8 21"/>',underline:'<path d="M6 3v8a6 6 0 0 0 12 0V3M4 21h16"/>',
+ alignleft:'<path d="M3 4h18M3 9h12M3 14h18M3 19h12"/>',aligncenter:'<path d="M3 4h18M6 9h12M3 14h18M6 19h12"/>',alignright:'<path d="M3 4h18M9 9h12M3 14h18M9 19h12"/>',bullets:'<path d="M8 5h13M8 12h13M8 19h13"/><circle cx="3" cy="5" r=".7"/><circle cx="3" cy="12" r=".7"/><circle cx="3" cy="19" r=".7"/>',
+ fill:'<path d="m4 12 8-8 8 8-8 8zM7 2l5 5M3 22h18M20 15s4 5 0 5-0-5 0-5"/>',outline:'<path d="m16 3 5 5-12 12-7 2 2-7zM14 5l5 5M4 15l5 5"/>',fontcolor:'<path d="m6 17 6-14 6 14M8 12h8M4 22h16"/>',
+ layers:'<path d="m12 3 10 5-10 5L2 8zM2 13l10 5 10-5M2 18l10 5 10-5"/>',front:'<rect x="8" y="3" width="13" height="13" rx="1"/><path d="M5 8H3v13h13v-2"/>',back:'<rect x="3" y="8" width="13" height="13" rx="1"/><path d="M8 5V3h13v13h-2"/>',
+ align:'<path d="M3 3v18M7 6h14v5H7zM7 15h9v4H7z"/>',group:'<path d="M3 3h18v18H3z" stroke-dasharray="2 2"/><rect x="7" y="7" width="6" height="6"/><rect x="12" y="12" width="5" height="5"/>',
+ trash:'<path d="M3 6h18M8 6V3h8v3M5 6l1 15h12l1-15M10 10v7m4-7v7"/>',notes:'<path d="M4 3h16v13l-5 5H4zM15 21v-5h5M8 7h8M8 11h8"/>',lock:'<rect x="5" y="10" width="14" height="11" rx="2"/><path d="M8 10V6a4 4 0 0 1 8 0v4M12 14v3"/>',unlock:'<rect x="5" y="10" width="14" height="11" rx="2"/><path d="M8 10V6a4 4 0 0 1 8 0"/>',
+ eye:'<path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12"/><circle cx="12" cy="12" r="3"/>',hidden:'<path d="m3 3 18 18M9 5l3-.5c6 0 10 7.5 10 7.5l-4 4M6 6c-3 2-4 6-4 6s4 7 10 7l3-1"/>',
+ check:'<path d="m4 12 5 5L20 6"/>',cloud:'<path d="M6 18a5 5 0 0 1-1-10 7 7 0 0 1 13-1 5 5 0 0 1 0 11M9 15l3 3 6-6"/>',download:'<path d="M12 3v12m-5-5 5 5 5-5M4 16v5h16v-5"/>',upload:'<path d="M12 17V5m-5 5 5-5 5 5M4 17v4h16v-4"/>',
+ magic:'<path d="m3 21 13-13 3 3L6 24M16 3V0m5 6h3M9 5 7 3m13 13 2 2M3 11H0"/>',palette:'<path d="M12 3a9 9 0 0 0 0 18c4 0 0-5 3-5h3c6 0 4-13-6-13z"/><circle cx="7" cy="10" r="1"/><circle cx="11" cy="6" r="1"/><circle cx="16" cy="8" r="1"/>',
+ help:'<circle cx="12" cy="12" r="10"/><path d="M9 8a3 3 0 1 1 4 3c-1 .5-1 2-1 3M12 18h.01"/>',keyboard:'<rect x="2" y="5" width="20" height="14" rx="2"/><path d="M5 9h1m3 0h1m3 0h1m3 0h1M5 12h1m3 0h1m3 0h1m3 0h1M7 16h10"/>',
+ zoomin:'<circle cx="10" cy="10" r="7"/><path d="M6 10h8M10 6v8m5 1 6 6"/>',fit:'<path d="M3 9V3h6m6 0h6v6M3 15v6h6m6 0h6v-6"/>',minus:'<path d="M5 12h14"/>',more:'<circle cx="5" cy="12" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/>',
+ pointer:'<path d="m5 2 15 12-8 1-4 7z"/>',spark:'<path d="m12 2 3 7 7 3-7 3-3 7-3-7-7-3 7-3z"/>',transition:'<rect x="2" y="4" width="13" height="14" rx="1"/><path d="M18 6h4v14H9M8 9l4 3-4 3"/>',animate:'<path d="m13 2-8 12h7l-1 8 8-12h-7z"/>',
+ rotate:'<path d="m16 3 5 5h-7M21 8a9 9 0 1 0 0 7"/>',sun:'<circle cx="12" cy="12" r="4"/><path d="M12 1v2m0 18v2M1 12h2m18 0h2M4 4l2 2m12 12 2 2M4 20l2-2M18 6l2-2"/>', moon:'<path d="M20 15A9 9 0 0 1 9 3a9 9 0 1 0 11 12"/>',folder:'<path d="M3 5h7l2 3h9v13H3z"/>',export:'<path d="M14 3h7v7m0-7L10 14M10 4H3v17h17v-7"/>',
+ timer:'<circle cx="12" cy="13" r="8"/><path d="M9 2h6m-3 0v3m0 4v5l3 2"/>',code:'<path d="m8 5-6 7 6 7m8-14 6 7-6 7m-3-17-2 20"/>',
+};
+function icon(name,size=20){return `<svg width="${size}" height="${size}" viewBox="0 0 ${name==='logo'?30:24} ${name==='logo'?30:24}" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICONS[name]||ICONS.rect}</svg>`;}
+
+
+// ─── src/pptx.js ───
+/** ZIP + PresentationML interchange. No network, macros, executable content or external relationships. */
+const UTF8=new TextEncoder();
+const CRC_TABLE=Uint32Array.from({length:256},(_,i)=>{let c=i;for(let k=0;k<8;k++)c=(c&1)?0xedb88320^(c>>>1):c>>>1;return c>>>0;});
+function crc32(bytes){let c=0xffffffff;for(const b of bytes)c=CRC_TABLE[(c^b)&255]^(c>>>8);return(c^0xffffffff)>>>0;}
+function zipStore(files){
+ const chunks=[],central=[];let offset=0;
+ for(const [name,input]of Object.entries(files)){
+  const path=UTF8.encode(name),data=typeof input==='string'?UTF8.encode(input):new Uint8Array(input),crc=crc32(data),local=new Uint8Array(30+path.length),v=new DataView(local.buffer);v.setUint32(0,0x04034b50,true);v.setUint16(4,20,true);v.setUint16(6,0x800,true);v.setUint32(14,crc,true);v.setUint32(18,data.length,true);v.setUint32(22,data.length,true);v.setUint16(26,path.length,true);local.set(path,30);chunks.push(local,data);
+  const head=new Uint8Array(46+path.length),h=new DataView(head.buffer);h.setUint32(0,0x02014b50,true);h.setUint16(4,20,true);h.setUint16(6,20,true);h.setUint16(8,0x800,true);h.setUint32(16,crc,true);h.setUint32(20,data.length,true);h.setUint32(24,data.length,true);h.setUint16(28,path.length,true);h.setUint32(42,offset,true);head.set(path,46);central.push(head);offset+=local.length+data.length;
+ }
+ const size=central.reduce((s,c)=>s+c.length,0),end=new Uint8Array(22),v=new DataView(end.buffer);v.setUint32(0,0x06054b50,true);v.setUint16(8,central.length,true);v.setUint16(10,central.length,true);v.setUint32(12,size,true);v.setUint32(16,offset,true);return new Blob([...chunks,...central,end],{type:'application/zip'});
+}
+async function unzipSafe(buffer){
+ const bytes=new Uint8Array(buffer),view=new DataView(buffer),decoder=new TextDecoder();if(bytes.length>100*1024*1024)throw new Error('Presentation files are limited to 100 MB.');let end=-1;
+ for(let i=bytes.length-22;i>=Math.max(0,bytes.length-65557);i--)if(view.getUint32(i,true)===0x06054b50){end=i;break;}if(end<0)throw new Error('Invalid ZIP / PowerPoint file.');
+ const count=view.getUint16(end+10,true);if(count>10000)throw new Error('Too many files in the presentation.');let at=view.getUint32(end+16,true),total=0;const files=new Map();
+ for(let n=0;n<count;n++){
+  if(at+46>bytes.length||view.getUint32(at,true)!==0x02014b50)throw new Error('Corrupt ZIP directory.');
+  const flags=view.getUint16(at+8,true),method=view.getUint16(at+10,true),crc=view.getUint32(at+16,true),size=view.getUint32(at+20,true),rawSize=view.getUint32(at+24,true),nameLen=view.getUint16(at+28,true),extra=view.getUint16(at+30,true),comment=view.getUint16(at+32,true),pos=view.getUint32(at+42,true),name=decoder.decode(bytes.subarray(at+46,at+46+nameLen));at+=46+nameLen+extra+comment;
+  if(flags&1)throw new Error('Encrypted PowerPoint files are not supported.');if(name.includes('..')||name.startsWith('/'))throw new Error('Unsafe ZIP path.');total+=rawSize;if(total>160*1024*1024||rawSize>40*1024*1024)throw new Error('Decompressed presentation exceeds the safety limit.');
+  if(pos+30>bytes.length||view.getUint32(pos,true)!==0x04034b50)throw new Error('Corrupt ZIP entry.');const begin=pos+30+view.getUint16(pos+26,true)+view.getUint16(pos+28,true);if(begin+size>bytes.length)throw new Error('Truncated ZIP entry.');let data=bytes.subarray(begin,begin+size);
+  if(method===8){if(typeof DecompressionStream==='undefined')throw new Error('This browser cannot decompress PPTX files. Use a current browser.');const stream=new Blob([data]).stream().pipeThrough(new DecompressionStream('deflate-raw'));const reader=stream.getReader(),parts=[];let expanded=0;while(true){const {done,value}=await reader.read();if(done)break;expanded+=value.byteLength;if(expanded>rawSize||expanded>40*1024*1024){await reader.cancel();throw new Error('ZIP expansion limit exceeded.');}parts.push(value);}data=new Uint8Array(expanded);let k=0;for(const part of parts){data.set(part,k);k+=part.byteLength;}}
+  else if(method!==0)throw new Error(`Unsupported ZIP compression method ${method}.`);
+  if(data.length!==rawSize||crc32(data)!==crc)throw new Error(`ZIP checksum failed: ${name}`);files.set(name,data);
+ }return files;
+}
+const A_NS='http://schemas.openxmlformats.org/drawingml/2006/main',P_NS='http://schemas.openxmlformats.org/presentationml/2006/main',R_NS='http://schemas.openxmlformats.org/officeDocument/2006/relationships';
+const XML_HEAD='<?xml version="1.0" encoding="UTF-8" standalone="yes"?>';
+const xmlEsc=s=>escapeHTML(String(s).replace(/[\u0000-\u0008\u000b\u000c\u000e-\u001f]/g,''));
+const emu=n=>Math.round(n*9525);
+const ns=`xmlns:a="${A_NS}" xmlns:r="${R_NS}" xmlns:p="${P_NS}"`;
+const groupStart='<p:nvGrpSpPr><p:cNvPr id="1" name=""/><p:cNvGrpSpPr/><p:nvPr/></p:nvGrpSpPr><p:grpSpPr><a:xfrm><a:off x="0" y="0"/><a:ext cx="0" cy="0"/><a:chOff x="0" y="0"/><a:chExt cx="0" cy="0"/></a:xfrm></p:grpSpPr>';
+const xmlRels=items=>XML_HEAD+`<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">${items.map(([id,type,target])=>`<Relationship Id="${id}" Type="${type.startsWith('http')?type:R_NS+'/'+type}" Target="${xmlEsc(target)}"/>`).join('')}</Relationships>`;
+function solidXML(fill,theme,opacity=1){if(fill==='none')return'<a:noFill/>';const c=color(fill,theme).slice(1),alpha=opacity*(c.length===8?parseInt(c.slice(6),16)/255:1);return`<a:solidFill><a:srgbClr val="${c.slice(0,6)}">${alpha<1?`<a:alpha val="${Math.round(alpha*100000)}"/>`:''}</a:srgbClr></a:solidFill>`;}
+function transformXML(e){return`<a:xfrm rot="${Math.round((e.rotation||0)*60000)}"><a:off x="${emu(e.x)}" y="${emu(e.y)}"/><a:ext cx="${emu(e.w)}" cy="${emu(e.h)}"/></a:xfrm>`;}
+function textBodyXML(e,theme){
+ const pad=emu(e.padding||0),rPr=`sz="${Math.round((e.fontSize||24)*75)}" b="${e.bold?1:0}" i="${e.italic?1:0}"${e.underline?' u="sng"':''}`;
+ return`<p:txBody><a:bodyPr wrap="square" lIns="${pad}" tIns="${pad}" rIns="${pad}" bIns="${pad}" anchor="${({top:'t',middle:'ctr',bottom:'b'})[e.valign]||'t'}"><a:noAutofit/></a:bodyPr><a:lstStyle/>${String(e.text||'').split('\n').map(t=>`<a:p><a:pPr algn="${({left:'l',center:'ctr',right:'r'})[e.align]||'l'}"><a:lnSpc><a:spcPct val="${Math.round((e.lineHeight||1.2)*100000)}"/></a:lnSpc><a:spcBef><a:spcPts val="0"/></a:spcBef><a:spcAft><a:spcPts val="0"/></a:spcAft></a:pPr><a:r><a:rPr lang="en-US" ${rPr}>${solidXML(e.fill,theme,e.opacity??1)}<a:latin typeface="${xmlEsc(e.fontFamily||'Arial')}"/><a:ea typeface="${xmlEsc(e.fontFamily||'Arial')}"/><a:cs typeface="${xmlEsc(e.fontFamily||'Arial')}"/></a:rPr><a:t xml:space="preserve">${xmlEsc(t)}</a:t></a:r><a:endParaRPr lang="en-US" ${rPr}/></a:p>`).join('')}</p:txBody>`;
+}
+function shapeXML(e,id,theme){
+ const preset={rect:'rect',roundRect:'roundRect',ellipse:'ellipse',triangle:'triangle',diamond:'diamond',arrow:'rightArrow',star:'star5',line:'rect'}[e.type]||'rect';
+ const adj=e.type==='roundRect'?`<a:gd name="adj" fmla="val ${Math.round(Math.min(.5,(e.radius||0)/Math.min(e.w,e.h))*100000)}"/>`:'';
+ return`<p:sp><p:nvSpPr><p:cNvPr id="${id}" name="${xmlEsc(e.name||e.type)}"/><p:cNvSpPr${e.type==='text'?' txBox="1"':''}/><p:nvPr/></p:nvSpPr><p:spPr>${transformXML(e)}<a:prstGeom prst="${preset}"><a:avLst>${adj}</a:avLst></a:prstGeom>${e.type==='text'?'<a:noFill/>':solidXML(e.fill,theme,e.opacity??1)}<a:ln w="${emu(e.strokeWidth||0)}">${e.strokeWidth?solidXML(e.stroke,theme,e.opacity??1):'<a:noFill/>'}</a:ln></p:spPr>${e.type==='text'?textBodyXML(e,theme):''}</p:sp>`;
+}
+function dataBytes(src){const str=atob(src.split(',')[1]);return Uint8Array.from(str,c=>c.charCodeAt(0));}
+function bytesData(bytes,type){let s='';for(let i=0;i<bytes.length;i+=32768)s+=String.fromCharCode(...bytes.subarray(i,i+32768));return`data:${type};base64,${btoa(s)}`;}
+async function exportPPTX(doc){
+ const files={},parts=[],presentationRels=[['rId1','slideMaster','slideMasters/slideMaster1.xml'],['rId2','notesMaster','notesMasters/notesMaster1.xml']];let mediaCount=0;const imagePool=new ImagePool();await imagePool.ready(doc.slides.flatMap(s=>s.elements));
+ const part=(name,content,type)=>{files[name]=XML_HEAD+content;parts.push([name,type]);};
+ const type=s=>'application/vnd.openxmlformats-officedocument.presentationml.'+s+'+xml';
+ part('ppt/presentation.xml',`<p:presentation ${ns}><p:sldMasterIdLst><p:sldMasterId id="2147483648" r:id="rId1"/></p:sldMasterIdLst><p:notesMasterIdLst><p:notesMasterId r:id="rId2"/></p:notesMasterIdLst><p:sldIdLst>${doc.slides.map((_,i)=>`<p:sldId id="${256+i}" r:id="rId${i+3}"/>`).join('')}</p:sldIdLst><p:sldSz cx="${emu(doc.width)}" cy="${emu(doc.height)}" type="screen16x9"/><p:notesSz cx="6858000" cy="9144000"/><p:defaultTextStyle/></p:presentation>`,type('presentation.main'));
+ const clrMap='<p:clrMap bg1="lt1" tx1="dk1" bg2="lt2" tx2="dk2" accent1="accent1" accent2="accent2" accent3="accent3" accent4="accent4" accent5="accent5" accent6="accent6" hlink="hlink" folHlink="folHlink"/>';
+ part('ppt/slideMasters/slideMaster1.xml',`<p:sldMaster ${ns}><p:cSld><p:spTree>${groupStart}</p:spTree></p:cSld>${clrMap}<p:sldLayoutIdLst><p:sldLayoutId id="2147483649" r:id="rId1"/></p:sldLayoutIdLst><p:txStyles><p:titleStyle/><p:bodyStyle/><p:otherStyle/></p:txStyles></p:sldMaster>`,type('slideMaster'));
+ files['ppt/slideMasters/_rels/slideMaster1.xml.rels']=xmlRels([['rId1','slideLayout','../slideLayouts/slideLayout1.xml'],['rId2','theme','../theme/theme1.xml']]);
+ part('ppt/slideLayouts/slideLayout1.xml',`<p:sldLayout ${ns} type="blank" preserve="1"><p:cSld name="Blank"><p:spTree>${groupStart}</p:spTree></p:cSld><p:clrMapOvr><a:masterClrMapping/></p:clrMapOvr></p:sldLayout>`,type('slideLayout'));
+ files['ppt/slideLayouts/_rels/slideLayout1.xml.rels']=xmlRels([['rId1','slideMaster','../slideMasters/slideMaster1.xml']]);
+ const colors=['17313A','F5F2EC','71827F','DDDCD4',color('@accent',doc.theme).slice(1),color('@secondary',doc.theme).slice(1),'4472C4','70AD47','FFC000','5B9BD5','0563C1','954F72'];
+ part('ppt/theme/theme1.xml',`<a:theme xmlns:a="${A_NS}" name="Aurelia"><a:themeElements><a:clrScheme name="Aurelia">${['dk1','lt1','dk2','lt2','accent1','accent2','accent3','accent4','accent5','accent6','hlink','folHlink'].map((k,i)=>`<a:${k}><a:srgbClr val="${colors[i]}"/></a:${k}>`).join('')}</a:clrScheme><a:fontScheme name="Aurelia"><a:majorFont><a:latin typeface="Arial"/><a:ea typeface=""/><a:cs typeface=""/></a:majorFont><a:minorFont><a:latin typeface="Arial"/><a:ea typeface=""/><a:cs typeface=""/></a:minorFont></a:fontScheme><a:fmtScheme name="Aurelia"><a:fillStyleLst>${Array(3).fill('<a:solidFill><a:schemeClr val="phClr"/></a:solidFill>').join('')}</a:fillStyleLst><a:lnStyleLst>${[9525,19050,28575].map(w=>`<a:ln w="${w}" cap="flat" cmpd="sng" algn="ctr"><a:solidFill><a:schemeClr val="phClr"/></a:solidFill><a:prstDash val="solid"/><a:miter lim="800000"/></a:ln>`).join('')}</a:lnStyleLst><a:effectStyleLst>${Array(3).fill('<a:effectStyle><a:effectLst/></a:effectStyle>').join('')}</a:effectStyleLst><a:bgFillStyleLst>${Array(3).fill('<a:solidFill><a:schemeClr val="phClr"/></a:solidFill>').join('')}</a:bgFillStyleLst></a:fmtScheme></a:themeElements></a:theme>`,'application/vnd.openxmlformats-officedocument.theme+xml');
+ part('ppt/notesMasters/notesMaster1.xml',`<p:notesMaster ${ns}><p:cSld><p:spTree>${groupStart}</p:spTree></p:cSld>${clrMap}<p:hf hdr="0" ftr="0" dt="0" sldNum="0"/><p:notesStyle/></p:notesMaster>`,type('notesMaster'));files['ppt/notesMasters/_rels/notesMaster1.xml.rels']=xmlRels([['rId1','theme','../theme/theme1.xml']]);
+ for(let i=0;i<doc.slides.length;i++){
+  const s=doc.slides[i],rels=[['rId1','slideLayout','../slideLayouts/slideLayout1.xml'],['rId2','notesSlide',`../notesSlides/notesSlide${i+1}.xml`]];let content='',id=2;
+  for(const parent of s.elements.filter(e=>!e.hidden))for(let e of expandElement(parent)){
+   if(e.type==='image'||e.type==='chart'){
+    let src=e.src;
+    if(e.type==='chart'){const c=document.createElement('canvas');c.width=Math.ceil(e.w*2);c.height=Math.ceil(e.h*2);const temp={...e,x:0,y:0,rotation:0,opacity:1};paintSlide2D(c,{bg:s.bg,elements:[temp]},{...doc,width:e.w,height:e.h},imagePool,{scale:2});src=c.toDataURL('image/png');}
+    let extension=/^data:image\/jpeg/.test(src)?'jpg':'png';
+    if(/^data:image\/webp/.test(src)){const im=imagePool.get(src);await im.decode();const c=document.createElement('canvas');c.width=im.naturalWidth;c.height=im.naturalHeight;c.getContext('2d').drawImage(im,0,0);src=c.toDataURL('image/png');}
+    const name=`image${++mediaCount}.${extension}`,rid=`rId${rels.length+1}`;files[`ppt/media/${name}`]=dataBytes(src);rels.push([rid,'image',`../media/${name}`]);let crop='';
+    if(e.type==='image'){const im=imagePool.get(e.src),iw=im.naturalWidth,ih=im.naturalHeight;if(iw&&ih){if(e.fit==='contain'){const sc=Math.min(e.w/iw,e.h/ih),ww=iw*sc,hh=ih*sc;e={...e,x:e.x+(e.w-ww)/2,y:e.y+(e.h-hh)/2,w:ww,h:hh};}else{const sc=Math.max(e.w/iw,e.h/ih),l=(1-e.w/(iw*sc))/2,t=(1-e.h/(ih*sc))/2;crop=`<a:srcRect l="${Math.round(l*100000)}" r="${Math.round(l*100000)}" t="${Math.round(t*100000)}" b="${Math.round(t*100000)}"/>`;}}}
+    content+=`<p:pic><p:nvPicPr><p:cNvPr id="${id++}" name="${xmlEsc(e.name||'Picture')}"/><p:cNvPicPr><a:picLocks noChangeAspect="1"/></p:cNvPicPr><p:nvPr/></p:nvPicPr><p:blipFill><a:blip r:embed="${rid}">${(e.opacity??1)<1?`<a:alphaModFix amt="${Math.round(e.opacity*100000)}"/>`:''}</a:blip>${crop}<a:stretch><a:fillRect/></a:stretch></p:blipFill><p:spPr>${transformXML(e)}<a:prstGeom prst="rect"><a:avLst/></a:prstGeom></p:spPr></p:pic>`;
+   }else content+=shapeXML(e,id++,doc.theme);
+  }
+  const transition=s.transition==='fade'?'<p:transition><p:fade/></p:transition>':s.transition==='push'?'<p:transition><p:push dir="l"/></p:transition>':'';
+  part(`ppt/slides/slide${i+1}.xml`,`<p:sld ${ns}><p:cSld name="${xmlEsc(s.name)}"><p:bg><p:bgPr>${solidXML(s.bg,doc.theme)}<a:effectLst/></p:bgPr></p:bg><p:spTree>${groupStart}${content}</p:spTree></p:cSld><p:clrMapOvr><a:masterClrMapping/></p:clrMapOvr>${transition}</p:sld>`,type('slide'));
+  files[`ppt/slides/_rels/slide${i+1}.xml.rels`]=xmlRels(rels);presentationRels.push([`rId${i+3}`,'slide',`slides/slide${i+1}.xml`]);
+  const noteElement=makeElement('text',{text:s.notes,x:100,y:100,w:600,h:600,fontSize:16,fill:'@ink'});
+  part(`ppt/notesSlides/notesSlide${i+1}.xml`,`<p:notes ${ns}><p:cSld><p:spTree>${groupStart}<p:sp><p:nvSpPr><p:cNvPr id="2" name="Notes"/><p:cNvSpPr/><p:nvPr><p:ph type="body" idx="1"/></p:nvPr></p:nvSpPr><p:spPr/>${textBodyXML(noteElement,doc.theme)}</p:sp></p:spTree></p:cSld><p:clrMapOvr><a:masterClrMapping/></p:clrMapOvr></p:notes>`,type('notesSlide'));
+  files[`ppt/notesSlides/_rels/notesSlide${i+1}.xml.rels`]=xmlRels([['rId1','notesMaster','../notesMasters/notesMaster1.xml'],['rId2','slide',`../slides/slide${i+1}.xml`]]);
+ }
+ files['ppt/_rels/presentation.xml.rels']=xmlRels(presentationRels);files['_rels/.rels']=xmlRels([['rId1','officeDocument','ppt/presentation.xml'],['rId2','http://schemas.openxmlformats.org/package/2006/relationships/metadata/core-properties','docProps/core.xml'],['rId3','https://aurelia.slides/document','aurelia/document.json']]);
+ part('docProps/core.xml',`<cp:coreProperties xmlns:cp="http://schemas.openxmlformats.org/package/2006/metadata/core-properties" xmlns:dc="http://purl.org/dc/elements/1.1/"><dc:title>${xmlEsc(doc.title)}</dc:title><dc:creator>Aurelia Slides</dc:creator><dc:description>Created with Aurelia Slides. Editable vector shapes and text.</dc:description></cp:coreProperties>`,'application/vnd.openxmlformats-package.core-properties+xml');
+ files['aurelia/document.json']=JSON.stringify(doc);
+ files['[Content_Types].xml']=XML_HEAD+`<Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"><Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/><Default Extension="xml" ContentType="application/xml"/><Default Extension="json" ContentType="application/json"/><Default Extension="png" ContentType="image/png"/><Default Extension="jpg" ContentType="image/jpeg"/>${parts.map(([p,t])=>`<Override PartName="/${p}" ContentType="${t}"/>`).join('')}</Types>`;
+ return new Blob([await zipStore(files).arrayBuffer()],{type:'application/vnd.openxmlformats-officedocument.presentationml.presentation'});
+}
+const childrenNamed=(n,name)=>Array.from(n?.children||[]).filter(c=>c.localName===name);
+const firstNamed=(n,name)=>n?.getElementsByTagNameNS('*',name)[0]||null;
+const allNamed=(n,name)=>Array.from(n?.getElementsByTagNameNS('*',name)||[]);
+function parseXML(bytes){const x=new DOMParser().parseFromString(new TextDecoder().decode(bytes),'application/xml');if(x.getElementsByTagName('parsererror').length)throw new Error('Malformed PowerPoint XML.');return x;}
+function resolvePart(base,target){const segments=(base.slice(0,base.lastIndexOf('/')+1)+target).split('/'),result=[];for(const s of segments){if(s==='..')result.pop();else if(s!=='.'&&s)result.push(s);}return result.join('/');}
+async function importPPTX(buffer){
+ const files=await unzipSafe(buffer),warnings=new Set();
+ if(files.has('aurelia/document.json'))return{doc:validateDocument(JSON.parse(new TextDecoder().decode(files.get('aurelia/document.json')))),warnings:[]};
+ if(!files.has('ppt/presentation.xml'))throw new Error('This ZIP does not contain a PowerPoint presentation.');
+ const doc=makeDocument(),root=parseXML(files.get('ppt/presentation.xml')),sz=firstNamed(root,'sldSz');doc.width=(+sz?.getAttribute('cx')||12192000)/9525;doc.height=(+sz?.getAttribute('cy')||6858000)/9525;doc.slides=[];
+ const relsFor=path=>{const slash=path.lastIndexOf('/'),relPath=path.slice(0,slash+1)+'_rels/'+path.slice(slash+1)+'.rels';if(!files.has(relPath))return new Map();return new Map(allNamed(parseXML(files.get(relPath)),'Relationship').filter(r=>r.getAttribute('TargetMode')!=='External').map(r=>[r.getAttribute('Id'),{path:resolvePart(path,r.getAttribute('Target')),type:r.getAttribute('Type')}]));};
+ const presRels=relsFor('ppt/presentation.xml');let theme={dk1:'000000',lt1:'FFFFFF',dk2:'17313A',lt2:'F5F2EC',accent1:'DA735B',accent2:'A5B8AF',tx1:'000000',bg1:'FFFFFF'};
+ const themeFile=[...files.keys()].find(k=>/^ppt\/theme\/theme\d+\.xml$/.test(k));if(themeFile){const scheme=firstNamed(parseXML(files.get(themeFile)),'clrScheme');for(const el of scheme?.children||[]){const c=el.children[0];theme[el.localName]=c?.getAttribute('val')?.match(/^[0-9a-f]{6}$/i)?.[0]||c?.getAttribute('lastClr')||'000000';}theme.tx1=theme.dk1;theme.bg1=theme.lt1;theme.tx2=theme.dk2;theme.bg2=theme.lt2;}
+ const getColor=(node,defaultValue='#17313A')=>{if(!node)return defaultValue;const fill=childrenNamed(node,'solidFill')[0];if(!fill)return childrenNamed(node,'noFill').length?'none':defaultValue;const c=fill.children[0];if(!c)return defaultValue;return'#'+(c.localName==='srgbClr'?c.getAttribute('val'):theme[c.getAttribute('val')]||'17313A');};
+ const transform=node=>{const xf=firstNamed(node,'xfrm'),off=childrenNamed(xf,'off')[0],ext=childrenNamed(xf,'ext')[0];return{x:(+off?.getAttribute('x')||0)/9525,y:(+off?.getAttribute('y')||0)/9525,w:(+ext?.getAttribute('cx')||3048000)/9525,h:(+ext?.getAttribute('cy')||1524000)/9525,rotation:(+xf?.getAttribute('rot')||0)/60000};};
+ if(files.has('docProps/core.xml'))doc.title=firstNamed(parseXML(files.get('docProps/core.xml')),'title')?.textContent||'Imported presentation';
+ for(const [i,sid]of allNamed(root,'sldId').entries()){
+  const rid=sid.getAttributeNS(R_NS,'id'),path=presRels.get(rid)?.path;if(!path||!files.has(path))continue;const xml=parseXML(files.get(path)),rels=relsFor(path),s=makeSlide();s.name=firstNamed(xml,'cSld')?.getAttribute('name')||`Slide ${i+1}`;s.bg=getColor(firstNamed(xml,'bgPr'),'#FFFFFF');
+  const readTree=(tree,offset={x:0,y:0,sx:1,sy:1})=>{for(const node of tree?.children||[]){
+   const kind=node.localName;if(!['sp','pic','cxnSp','grpSp','graphicFrame'].includes(kind))continue;
+   if(kind==='grpSp'){const gp=childrenNamed(node,'grpSpPr')[0],xf=firstNamed(gp,'xfrm'),o=childrenNamed(xf,'off')[0],ex=childrenNamed(xf,'ext')[0],co=childrenNamed(xf,'chOff')[0],ce=childrenNamed(xf,'chExt')[0],sx=(+ex?.getAttribute('cx')||1)/(+ce?.getAttribute('cx')||1),sy=(+ex?.getAttribute('cy')||1)/(+ce?.getAttribute('cy')||1);readTree(node,{x:offset.x+((+o?.getAttribute('x')||0)-(+co?.getAttribute('x')||0)*sx)/9525*offset.sx,y:offset.y+((+o?.getAttribute('y')||0)-(+co?.getAttribute('y')||0)*sy)/9525*offset.sy,sx:offset.sx*sx,sy:offset.sy*sy});if(+xf?.getAttribute('rot'))warnings.add('Rotated PowerPoint groups are imported without their group rotation.');continue;}
+   if(kind==='graphicFrame'){warnings.add('Native PowerPoint charts, SmartArt, tables, and embedded objects are not imported.');continue;}
+   const sp=childrenNamed(node,'spPr')[0],t=transform(sp),tr={x:offset.x+t.x*offset.sx,y:offset.y+t.y*offset.sy,w:Math.max(1,t.w*offset.sx),h:Math.max(1,t.h*offset.sy),rotation:t.rotation},name=firstNamed(node,'cNvPr')?.getAttribute('name')||'Imported object';
+   if(kind==='pic'){const embed=firstNamed(node,'blip')?.getAttributeNS(R_NS,'embed'),target=rels.get(embed)?.path,bytes=files.get(target);if(bytes){const ext=target.split('.').pop().toLowerCase(),mime={png:'image/png',jpg:'image/jpeg',jpeg:'image/jpeg',webp:'image/webp'}[ext];if(mime)s.elements.push(makeElement('image',{...tr,name,src:bytesData(bytes,mime),fit:'cover'}));else warnings.add('Unsupported picture formats (including SVG/EMF/WMF) are skipped.');}if(firstNamed(node,'srcRect'))warnings.add('Picture crop windows are approximated by center-cover.');continue;}
+   const geometry=firstNamed(sp,'prstGeom')?.getAttribute('prst')||'rect',type={rect:'rect',roundRect:'roundRect',ellipse:'ellipse',triangle:'triangle',diamond:'diamond',rightArrow:'arrow',star5:'star',line:'line'}[geometry]||'rect',tx=childrenNamed(node,'txBody')[0],fill=getColor(sp,'none'),ln=childrenNamed(sp,'ln')[0];
+   if(fill!=='none'||!tx)s.elements.push(makeElement(type,{...tr,name,fill,stroke:getColor(ln,'none'),strokeWidth:(+ln?.getAttribute('w')||0)/9525}));
+   if(tx){const paragraphs=childrenNamed(tx,'p'),text=paragraphs.map(p=>Array.from(p.children).map(child=>child.localName==='br'?'\n':allNamed(child,'t').map(t=>t.textContent).join('')).join('')).join('\n');const style=firstNamed(tx,'rPr')||firstNamed(tx,'defRPr')||firstNamed(tx,'endParaRPr'),body=firstNamed(tx,'bodyPr'),ppr=firstNamed(tx,'pPr'),font=firstNamed(style,'latin')?.getAttribute('typeface');s.elements.push(makeElement('text',{...tr,name,text,fontSize:(+style?.getAttribute('sz')||2400)/75*offset.sy,fontFamily:font?.startsWith('+')?'Arial':font||'Arial',bold:style?.getAttribute('b')==='1',italic:style?.getAttribute('i')==='1',underline:style?.getAttribute('u')==='sng',fill:getColor(style,'#17313A'),align:({l:'left',ctr:'center',r:'right'})[ppr?.getAttribute('algn')]||'left',padding:(+body?.getAttribute('lIns')||0)/9525,valign:({t:'top',ctr:'middle',b:'bottom'})[body?.getAttribute('anchor')]||'top'}));if(allNamed(tx,'rPr').length>1)warnings.add('Mixed text runs are normalized to one style per text box.');}
+   if(!childrenNamed(sp,'xfrm').length)warnings.add('Layout/master placeholder inheritance is approximated; some imported positions need adjustment.');
+  }};readTree(firstNamed(xml,'spTree'));
+  const notes=[...rels.values()].find(r=>r.type.endsWith('/notesSlide'));if(notes&&files.has(notes.path)){const n=parseXML(files.get(notes.path));s.notes=allNamed(n,'sp').filter(sp=>firstNamed(sp,'ph')?.getAttribute('type')==='body').map(sp=>allNamed(sp,'p').map(p=>allNamed(p,'t').map(t=>t.textContent).join('')).join('\n')).join('\n');}
+  s.transition=firstNamed(xml,'fade')?'fade':firstNamed(xml,'push')?'push':'none';doc.slides.push(s);
+ }
+ if(!doc.slides.length)throw new Error('No readable slides found.');warnings.add('PPTX import is best-effort: masters, effects, media, animations, and advanced typography may differ.');return{doc:validateDocument(doc),warnings:[...warnings]};
+}
+
+
+// ─── src/app.js ───
+const $=(selector,root=document)=>root.querySelector(selector), $$=(selector,root=document)=>[...root.querySelectorAll(selector)];
+const store=new Store(createDemo());
+const stage=$('#stage'),viewport=$('#viewport'),interaction=$('#interaction'),textEditor=$('#textEditor'),menu=$('#menu'),modal=$('#modal');
+const state={tab:'Home',panel:'format',zoom:'fit',scale:1,showGrid:false,snap:true,showNotes:true,showInspector:true,tool:null,drag:null,space:false,editing:null,clipboard:null,guides:[],marquee:null,drawPreview:null,rendererReason:'',presenting:false};
+let framePending=0,thumbPending=0,savePending=0,lastPersistedRevision=-1,renderCount=0,storageDB=null,storageAvailable=true;
+const thumbnailsImages=new ImagePool(()=>scheduleThumbnails(true));
+const renderer=new SceneRenderer($('#surface'),(mode,reason)=>{state.rendererReason=reason;$('#rendererStatus').innerHTML=`<i${mode==='Canvas 2D'?' style="background:#b89a5d"':''}></i>${mode}${mode==='WebGPU'?' accelerated':''}`;$('#rendererStatus').title=reason;},invalidate);
+const thumbSignatures=new Map();
+const fonts=['Arial','Segoe UI','Georgia','Verdana','Trebuchet MS','Times New Roman','Courier New'];
+const RIBBON_TABS=['Home','Insert','Design','Transitions','Animations','Slide Show','View'];
+function hydrateIcons(root=document){$$('[data-icon]',root).forEach(el=>el.innerHTML=icon(el.dataset.icon));}
+function toast(message,error=false){const el=document.createElement('div');el.className='toast'+(error?' error':'');el.textContent=message;$('#toastRegion').append(el);setTimeout(()=>el.remove(),error?6500:3500);}
+function safeRun(fn){return async(...args)=>{try{return await fn(...args);}catch(error){console.error(error);toast(error.message||'The operation could not be completed.',true);}};}
+function invalidate(){if(!framePending)framePending=requestAnimationFrame(renderFrame);}
+function renderFrame(){framePending=0;renderCount++;const b=stage.getBoundingClientRect();if(b.width>0)renderer.render(store.slide,store.doc,{cssWidth:b.width,cssHeight:b.height,ignoreId:state.editing?.id});drawOverlay();syncTextEditorPosition();}
+function resizeStage(){
+ const {width,height}=store.doc,w=viewport.clientWidth,h=viewport.clientHeight;
+ const fit=Math.min((w-84)/width,(h-73)/height),scale=state.zoom==='fit'?Math.max(.12,fit):state.zoom/100;state.scale=scale;
+ const sw=width*scale,sh=height*scale,left=Math.max(42,(w-sw)/2),top=Math.max(18,(h-sh-17)/2);
+ Object.assign(stage.style,{width:sw+'px',height:sh+'px',left:left+'px',top:top+'px'});Object.assign($('#stageSizer').style,{width:Math.max(w,sw+84)+'px',height:Math.max(h,sh+70)+'px'});interaction.setAttribute('viewBox',`0 0 ${width} ${height}`);
+ $('#zoomSlider').value=clamp(Math.round(scale*100),25,200);$('#zoomLabel').textContent=Math.round(scale*100)+'%';invalidate();
+}
+function screenToSlide(event){const r=stage.getBoundingClientRect();return{x:(event.clientX-r.left)/state.scale,y:(event.clientY-r.top)/state.scale};}
+function zoomTo(value,anchor=null){
+ const old=stage.getBoundingClientRect(),p=anchor?{x:(anchor.x-old.left)/state.scale,y:(anchor.y-old.top)/state.scale}:null;
+ state.zoom=value==='fit'?'fit':clamp(Math.round(value),25,200);resizeStage();
+ if(p){const r=stage.getBoundingClientRect();viewport.scrollLeft+=r.left+p.x*state.scale-anchor.x;viewport.scrollTop+=r.top+p.y*state.scale-anchor.y;}
+}
+function drawOverlay(){
+ const scale=state.scale,k=1/scale,selected=store.selected,b=unionBounds(selected),parts=[];
+ if(state.showGrid){parts.push(`<defs><pattern id="editor-grid" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="0" cy="0" r="${.7*k}" fill="#6b8d80" opacity=".4"/></pattern></defs><rect x="0" y="0" width="${store.doc.width}" height="${store.doc.height}" fill="url(#editor-grid)" pointer-events="none"/>`);}
+ for(const guide of state.guides){parts.push(guide.axis==='x'?`<line x1="${guide.value}" y1="0" x2="${guide.value}" y2="${store.doc.height}" stroke="#d071c3" stroke-width="${k}" stroke-dasharray="${4*k} ${3*k}" pointer-events="none"/>`:`<line x1="0" y1="${guide.value}" x2="${store.doc.width}" y2="${guide.value}" stroke="#d071c3" stroke-width="${k}" stroke-dasharray="${4*k} ${3*k}" pointer-events="none"/>`);}
+ if(selected.length>1)for(const e of selected)parts.push(`<g transform="translate(${e.x+e.w/2} ${e.y+e.h/2}) rotate(${e.rotation||0})"><rect x="${-e.w/2}" y="${-e.h/2}" width="${e.w}" height="${e.h}" fill="none" stroke="#b9574188" stroke-width="${k}" pointer-events="none"/></g>`);
+ if(b&&!state.editing){
+  const e=selected.length===1?selected[0]:null,box=e?{x:-e.w/2,y:-e.h/2,w:e.w,h:e.h}:{x:-b.w/2,y:-b.h/2,w:b.w,h:b.h},cx=e?e.x+e.w/2:b.x+b.w/2,cy=e?e.y+e.h/2:b.y+b.h/2,rot=e?.rotation||0;
+  const locked=selected.every(e=>e.locked),sc=locked?'#8d9991':'#b95741';parts.push(`<g transform="translate(${cx} ${cy}) rotate(${rot})"><rect x="${box.x}" y="${box.y}" width="${box.w}" height="${box.h}" fill="none" stroke="${sc}" stroke-width="${1.1*k}" pointer-events="none"/>`);
+  if(!locked){const handles=[['nw',0,0,'nwse-resize'],['n',.5,0,'ns-resize'],['ne',1,0,'nesw-resize'],['e',1,.5,'ew-resize'],['se',1,1,'nwse-resize'],['s',.5,1,'ns-resize'],['sw',0,1,'nesw-resize'],['w',0,.5,'ew-resize']];
+   for(const [key,x,y,cursor]of handles)parts.push(`<rect data-handle="${key}" x="${box.x+x*box.w-3.5*k}" y="${box.y+y*box.h-3.5*k}" width="${7*k}" height="${7*k}" rx="${1*k}" fill="white" stroke="${sc}" stroke-width="${k}" style="cursor:${cursor}"/>`);
+   parts.push(`<line x1="0" y1="${box.y}" x2="0" y2="${box.y-24*k}" stroke="${sc}" stroke-width="${k}" pointer-events="none"/><circle data-handle="rotate" cx="0" cy="${box.y-27*k}" r="${4*k}" fill="white" stroke="${sc}" stroke-width="${k}" style="cursor:grab"/>`);
+  }parts.push('</g>');
+ }
+ if(state.marquee){const m=state.marquee;parts.push(`<rect x="${m.x}" y="${m.y}" width="${m.w}" height="${m.h}" fill="#b9574111" stroke="#b95741" stroke-width="${k}" pointer-events="none"/>`);}
+ if(state.drawPreview){const d=state.drawPreview;parts.push(`<rect x="${d.x}" y="${d.y}" width="${d.w}" height="${d.h}" fill="#b9574122" stroke="#b95741" stroke-width="${k}" stroke-dasharray="${4*k}" pointer-events="none"/>`);}
+ interaction.innerHTML=parts.join('');
+}
+function bigButton(label,cmd,ic,extra=''){return`<button class="ribbon-large ${extra}" data-cmd="${cmd}" title="${escapeHTML(label)}">${icon(ic)}<span>${label}</span></button>`;}
+function smallButton(label,cmd,ic){return`<button data-cmd="${cmd}" title="${escapeHTML(label)}">${icon(ic,16)}${label}</button>`;}
+function iconButton(label,cmd,ic,active=false){return`<button data-cmd="${cmd}" aria-label="${escapeHTML(label)}" title="${escapeHTML(label)}" class="${active?'active':''}">${icon(ic,16)}</button>`;}
+function ribbonGroup(title,body,extra=''){return`<div class="ribbon-group ${extra}">${body}<span class="group-title">${title}</span></div>`;}
+function fontOptions(current){return fonts.map(f=>`<option${f===current?' selected':''}>${escapeHTML(f)}</option>`).join('')+(current&&!fonts.includes(current)?`<option selected>${escapeHTML(current)}</option>`:'');}
+function renderRibbon(){
+ $('#ribbonTabs').innerHTML=RIBBON_TABS.map(t=>`<button role="tab" aria-selected="${state.tab===t}" class="${state.tab===t?'active':''}" data-cmd="tab:${t}">${t}</button>`).join('');const e=store.selected.find(e=>e.type==='text')||{};let html='';
+ if(state.tab==='Home'){
+  html+=ribbonGroup('Clipboard',bigButton('Paste','paste','paste')+`<div class="ribbon-stack">${smallButton('Copy','copy','copy')}${smallButton('Duplicate','duplicate','newslide')}</div>`);
+  html+=ribbonGroup('Slides',bigButton('New slide','new-slide','newslide')+`<div class="ribbon-stack">${smallButton('Layout','layout-menu','layout')}${smallButton('Delete','delete-slide','trash')}</div>`);
+  html+=ribbonGroup('Font',`<div class="ribbon-stack"><div class="ribbon-row"><select data-prop="fontFamily" class="ribbon-font" aria-label="Font family">${fontOptions(e.fontFamily||'Arial')}</select><input data-prop="fontSize" aria-label="Font size" class="ribbon-size" type="number" min="4" max="600" value="${e.fontSize||40}"></div><div class="ribbon-row">${iconButton('Bold (Ctrl B)','bold','bold',e.bold)}${iconButton('Italic (Ctrl I)','italic','italic',e.italic)}${iconButton('Underline (Ctrl U)','underline','underline',e.underline)}<span class="ribbon-color">${icon('fontcolor',17)}<input aria-label="Text color" type="color" data-prop="fill" value="${color(e.fill||'@ink',store.doc.theme).slice(0,7)}"></span>${iconButton('Increase font size','font-grow','plus')}${iconButton('Decrease font size','font-shrink','minus')}</div></div>`,'ribbon-font-group');
+  html+=ribbonGroup('Paragraph',`<div class="ribbon-stack"><div class="ribbon-row">${iconButton('Align text left','text-align:left','alignleft',e.align==='left')}${iconButton('Center text','text-align:center','aligncenter',e.align==='center')}${iconButton('Align text right','text-align:right','alignright',e.align==='right')}${iconButton('Toggle bullets','bullets','bullets')}</div><div class="ribbon-row"><select class="ribbon-select" data-prop="valign" aria-label="Vertical text alignment"><option value="top"${e.valign==='top'?' selected':''}>Align top</option><option value="middle"${e.valign==='middle'?' selected':''}>Align middle</option><option value="bottom"${e.valign==='bottom'?' selected':''}>Align bottom</option></select></div></div>`);
+  html+=ribbonGroup('Drawing',`<div class="ribbon-mini-shapes">${['rect','ellipse','line','arrow','roundRect','triangle','diamond','star'].map(t=>iconButton(`Draw ${t}`,'draw:'+t,t)).join('')}</div>`+bigButton('Text box','insert-text','text')+`<div class="ribbon-stack"><label class="ribbon-color" title="Shape fill">${icon('fill',17)}<input type="color" aria-label="Shape fill" data-prop="fill" value="${color(store.selected[0]?.fill||'@accent',store.doc.theme).slice(0,7)==='none'?'#ffffff':color(store.selected[0]?.fill||'@accent',store.doc.theme).slice(0,7)}"></label><label class="ribbon-color" title="Shape outline">${icon('outline',17)}<input type="color" aria-label="Shape outline" data-prop="stroke" value="${color(store.selected[0]?.stroke==='none'?'@ink':store.selected[0]?.stroke||'@ink',store.doc.theme).slice(0,7)}"></label></div>`);
+  html+=ribbonGroup('Arrange',bigButton('Arrange','arrange-menu','layers')+bigButton('Select','panel:layers','pointer'),'optional-group');
+ }
+ if(state.tab==='Insert'){
+  html+=ribbonGroup('Slides',bigButton('New slide','new-slide','newslide')+bigButton('Layouts','layout-menu','layout'));
+  html+=ribbonGroup('Text & media',bigButton('Text box','insert-text','text')+bigButton('Pictures','insert-image','image'));
+  html+=ribbonGroup('Illustrations',bigButton('Shapes','shapes-menu','shapes')+`<div class="ribbon-mini-shapes">${['rect','ellipse','line','arrow','roundRect','triangle','diamond','star'].map(t=>iconButton(`Draw ${t}`,'draw:'+t,t)).join('')}</div>`+bigButton('Diagram','insert-diagram','group'));
+  html+=ribbonGroup('Data',bigButton('Chart','insert-chart','chart')+bigButton('Table','insert-table','table'));
+  html+=ribbonGroup('Slide information',bigButton('Slide number','insert-number','slide')+bigButton('Date','insert-date','timer'));
+ }
+ if(state.tab==='Design'){
+  html+=ribbonGroup('Themes',Object.entries(THEMES).map(([key,t])=>`<button class="ribbon-preview ${store.doc.theme===key?'selected':''}" data-cmd="theme:${key}" title="Apply ${t.name} theme" style="background:${t.bg};color:${t.ink}"><span class="preview-big">Aa</span><span class="preview-line"></span><small>${t.name}</small><i style="background:${t.accent}"></i></button>`).join(''));
+  html+=ribbonGroup('Customize',bigButton('Slide size','slide-size','fit')+bigButton('Background','background','fill')+bigButton('Layouts','layout-menu','layout'));
+ }
+ if(state.tab==='Transitions'){
+  html+=ribbonGroup('Transition to this slide',['none','fade','push','zoom'].map(t=>`<button class="effect-button ${store.slide.transition===t?'active':''}" data-cmd="transition:${t}">${icon(t==='none'?'slide':t==='zoom'?'zoomin':'transition')}<span>${t[0].toUpperCase()+t.slice(1)}</span></button>`).join(''));
+  html+=ribbonGroup('Timing',`<div class="ribbon-stack"><label style="font-size:10px">Duration <input data-slide-prop="duration" type="number" min="0.1" max="5" step="0.1" value="${store.slide.duration}" style="width:60px;height:27px"> s</label>${smallButton('Apply to all','apply-transition','check')}</div>`);
+  html+=ribbonGroup('Preview',bigButton('Preview','preview-transition','play'));
+ }
+ if(state.tab==='Animations'){
+  const anim=store.selected[0]?.animation||'none';html+=ribbonGroup('Entrance animation',['none','fade','rise','zoom'].map(t=>`<button class="effect-button ${anim===t?'active':''}" data-cmd="animation:${t}">${icon(t==='none'?'rect':t==='rise'?'upload':t==='zoom'?'zoomin':'spark')}<span>${t[0].toUpperCase()+t.slice(1)}</span></button>`).join(''));
+  html+=ribbonGroup('Playback',`<div style="font-size:11px;color:var(--muted);line-height:1.7;padding:0 10px">Select an object to animate.<br>Animations play on click, in layer order.</div>`+bigButton('Preview','present','play'));
+ }
+ if(state.tab==='Slide Show'){
+  html+=ribbonGroup('Start slide show',bigButton('From beginning','present-first','play')+bigButton('From current','present','screen')+bigButton('Presenter view','present-notes','notes'));
+  html+=ribbonGroup('Practice',bigButton('Rehearse','present-rehearse','timer')+bigButton('Speaker notes','toggle-notes','notes'));
+  html+=ribbonGroup('Navigate',`<div style="font-size:11px;color:var(--muted);line-height:1.8;padding:0 10px">← → Previous / next &nbsp; · &nbsp; Esc Exit<br>B Black screen &nbsp; · &nbsp; L Laser pointer</div>`);
+ }
+ if(state.tab==='View'){
+  html+=ribbonGroup('Views',bigButton('Normal','normal','slide')+bigButton('Slide sorter','sorter','grid')+bigButton('Slide show','present','screen'));
+  html+=ribbonGroup('Show',bigButton('Grid','toggle-grid','grid',state.showGrid?'active':'')+bigButton('Snap guides','toggle-snap','align',state.snap?'active':'')+bigButton('Notes','toggle-notes','notes',state.showNotes?'active':'')+bigButton('Selection pane','panel:layers','layers'));
+  html+=ribbonGroup('Zoom',bigButton('Fit to window','zoom-fit','fit')+bigButton('100%','zoom-100','zoomin'));
+  html+=ribbonGroup('Workspace',bigButton('Appearance','toggle-dark','sun')+bigButton('Engine','diagnostics','code'));
+ }
+ $('#ribbon').innerHTML=html;
+}
+function propertyField(label,name,value,type='number',extra=''){return`<label class="property-field">${label}<input data-prop="${name}" type="${type}" value="${escapeHTML(typeof value==='number'?Math.round(value*10)/10:value||'')}" ${extra}></label>`;}
+function paletteHTML(prop,selected){const values=['@ink','@accent','@secondary','@muted','@bg','#FFFFFF','#000000','#DCC497'];return`<div class="color-palette">${values.map(v=>`<button data-color-prop="${prop}" data-value="${v}" title="${color(v,store.doc.theme)}" aria-label="Set ${prop} ${color(v,store.doc.theme)}" class="${selected===v?'selected':''}" style="background:${color(v,store.doc.theme)}"></button>`).join('')}</div>`;}
+function colorField(label,prop,value,slideProp=false){const c=value==='none'?'#FFFFFF':color(value,store.doc.theme);return`<div class="color-row"><span>${label}</span><span class="color-field"><input type="color" ${slideProp?'data-slide-prop':'data-prop'}="${prop}" value="${c.slice(0,7)}" aria-label="${label}"><span>${c.toUpperCase()}</span></span></div>`;}
+function renderInspector(){
+ $('#inspector').hidden=!state.showInspector;$('#propertiesTab').classList.toggle('active',state.panel==='format');$('#layersTab').classList.toggle('active',state.panel==='layers');const e=store.selected[0];
+ $('#inspectorTitle').textContent=state.panel==='layers'?'Selection pane':!e?'Slide design':store.selected.length>1?`${store.selected.length} objects selected`:e.type==='text'?'Format text':e.type==='image'?'Format picture':e.type==='chart'?'Format chart':e.type==='table'?'Format table':'Format shape';
+ if(state.panel==='layers'){
+  $('#inspectorContent').innerHTML=`<div class="layer-tools"><span>${store.slide.elements.length} objects · top to bottom</span><div>${iconButton('Bring forward','forward','front')}${iconButton('Send backward','backward','back')}</div></div>`+store.slide.elements.toReversed().map(e=>`<div class="layer ${store.selection.has(e.id)?'active':''} ${e.hidden?'hidden-layer':''}" data-layer="${e.id}" role="button" tabindex="0" aria-label="Select ${escapeHTML(e.name)}"><span class="layer-icon">${icon(e.type==='text'?'text':e.type)}</span><span class="layer-name" title="${escapeHTML(e.name)}">${escapeHTML(e.type==='text'?(e.text.slice(0,40)||e.name):e.name)}</span><button data-layer-action="visibility" data-id="${e.id}" title="${e.hidden?'Show':'Hide'} object" aria-label="${e.hidden?'Show':'Hide'} object">${icon(e.hidden?'hidden':'eye')}</button><button data-layer-action="lock" data-id="${e.id}" title="${e.locked?'Unlock':'Lock'} object" aria-label="${e.locked?'Unlock':'Lock'} object">${icon(e.locked?'lock':'unlock')}</button></div>`).join('');return;
+ }
+ if(!e){const t=THEMES[store.doc.theme];
+  $('#inspectorContent').innerHTML=`<section class="property-section"><h3>Your theme <span>Made for your story</span></h3><div class="design-preview" style="background:${t.bg};color:${t.ink}"><div class="tag">A FRESH PERSPECTIVE</div><div class="words">Ideas<br>in motion.</div><div class="arch"></div><div class="dot" style="background:${t.accent}"></div></div><div class="theme-caption"><span>${t.name}</span><span class="tag-pill">16:9 · ${store.doc.width} × ${store.doc.height}</span></div><div class="theme-swatches">${Object.entries(THEMES).map(([key,t])=>`<button class="theme-swatch ${key===store.doc.theme?'active':''}" data-cmd="theme:${key}" title="Apply ${t.name} theme" aria-label="Apply ${t.name} theme"><span style="background:${t.bg}"></span><span style="background:${t.accent}"></span><span style="background:${t.dark}"></span></button>`).join('')}</div></section>
+  <section class="property-section"><h3>Background</h3>${colorField('Solid fill','bg',store.slide.bg,true)}${paletteHTML('bg',store.slide.bg)}</section>
+  <section class="property-section"><h3>Add a slide <span>Choose a layout</span></h3><div class="layout-grid">${['title','content','split','blank'].map(t=>`<button class="layout-choice" data-cmd="new-layout:${t}"><span class="layout-mini ${t}"></span>${{title:'Title slide',content:'Title & content',split:'Two columns',blank:'Blank canvas'}[t]}</button>`).join('')}</div></section>
+  <section class="property-section"><h3>Transition</h3><select data-slide-prop="transition" aria-label="Slide transition" style="width:100%;font-size:11px">${['none','fade','push','zoom'].map(t=>`<option value="${t}"${store.slide.transition===t?' selected':''}>${t[0].toUpperCase()+t.slice(1)}</option>`).join('')}</select><p>Select an object to format it.<br>Double-click text to start writing.</p></section>`;return;
+ }
+ const fill=e.fill==='none'?'#FFFFFF':e.fill;
+ let html=`<section class="property-section"><h3>Transform <span>${e.locked?'Locked':e.groupId?'Grouped':'Slide coordinates'}</span></h3><div class="property-grid">${propertyField('X position','x',e.x)}${propertyField('Y position','y',e.y)}${propertyField('Width','w',e.w,'number','min="1"')}${propertyField('Height','h',e.h,'number','min="1"')}${propertyField('Rotation °','rotation',e.rotation)}${propertyField('Opacity 0–1','opacity',e.opacity,'number','min="0" max="1" step="0.05"')}</div><div class="inline-actions" style="margin-top:12px">${smallButton(e.locked?'Unlock':'Lock','lock',e.locked?'unlock':'lock')}${smallButton('Arrange','arrange-menu','layers')}</div></section>`;
+ if(e.type==='text')html+=`<section class="property-section"><h3>Typography</h3><div class="property-grid"><label class="property-field full">Font family<select data-prop="fontFamily">${fontOptions(e.fontFamily)}</select></label>${propertyField('Font size','fontSize',e.fontSize,'number','min="4" max="600"')}${propertyField('Line height','lineHeight',e.lineHeight,'number','min="0.8" max="3" step="0.05"')}</div><div class="inline-actions" style="margin-top:12px">${iconButton('Bold','bold','bold',e.bold)}${iconButton('Italic','italic','italic',e.italic)}${iconButton('Underline','underline','underline',e.underline)}${iconButton('Left','text-align:left','alignleft',e.align==='left')}${iconButton('Center','text-align:center','aligncenter',e.align==='center')}${iconButton('Right','text-align:right','alignright',e.align==='right')}</div><button class="property-button" data-cmd="edit-text">${icon('text')}Edit text</button></section>`;
+ if(e.type!=='image')html+=`<section class="property-section"><h3>${e.type==='text'?'Text color':'Appearance'}</h3>${colorField(e.type==='text'?'Color':'Fill','fill',fill)}${paletteHTML('fill',e.fill)}${e.type!=='text'?`<div style="margin-top:15px">${colorField('Outline','stroke',e.stroke==='none'?'@ink':e.stroke)}</div><div class="property-grid">${propertyField('Outline width','strokeWidth',e.strokeWidth,'number','min="0" max="100"')}${e.type==='roundRect'?propertyField('Corner radius','radius',e.radius,'number','min="0"'):''}</div><button class="property-button" data-cmd="no-fill">No fill</button>`:''}</section>`;
+ if(e.type==='image')html+=`<section class="property-section"><h3>Picture</h3><label class="property-field">Image fit<select data-prop="fit"><option value="cover"${e.fit==='cover'?' selected':''}>Fill (center crop)</option><option value="contain"${e.fit==='contain'?' selected':''}>Fit entire image</option></select></label><button class="property-button" data-cmd="replace-image">${icon('image')}Replace picture</button></section>`;
+ if(e.type==='chart')html+=`<section class="property-section"><h3>Chart data</h3><label class="property-field">Chart type<select data-prop="chartType">${['bar','line','donut'].map(t=>`<option value="${t}"${t===e.chartType?' selected':''}>${t[0].toUpperCase()+t.slice(1)}</option>`).join('')}</select></label><button class="property-button" data-cmd="edit-data">${icon('chart')}Edit chart data</button></section>`;
+ if(e.type==='table')html+=`<section class="property-section"><h3>Table data</h3>${propertyField('Cell font size','fontSize',e.fontSize)}<button class="property-button" data-cmd="edit-data">${icon('table')}Edit table</button></section>`;
+ html+=`<section class="property-section"><h3>Entrance animation</h3><select data-prop="animation" style="width:100%;font-size:11px" aria-label="Object animation">${['none','fade','rise','zoom'].map(t=>`<option value="${t}"${e.animation===t?' selected':''}>${t==='none'?'No animation':t[0].toUpperCase()+t.slice(1)+' · On click'}</option>`).join('')}</select></section>`;
+ $('#inspectorContent').innerHTML=html;
+}
+function buildThumbnails(){
+ const ids=store.doc.slides.map(s=>s.id).join('|');if($('#thumbnails').dataset.ids!==ids){$('#thumbnails').dataset.ids=ids;$('#thumbnails').innerHTML=store.doc.slides.map((s,i)=>`<button class="thumb" data-slide="${s.id}" draggable="true" role="option" aria-label="Slide ${i+1}: ${escapeHTML(s.name)}"><span class="thumb-number">${i+1}</span><span class="thumb-preview"><canvas width="320" height="180"></canvas><span class="thumb-label">${escapeHTML(s.name)}</span></span></button>`).join('');thumbSignatures.clear();}
+ $$('.thumb').forEach(t=>{t.classList.toggle('active',t.dataset.slide===store.active);t.setAttribute('aria-selected',t.dataset.slide===store.active?'true':'false');});
+}
+function scheduleThumbnails(force=false){if(force)thumbSignatures.clear();if(thumbPending)return;thumbPending=requestAnimationFrame(()=>{thumbPending=0;let painted=0,more=false;for(const s of store.doc.slides){const button=$(`[data-slide="${s.id}"]`);if(!button)continue;const sig=JSON.stringify([s.bg,s.elements,store.doc.theme,store.doc.width,store.doc.height]);if(thumbSignatures.get(s.id)===sig)continue;if(painted>=4){more=true;break;}const c=$('canvas',button);c.width=320;c.height=Math.round(320*store.doc.height/store.doc.width);c.style.aspectRatio=store.doc.width+'/'+store.doc.height;paintSlide2D(c,s,store.doc,thumbnailsImages,{scale:320/store.doc.width});thumbSignatures.set(s.id,sig);painted++;}if(more)scheduleThumbnails();});}
+function syncUI(kind='change'){
+ if(document.activeElement!==$('#documentTitle'))$('#documentTitle').value=store.doc.title;
+ document.title=`${store.doc.title} — Aurelia Slides`;
+ if(document.activeElement!==$('#notes'))$('#notes').value=store.slide.notes;
+ const i=store.doc.slides.findIndex(s=>s.id===store.active);$('#slideCount').textContent=store.doc.slides.length;$('#slideStatus').textContent=`Slide ${i+1} of ${store.doc.slides.length}`;$('#slideBreadcrumb').textContent=`SLIDE ${String(i+1).padStart(2,'0')}`;$('#slideName').textContent=store.slide.name;
+ $('#selectionStatus').textContent=state.editing?'Editing text':store.selected.length?store.selected.length===1?store.selected[0].name:`${store.selected.length} objects selected`:'Ready';
+ $$('[data-cmd="undo"]').forEach(b=>{b.disabled=!store.past.length;b.title=store.past.length?`Undo: ${store.past.at(-1).label}`:'Nothing to undo';});$$('[data-cmd="redo"]').forEach(b=>b.disabled=!store.future.length);
+ buildThumbnails();if(!['live','selection'].includes(kind))scheduleThumbnails();
+ if(!['live'].includes(kind)){renderRibbon();if(!$('#inspectorContent').contains(document.activeElement))renderInspector();}
+ invalidate();
+}
+store.onChange(kind=>{syncUI(kind);if(kind==='commit'||kind==='restore'){schedulePersist();resizeStage();const sources=new Set(store.doc.slides.flatMap(s=>s.elements.filter(e=>e.type==='image').map(e=>e.src)));renderer.images.retain(sources);thumbnailsImages.retain(sources);}});
+async function openStorage(){
+ try{storageDB=await new Promise((resolve,reject)=>{const req=indexedDB.open('aurelia-slides-v1',1);req.onupgradeneeded=()=>req.result.createObjectStore('documents');req.onsuccess=()=>resolve(req.result);req.onerror=()=>reject(req.error);req.onblocked=()=>reject(new Error('Local storage is blocked by another tab.'));});return await new Promise((resolve,reject)=>{const tx=storageDB.transaction('documents','readonly'),r=tx.objectStore('documents').get('current');r.onsuccess=()=>resolve(r.result);r.onerror=()=>reject(r.error);});}
+ catch(error){storageAvailable=false;try{const s=localStorage.getItem('aurelia-backup');return s?JSON.parse(s):null;}catch{return null;}}
+}
+function schedulePersist(){clearTimeout(savePending);$('#saveText').textContent='Saving locally…';savePending=setTimeout(persist,450);}
+async function persist(){
+ clearTimeout(savePending);const revision=store.revision,doc=clone(store.doc);
+ try{if(storageDB){await new Promise((resolve,reject)=>{const tx=storageDB.transaction('documents','readwrite');tx.objectStore('documents').put(doc,'current');tx.oncomplete=resolve;tx.onerror=()=>reject(tx.error);tx.onabort=()=>reject(tx.error);});}else localStorage.setItem('aurelia-backup',JSON.stringify(doc));lastPersistedRevision=revision;$('#saveText').textContent='Saved on this device';$('#saveIndicator').title='Saved on this device. Export a file to keep an independent backup.';}
+ catch(error){$('#saveText').textContent='Not saved';$('#saveIndicator').title=error.message;toast('Local storage is unavailable or full. Use File → Save .aurelia to keep your work.',true);}
+}
+function fileName(ext){return(store.doc.title.replace(/[<>:"/\\|?*\u0000-\u001f]/g,'').slice(0,120)||'Presentation')+'.'+ext;}
+function downloadBlob(blob,name){const url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=name;document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),20000);}
+function nativeSave(){finishTextEditing();persist();downloadBlob(new Blob([JSON.stringify(store.doc,null,2)],{type:'application/json'}),fileName('aurelia'));toast('Presentation saved as an editable .aurelia file.');}
+function closeMenu(){menu.hidden=true;menu.innerHTML='';}
+function showMenu(html,anchor){menu.innerHTML=html;menu.hidden=false;const rect=anchor?.getBoundingClientRect?.()||{left:anchor?.x||40,bottom:anchor?.y||120};menu.style.left=rect.left+'px';menu.style.top=(rect.bottom+5)+'px';const b=menu.getBoundingClientRect();menu.style.left=clamp(rect.left,8,window.innerWidth-b.width-8)+'px';menu.style.top=clamp(rect.bottom+5,8,window.innerHeight-b.height-8)+'px';}
+function menuItem(label,cmd,ic,shortcut=''){return`<button class="menu-item" data-cmd="${cmd}">${icon(ic)}<span>${label}</span>${shortcut?`<kbd>${shortcut}</kbd>`:''}</button>`;}
+function showFileMenu(anchor){showMenu(`<div class="menu-title">Presentation</div>${menuItem('New presentation','new-document','newslide','Ctrl N')}${menuItem('Open .aurelia / .pptx','open','folder','Ctrl O')}${menuItem('Save .aurelia','save','save','Ctrl S')}<div class="menu-separator"></div><div class="menu-title">Export</div>${menuItem('PowerPoint .pptx','export-pptx','export')}${menuItem('Current slide · PNG','export-png','image')}${menuItem('Current slide · SVG','export-svg','shapes')}${menuItem('All slides · PNG archive','export-images','download')}${menuItem('Print / Save as PDF','print','slide')}<div class="menu-separator"></div>${menuItem('Presentation settings','slide-size','fit')}${menuItem('Restore example deck','restore-demo','spark')}${menuItem('About Aurelia Slides','about','help')}`,anchor);}
+function showShapeMenu(anchor){showMenu(`<div class="menu-title">Draw a shape</div><div class="menu-grid">${['rect','roundRect','ellipse','triangle','diamond','arrow','star','line'].map(t=>`<button data-cmd="draw:${t}" title="${t}">${icon(t)}<span>${{rect:'Rectangle',roundRect:'Rounded',ellipse:'Ellipse',triangle:'Triangle',diamond:'Diamond',arrow:'Arrow',star:'Star',line:'Line'}[t]}</span></button>`).join('')}</div><div class="menu-title">Click & drag on the slide</div>`,anchor);}
+function showLayoutMenu(anchor){showMenu(`<div class="menu-title">New slide layout</div>${menuItem('Title slide','new-layout:title','text')}${menuItem('Title and content','new-layout:content','slide')}${menuItem('Two columns','new-layout:split','layout')}${menuItem('Quote','new-layout:quote','text')}${menuItem('Blank canvas','new-layout:blank','rect')}<div class="menu-separator"></div>${menuItem('Duplicate current slide','duplicate-slide','copy')}${menuItem('Reset current slide layout…','reset-layout','layout')}`,anchor);}
+function showArrangeMenu(anchor){showMenu(`<div class="menu-title">Arrange</div>${menuItem('Bring to front','front','front')}${menuItem('Send to back','back','back')}${menuItem('Bring forward','forward','front')}${menuItem('Send backward','backward','back')}<div class="menu-separator"></div>${menuItem('Align left','align:left','alignleft')}${menuItem('Align center','align:center','aligncenter')}${menuItem('Align right','align:right','alignright')}${menuItem('Align top','align:top','align')}${menuItem('Align middle','align:middle','align')}${menuItem('Align bottom','align:bottom','align')}${menuItem('Distribute horizontally','distribute:x','layout')}${menuItem('Distribute vertically','distribute:y','layout')}<div class="menu-separator"></div>${menuItem('Group','group','group','Ctrl G')}${menuItem('Ungroup','ungroup','shapes','Ctrl Shift G')}${menuItem('Lock / unlock','lock','lock')}`,anchor);}
+function openModal(title,body,actions=[],width=520){finishTextEditing();closeMenu();$('#modalTitle').textContent=title;$('#modalContent').innerHTML=body;$('#modalActions').innerHTML='';modal.style.width=width+'px';for(const a of actions){const button=document.createElement('button');button.textContent=a.label;button.className=a.primary?'primary':'secondary';button.addEventListener('click',safeRun(async()=>{const done=await a.action();if(done!==false)modal.close();}));$('#modalActions').append(button);}if(!modal.open)modal.showModal();}
+function askReplace(title,callback){openModal(title,'<p class="modal-description">This replaces the current presentation. Your current work remains available through Undo. Save an independent .aurelia file first to keep a backup.</p>',[{label:'Cancel',action:()=>{}},{label:'Save current file',action:()=>{nativeSave();return false;}},{label:'Continue',primary:true,action:callback}]);}
+function selectElement(element,additive=false){
+ let ids=element.groupId?store.slide.elements.filter(e=>e.groupId===element.groupId&&!e.hidden).map(e=>e.id):[element.id];
+ if(additive){const current=new Set(store.selection),remove=ids.every(id=>current.has(id));ids.forEach(id=>remove?current.delete(id):current.add(id));ids=[...current];}
+ store.select(ids);
+}
+function setTool(type){finishTextEditing();state.tool=type;store.select([]);stage.classList.add('drawing');$('#canvasHint').textContent=`Draw ${type==='text'?'a text box':type} · Click and drag on the slide · Esc cancels`;closeMenu();}
+function clearTool(){state.tool=null;stage.classList.remove('drawing');$('#canvasHint').textContent='Double-click text to edit · Drag to move · Shift-click to select multiple';}
+function startTextEditing(e){
+ if(!e||e.type!=='text'||e.locked)return;finishTextEditing();clearTool();store.select([e.id]);store.begin('Edit text');state.editing={id:e.id,original:e.text};textEditor.value=e.text;textEditor.hidden=false;syncTextEditorPosition();textEditor.focus();textEditor.select();syncUI('selection');
+}
+function syncTextEditorPosition(){
+ if(!state.editing)return;const e=store.slide.elements.find(e=>e.id===state.editing.id);if(!e)return;const sc=state.scale;
+ Object.assign(textEditor.style,{left:e.x*sc+'px',top:e.y*sc+'px',width:e.w*sc+'px',height:e.h*sc+'px',fontFamily:`"${e.fontFamily}", sans-serif`,fontSize:e.fontSize*sc+'px',fontWeight:e.bold?'700':'400',fontStyle:e.italic?'italic':'normal',textDecoration:e.underline?'underline':'none',lineHeight:e.lineHeight||1.2,color:color(e.fill,store.doc.theme),textAlign:e.align||'left',padding:(e.padding||0)*sc+'px',transform:`rotate(${e.rotation||0}deg)`});
+ if(e.valign==='middle'||e.valign==='bottom'){const c=document.createElement('canvas'),ctx=c.getContext('2d');ctx.font=fontCSS(e);const lines=wrapText(ctx,e.text,e.w-2*(e.padding||0)),h=lines.length*e.fontSize*(e.lineHeight||1.2),p=e.valign==='middle'?Math.max(e.padding||0,(e.h-h)/2):Math.max(e.padding||0,e.h-h-(e.padding||0));textEditor.style.paddingTop=p*sc+'px';}
+}
+function finishTextEditing(cancel=false){
+ if(!state.editing)return;const id=state.editing.id;state.editing=null;textEditor.hidden=true;
+ if(cancel)store.cancel();else{const e=store.slide.elements.find(e=>e.id===id);if(e)e.text=textEditor.value;store.commit();}
+ viewport.focus({preventScroll:true});syncUI('selection');scheduleThumbnails();
+}
+textEditor.addEventListener('input',()=>{const e=store.slide.elements.find(e=>e.id===state.editing?.id);if(e){e.text=textEditor.value;invalidate();}});
+textEditor.addEventListener('pointerdown',event=>event.stopPropagation());
+textEditor.addEventListener('keydown',event=>{event.stopPropagation();if(event.key==='Escape'){event.preventDefault();finishTextEditing(true);}if((event.metaKey||event.ctrlKey)&&event.key==='Enter'){event.preventDefault();finishTextEditing();}});
+textEditor.addEventListener('blur',()=>{if(state.editing)setTimeout(()=>{if(state.editing&&document.activeElement!==textEditor)finishTextEditing();},0);});
+stage.addEventListener('pointerdown',event=>{
+ if(event.button!==0&&event.button!==1)return;
+ if(state.space||event.button===1){beginPan(event);return;}
+ if(state.editing)finishTextEditing();closeMenu();event.preventDefault();viewport.focus({preventScroll:true});const p=screenToSlide(event),handle=event.target.dataset?.handle;
+ if(state.tool){state.drag={type:'draw',start:p,tool:state.tool,pointer:event.pointerId};stage.setPointerCapture(event.pointerId);return;}
+ if(handle&&store.selected.length){const orig=clone(store.selected.filter(e=>!e.locked));if(!orig.length)return;store.begin(handle==='rotate'?'Rotate objects':'Resize objects');const b=unionBounds(orig);state.drag={type:handle==='rotate'?'rotate':'resize',handle,start:p,orig,bounds:b,pointer:event.pointerId,angle:Math.atan2(p.y-b.y-b.h/2,p.x-b.x-b.w/2)};stage.setPointerCapture(event.pointerId);return;}
+ const hit=store.slide.elements.toReversed().find(e=>hitElement(e,p,3/state.scale));
+ if(hit){
+  if(event.shiftKey)selectElement(hit,true);else if(!store.selection.has(hit.id))selectElement(hit);
+  if(!store.selection.has(hit.id))return;
+  if(event.altKey&&!hit.locked)store.duplicateSelected();
+  const orig=clone(store.selected.filter(e=>!e.locked));if(!orig.length)return;store.begin('Move objects');state.drag={type:'move',start:p,orig,bounds:unionBounds(orig),pointer:event.pointerId};
+ }else{state.drag={type:'marquee',start:p,old:event.shiftKey?[...store.selection]:[],pointer:event.pointerId};if(!event.shiftKey)store.select([]);}
+ stage.setPointerCapture(event.pointerId);
+});
+function beginPan(event){event.preventDefault();state.drag={type:'pan',client:{x:event.clientX,y:event.clientY},scroll:{x:viewport.scrollLeft,y:viewport.scrollTop},pointer:event.pointerId};viewport.setPointerCapture(event.pointerId);viewport.classList.add('dragging');}
+viewport.addEventListener('pointerdown',event=>{if(event.target===viewport||event.target===$('#stageSizer')){if(state.space||event.button===1)beginPan(event);else if(event.button===0){finishTextEditing();store.select([]);}}});
+function applyOriginalChange(orig,fn){for(const initial of orig){const e=store.slide.elements.find(x=>x.id===initial.id);if(e)fn(e,initial);}}
+function resizeSingle(d,p,event){
+ const o=d.orig[0],q=localPoint(o,p),start=localPoint(o,d.start);let l=0,t=0,r=o.w,b=o.h;const h=d.handle;
+ if(h.includes('w'))l=Math.min(o.w-8,q.x-start.x);if(h.includes('e'))r=Math.max(8,o.w+q.x-start.x);if(h.includes('n'))t=Math.min(o.h-8,q.y-start.y);if(h.includes('s'))b=Math.max(8,o.h+q.y-start.y);
+ if(event.shiftKey&&h.length===2){const ratio=o.w/o.h,nw=r-l,nh=b-t;if(nw/nh>ratio){const desired=nw/ratio;if(h.includes('n'))t=b-desired;else b=t+desired;}else{const desired=nh*ratio;if(h.includes('w'))l=r-desired;else r=l+desired;}}
+ const w=r-l,hh=b-t,dx=(l+r)/2-o.w/2,dy=(t+b)/2-o.h/2,a=(o.rotation||0)*Math.PI/180,c=Math.cos(a),s=Math.sin(a);
+ applyOriginalChange(d.orig,e=>{e.x=o.x+o.w/2+dx*c-dy*s-w/2;e.y=o.y+o.h/2+dx*s+dy*c-hh/2;e.w=w;e.h=hh;});
+}
+function resizeMultiple(d,p,event){
+ const b=d.bounds,h=d.handle,dx=p.x-d.start.x,dy=p.y-d.start.y;let x=b.x,y=b.y,w=b.w,hh=b.h;
+ if(h.includes('w')){x=Math.min(b.x+b.w-10,b.x+dx);w=b.x+b.w-x;}if(h.includes('e'))w=Math.max(10,b.w+dx);if(h.includes('n')){y=Math.min(b.y+b.h-10,b.y+dy);hh=b.y+b.h-y;}if(h.includes('s'))hh=Math.max(10,b.h+dy);
+ if(event.shiftKey&&h.length===2){const s=Math.max(w/b.w,hh/b.h);w=b.w*s;hh=b.h*s;if(h.includes('w'))x=b.x+b.w-w;if(h.includes('n'))y=b.y+b.h-hh;}
+ const sx=w/b.w,sy=hh/b.h;applyOriginalChange(d.orig,(e,o)=>{e.x=x+(o.x-b.x)*sx;e.y=y+(o.y-b.y)*sy;e.w=Math.max(1,o.w*sx);e.h=Math.max(1,o.h*sy);if(e.type==='text'||e.type==='table')e.fontSize=o.fontSize*Math.min(sx,sy);});
+}
+function pointerMove(event){
+ if(!state.drag){if(!state.tool&&!state.editing){const p=screenToSlide(event);const e=store.slide.elements.toReversed().find(e=>hitElement(e,p,2/state.scale));interaction.style.cursor=e?(e.locked?'not-allowed':'move'):'default';}return;}
+ const d=state.drag;if(event.pointerId!==d.pointer)return;
+ if(d.type==='pan'){viewport.scrollLeft=d.scroll.x+d.client.x-event.clientX;viewport.scrollTop=d.scroll.y+d.client.y-event.clientY;return;}
+ const p=screenToSlide(event),dx=p.x-d.start.x,dy=p.y-d.start.y;
+ if(d.type==='draw'){state.drawPreview={x:Math.min(p.x,d.start.x),y:Math.min(p.y,d.start.y),w:Math.abs(dx),h:Math.abs(dy)};if(event.shiftKey)state.drawPreview.h=state.drawPreview.w;}
+ if(d.type==='marquee'){state.marquee={x:Math.min(p.x,d.start.x),y:Math.min(p.y,d.start.y),w:Math.abs(dx),h:Math.abs(dy)};const selected=store.slide.elements.filter(e=>!e.hidden&&rectIntersects(elementBounds(e),state.marquee)).flatMap(e=>e.groupId?store.slide.elements.filter(o=>o.groupId===e.groupId).map(o=>o.id):[e.id]);store.selection=new Set([...d.old,...selected]);}
+ if(d.type==='move'){
+  let x=dx,y=dy;if(event.shiftKey){if(Math.abs(x)>Math.abs(y))y=0;else x=0;}state.guides=[];
+  if(state.snap&&!event.altKey){const b={...d.bounds,x:d.bounds.x+x,y:d.bounds.y+y},others=store.slide.elements.filter(e=>!store.selection.has(e.id)&&!e.hidden),snap=snapMove(b,others,store.doc.width,store.doc.height,6/state.scale);x+=snap.dx;y+=snap.dy;state.guides=snap.lines;}
+  applyOriginalChange(d.orig,(e,o)=>{e.x=o.x+x;e.y=o.y+y;});
+ }
+ if(d.type==='resize'){if(d.orig.length===1)resizeSingle(d,p,event);else resizeMultiple(d,p,event);}
+ if(d.type==='rotate'){const b=d.bounds,cx=b.x+b.w/2,cy=b.y+b.h/2;let delta=(Math.atan2(p.y-cy,p.x-cx)-d.angle)*180/Math.PI;if(event.shiftKey)delta=Math.round(delta/15)*15;const a=delta*Math.PI/180,c=Math.cos(a),s=Math.sin(a);applyOriginalChange(d.orig,(e,o)=>{const x=o.x+o.w/2-cx,y=o.y+o.h/2-cy;e.x=cx+x*c-y*s-o.w/2;e.y=cy+x*s+y*c-o.h/2;e.rotation=(o.rotation+delta+360)%360;});}
+ invalidate();
+}
+function pointerUp(event){
+ const d=state.drag;if(!d||event.pointerId!==d.pointer)return;state.drag=null;state.guides=[];state.marquee=null;state.drawPreview=null;viewport.classList.remove('dragging');
+ if(d.type==='draw'){
+  const p=screenToSlide(event);let w=Math.abs(p.x-d.start.x),h=Math.abs(p.y-d.start.y),x=Math.min(p.x,d.start.x),y=Math.min(p.y,d.start.y),rotation=0;
+  if(w<8&&h<8){x=d.start.x;y=d.start.y;w=d.tool==='text'?420:240;h=d.tool==='text'?90:d.tool==='line'?3:170;}
+  else if(d.tool==='line'){w=Math.hypot(p.x-d.start.x,p.y-d.start.y);h=3;x=(p.x+d.start.x)/2-w/2;y=(p.y+d.start.y)/2-h/2;rotation=Math.atan2(p.y-d.start.y,p.x-d.start.x)*180/Math.PI;}
+  else if(event.shiftKey)h=w;
+  const type=d.tool;clearTool();const e=makeElement(type,{x,y,w:Math.max(8,w),h:Math.max(type==='line'?1:8,h),rotation});store.add(e);if(type==='text')startTextEditing(e);
+ }else if(['move','resize','rotate'].includes(d.type)){store.commit();renderInspector();}
+ else if(d.type==='marquee')store.emit('selection');
+ invalidate();
+}
+stage.addEventListener('pointermove',pointerMove);stage.addEventListener('pointerup',pointerUp);viewport.addEventListener('pointermove',event=>{if(state.drag?.type==='pan')pointerMove(event);});viewport.addEventListener('pointerup',event=>{if(state.drag?.type==='pan')pointerUp(event);});
+function cancelPointer(){if(state.drag&&store.pending)store.cancel();state.drag=null;state.guides=[];state.marquee=null;state.drawPreview=null;viewport.classList.remove('dragging');invalidate();}
+stage.addEventListener('pointercancel',cancelPointer);viewport.addEventListener('pointercancel',cancelPointer);
+stage.addEventListener('dblclick',event=>{if(state.tool)return;const p=screenToSlide(event),e=store.slide.elements.toReversed().find(e=>hitElement(e,p,2/state.scale));if(!e)return;store.select([e.id]);if(e.type==='text')startTextEditing(e);else if(e.type==='chart'||e.type==='table')editData(e);});
+stage.addEventListener('contextmenu',event=>{event.preventDefault();finishTextEditing();const p=screenToSlide(event),hit=store.slide.elements.toReversed().find(e=>hitElement(e,p,3/state.scale));if(hit&&!store.selection.has(hit.id))selectElement(hit);let items=menuItem('Paste','paste','paste','Ctrl V');if(store.selected.length)items=menuItem('Copy','copy','copy','Ctrl C')+menuItem('Duplicate','duplicate','copy','Ctrl D')+items+menuItem('Delete','delete','trash','Del')+'<div class="menu-separator"></div>'+menuItem('Bring to front','front','front')+menuItem('Send to back','back','back')+menuItem('Group','group','group')+menuItem('Ungroup','ungroup','shapes')+menuItem('Lock / unlock','lock','lock');else items+=menuItem('New slide','new-slide','newslide')+menuItem('Background','background','fill');showMenu(items,{x:event.clientX,y:event.clientY});});
+viewport.addEventListener('wheel',event=>{if(event.ctrlKey||event.metaKey){event.preventDefault();zoomTo(state.scale*100*Math.exp(-event.deltaY*.003),{x:event.clientX,y:event.clientY});}},{passive:false});
+let draggingSlide=null;
+$('#thumbnails').addEventListener('click',event=>{const t=event.target.closest('[data-slide]');if(t){finishTextEditing();clearTool();store.activate(t.dataset.slide);renderInspector();}});
+$('#thumbnails').addEventListener('contextmenu',event=>{const t=event.target.closest('[data-slide]');if(!t)return;event.preventDefault();store.activate(t.dataset.slide);showMenu(menuItem('New slide','new-slide','newslide')+menuItem('Duplicate slide','duplicate-slide','copy')+menuItem('Delete slide','delete-slide','trash')+menuItem('Rename slide','rename-slide','text'),{x:event.clientX,y:event.clientY});});
+$('#thumbnails').addEventListener('dragstart',event=>{const t=event.target.closest('[data-slide]');if(!t)return;draggingSlide=t.dataset.slide;event.dataTransfer.effectAllowed='move';event.dataTransfer.setData('text/plain',draggingSlide);t.classList.add('dragging');});
+$('#thumbnails').addEventListener('dragover',event=>{const t=event.target.closest('[data-slide]');if(!t||!draggingSlide)return;event.preventDefault();$$('.thumb.dragover').forEach(e=>e.classList.remove('dragover'));t.classList.add('dragover');});
+$('#thumbnails').addEventListener('drop',event=>{const t=event.target.closest('[data-slide]');event.preventDefault();if(t&&draggingSlide){const from=store.doc.slides.findIndex(s=>s.id===draggingSlide),to=store.doc.slides.findIndex(s=>s.id===t.dataset.slide);if(from>=0&&to>=0&&from!==to)store.reorderSlide(from,to);}draggingSlide=null;$$('.thumb').forEach(t=>t.classList.remove('dragover','dragging'));});
+$('#thumbnails').addEventListener('dragend',()=>{draggingSlide=null;$$('.thumb').forEach(t=>t.classList.remove('dragover','dragging'));});
+function selectedText(){return store.selected.filter(e=>e.type==='text'&&!e.locked);}
+function formatText(props,label='Format text'){if(!selectedText().length){toast('Select a text box to change its formatting.');return;}store.transaction(label,()=>selectedText().forEach(e=>Object.assign(e,props)));}
+function updateProperty(name,value){
+ if(!store.selected.length){toast('Select an object first.');renderRibbon();return;}
+ const numbers={x:[-100000,100000],y:[-100000,100000],w:[1,16384],h:[1,16384],rotation:[-36000,36000],opacity:[0,1],fontSize:[4,600],lineHeight:[.8,3],strokeWidth:[0,100],radius:[0,2000]};
+ if(name in numbers){value=Number(value);if(!Number.isFinite(value))return;value=clamp(value,...numbers[name]);}
+ if(['fontFamily','bold','italic','underline','align','valign','lineHeight'].includes(name)){formatText({[name]:value});return;}
+ store.transaction('Change '+name,()=>{for(const e of store.selected)if(!e.locked){e[name]=value;if(name==='stroke'&&e.strokeWidth===0)e.strokeWidth=2;}});
+}
+document.addEventListener('change',event=>{
+ const el=event.target;
+ if(el.matches('[data-prop]'))updateProperty(el.dataset.prop,el.type==='checkbox'?el.checked:el.value);
+ if(el.matches('[data-slide-prop]')){const key=el.dataset.slideProp,value=key==='duration'?clamp(+el.value||.45,.1,5):el.value;store.transaction('Change slide '+key,()=>store.slide[key]=value);}
+});
+let notesTimer=0;
+$('#notes').addEventListener('focus',()=>store.begin('Edit speaker notes'));
+$('#notes').addEventListener('input',()=>{if(!store.pending)store.begin('Edit speaker notes');store.slide.notes=$('#notes').value;clearTimeout(notesTimer);notesTimer=setTimeout(()=>{store.commit();},800);});
+$('#notes').addEventListener('blur',()=>{clearTimeout(notesTimer);if(store.pending?.label==='Edit speaker notes')store.commit();});
+$('#documentTitle').addEventListener('change',()=>{const value=$('#documentTitle').value.trim()||'Untitled presentation';store.transaction('Rename presentation',()=>store.doc.title=value.slice(0,200));});
+$('#zoomSlider').addEventListener('input',()=>zoomTo(+$('#zoomSlider').value));
+$('#modalClose').addEventListener('click',()=>modal.close());
+modal.addEventListener('click',event=>{const r=modal.getBoundingClientRect();if(event.target===modal&&(event.clientX<r.left||event.clientX>r.right||event.clientY<r.top||event.clientY>r.bottom))modal.close();});
+modal.addEventListener('close',()=>{viewport.focus({preventScroll:true});});
+document.addEventListener('pointerdown',event=>{if(!menu.hidden&&!menu.contains(event.target)&&!event.target.closest('[data-cmd]'))closeMenu();});
+document.addEventListener('click',safeRun(async event=>{
+ const colorButton=event.target.closest('[data-color-prop]');if(colorButton){const key=colorButton.dataset.colorProp,val=colorButton.dataset.value;if(key==='bg')store.transaction('Background color',()=>store.slide.bg=val);else updateProperty(key,val);return;}
+ const layerAction=event.target.closest('[data-layer-action]');if(layerAction){const e=store.slide.elements.find(e=>e.id===layerAction.dataset.id);if(e)store.transaction(layerAction.dataset.layerAction==='lock'?'Toggle object lock':'Toggle object visibility',()=>{if(layerAction.dataset.layerAction==='lock')e.locked=!e.locked;else e.hidden=!e.hidden;});renderInspector();return;}
+ const layer=event.target.closest('[data-layer]');if(layer){const e=store.slide.elements.find(e=>e.id===layer.dataset.layer);if(e)selectElement(e,event.shiftKey);renderInspector();return;}
+ const button=event.target.closest('[data-cmd]');if(button){const cmd=button.dataset.cmd;if(menu.contains(button))closeMenu();await command(cmd,button);}
+}));
+async function copySelection(){
+ if(!store.selected.length){toast('Select objects to copy.');return;}state.clipboard=clone(store.selected);const value='aurelia-objects:'+JSON.stringify(state.clipboard);try{await navigator.clipboard.writeText(value);}catch{}toast(`${state.clipboard.length} object${state.clipboard.length===1?'':'s'} copied.`);
+}
+async function pasteSelection(){
+ let values=state.clipboard;try{const text=await navigator.clipboard.readText();if(text.startsWith('aurelia-objects:')){const raw=JSON.parse(text.slice(16)),temp=makeDocument();temp.slides[0].elements=raw;values=validateDocument(temp).slides[0].elements;}else if(text&&!values){const e=makeElement('text',{text:text.slice(0,100000),x:160,y:180,w:900,h:320,fontSize:32});store.add(e);return;}}catch{}
+ if(!values?.length){toast('Copy an object first, or paste text or an image directly into the canvas.');return;}
+ const groups=new Map(),els=clone(values).map(e=>{e.id=uid();e.x+=28;e.y+=28;e.locked=false;if(e.groupId){if(!groups.has(e.groupId))groups.set(e.groupId,uid('g'));e.groupId=groups.get(e.groupId);}return e;});store.transaction('Paste objects',()=>store.slide.elements.push(...els));store.select(els.map(e=>e.id));
+}
+let replaceImageId=null;
+async function insertImageFile(file){
+ if(!/^image\/(png|jpeg|webp|gif)$/.test(file.type))throw new Error('Choose a PNG, JPEG, WebP or GIF picture.');if(file.size>22*1024*1024)throw new Error('Pictures are limited to 22 MB.');
+ const src=await new Promise((resolve,reject)=>{const reader=new FileReader();reader.onload=()=>resolve(reader.result);reader.onerror=()=>reject(reader.error);reader.readAsDataURL(file);});const image=new Image();image.src=src;await image.decode();
+ const downscale=Math.min(1,4096/image.naturalWidth,4096/image.naturalHeight),canvas=document.createElement('canvas');canvas.width=Math.max(1,Math.round(image.naturalWidth*downscale));canvas.height=Math.max(1,Math.round(image.naturalHeight*downscale));canvas.getContext('2d').drawImage(image,0,0,canvas.width,canvas.height);const data=canvas.toDataURL(file.type==='image/jpeg'?'image/jpeg':'image/png',.94);
+ if(replaceImageId){const e=store.slide.elements.find(e=>e.id===replaceImageId);if(e)store.transaction('Replace picture',()=>{e.src=data;e.name=file.name;});replaceImageId=null;renderer.invalidateTiles();return;}
+ const sc=Math.min(store.doc.width*.7/canvas.width,store.doc.height*.7/canvas.height,1),w=canvas.width*sc,h=canvas.height*sc;store.add(makeElement('image',{name:file.name,src:data,fit:'cover',x:(store.doc.width-w)/2,y:(store.doc.height-h)/2,w,h}));
+}
+$('#imageFile').addEventListener('change',safeRun(async event=>{for(const f of event.target.files)await insertImageFile(f);event.target.value='';}));
+$('#openFile').addEventListener('change',safeRun(async event=>{const file=event.target.files[0];event.target.value='';if(!file)return;if(file.size>100*1024*1024)throw new Error('Presentation files are limited to 100 MB.');finishTextEditing();let doc,warnings=[];
+ if(file.name.toLowerCase().endsWith('.pptx')){toast('Reading PowerPoint presentation…');({doc,warnings}=await importPPTX(await file.arrayBuffer()));}else doc=validateDocument(JSON.parse(await file.text()));store.replace(doc);resizeStage();renderInspector();toast(`Opened ${doc.slides.length} slides.`);if(warnings.length)openModal('PowerPoint import report',`<p class="modal-description">The supported content is now editable. Check the slides for these known import limitations:</p>${warnings.map(w=>`<p>${escapeHTML(w)}</p>`).join('')}`,[{label:'Continue editing',primary:true,action:()=>{}}]);}));
+viewport.addEventListener('dragover',event=>{if(event.dataTransfer.types.includes('Files')){event.preventDefault();event.dataTransfer.dropEffect='copy';}});
+viewport.addEventListener('drop',safeRun(async event=>{event.preventDefault();for(const file of event.dataTransfer.files)if(file.type.startsWith('image/'))await insertImageFile(file);}));
+document.addEventListener('paste',safeRun(async event=>{if(['INPUT','TEXTAREA'].includes(document.activeElement?.tagName)||state.presenting||modal.open)return;const image=[...event.clipboardData.items].find(i=>i.kind==='file'&&i.type.startsWith('image/'));if(image){event.preventDefault();await insertImageFile(image.getAsFile());return;}const text=event.clipboardData.getData('text/plain');if(text.startsWith('aurelia-objects:')){event.preventDefault();const temp=makeDocument();temp.slides[0].elements=JSON.parse(text.slice(16));state.clipboard=validateDocument(temp).slides[0].elements;await pasteSelection();}else if(text){event.preventDefault();store.add(makeElement('text',{text:text.slice(0,100000),x:140,y:160,w:900,h:300,fontSize:32}));}}));
+function insertDiagram(){
+ const groupId=uid('g'),x=store.doc.width*.085,y=store.doc.height*.4,w=store.doc.width*.225,h=142,gap=store.doc.width*.078,els=[];
+ ['Discover','Create','Deliver'].forEach((label,i)=>{const xx=x+i*(w+gap);els.push(makeElement('roundRect',{x:xx,y,w,h,fill:i===1?'@accent':'@dark',radius:16,groupId,name:label+' step'}));els.push(makeElement('text',{x:xx+18,y:y+48,w:w-36,h:60,text:label,fontSize:36,bold:true,align:'center',fill:'@light',groupId}));if(i<2)els.push(makeElement('arrow',{x:xx+w+15,y:y+h/2-12,w:gap-30,h:24,fill:'@secondary',groupId}));});store.transaction('Insert process diagram',()=>store.slide.elements.push(...els));store.select(els.map(e=>e.id));
+}
+function editData(e){
+ if(e.locked){toast('Unlock this object before editing its data.');return;}
+ if(e.type==='table'){
+  openModal('Edit table',`<p class="modal-description">Each line is a row. Separate columns with a tab. You can paste a range from a spreadsheet. The first row is styled as the header.</p><textarea id="tableData" class="code-textarea" spellcheck="false" aria-label="Table data">${escapeHTML(e.cells.map(r=>r.join('\t')).join('\n'))}</textarea>`,[{label:'Cancel',action:()=>{}},{label:'Apply table',primary:true,action:()=>{const text=$('#tableData').value.trim(),cells=text.split('\n').map(r=>r.split('\t'));if(!text||cells.length>30||Math.max(...cells.map(r=>r.length))>12)throw new Error('Use 1–30 rows and 1–12 columns.');const columns=Math.max(...cells.map(r=>r.length));for(const r of cells)while(r.length<columns)r.push('');store.transaction('Edit table data',()=>e.cells=cells);}}],640);
+  $('#tableData').addEventListener('keydown',event=>{if(event.key==='Tab'){event.preventDefault();const el=event.target,start=el.selectionStart;el.setRangeText('\t',start,el.selectionEnd,'end');}});return;
+ }
+ let labels=clone(e.labels),values=clone(e.values);
+ const rows=()=>labels.map((label,i)=>`<tr><td><input data-label-index="${i}" aria-label="Category ${i+1}" value="${escapeHTML(label)}" maxlength="80"></td><td><input data-value-index="${i}" aria-label="Value ${i+1}" type="number" min="0" value="${values[i]}"></td><td><button data-remove-row="${i}" title="Remove row" aria-label="Remove row">${icon('trash',15)}</button></td></tr>`).join('');
+ openModal('Edit chart data',`<p class="modal-description">Real data, live charts. Values must be non-negative. Choose the visual in the properties panel.</p><table class="data-table"><thead><tr><th>Category</th><th>Value</th><th></th></tr></thead><tbody id="chartRows">${rows()}</tbody></table><button id="addChartRow" class="secondary">${icon('plus',15)}Add category</button><label style="display:flex;gap:7px;align-items:center;margin-top:15px;font-size:11px"><input type="checkbox" id="chartShowValues"${e.showValues!==false?' checked':''}>Show value labels</label>`,[{label:'Cancel',action:()=>{}},{label:'Apply data',primary:true,action:()=>{readRows();if(!labels.length)throw new Error('A chart needs at least one category.');if(values.some(v=>!Number.isFinite(v)||v<0))throw new Error('Enter a non-negative number for every category.');const show=$('#chartShowValues').checked;store.transaction('Edit chart data',()=>{e.labels=labels;e.values=values;e.showValues=show;});}}]);
+ function readRows(){labels=$$('[data-label-index]',modal).map(i=>i.value);values=$$('[data-value-index]',modal).map(i=>+i.value);}
+ $('#chartRows').addEventListener('click',event=>{const b=event.target.closest('[data-remove-row]');if(b&&labels.length>1){readRows();const index=+b.dataset.removeRow;labels.splice(index,1);values.splice(index,1);$('#chartRows').innerHTML=rows();}});
+ $('#addChartRow').addEventListener('click',()=>{readRows();if(labels.length>=30){toast('Charts support up to 30 categories.');return;}labels.push('New');values.push(50);$('#chartRows').innerHTML=rows();});
+}
+function showSlideSize(){
+ openModal('Presentation size',`<p class="modal-description">Slide dimensions use a 96-pixel-per-inch design coordinate system. Rescale content to keep your layout proportional.</p><div class="modal-form"><label>Preset<select id="sizePreset"><option value="1280,720">Widescreen · 16:9</option><option value="1200,900">Standard · 4:3</option><option value="1080,1080">Square · 1:1</option><option value="1080,1920">Portrait · 9:16</option><option value="custom" selected>Custom</option></select></label><div class="property-grid"><label>Width<input id="deckWidth" type="number" min="320" max="4096" value="${store.doc.width}"></label><label>Height<input id="deckHeight" type="number" min="240" max="4096" value="${store.doc.height}"></label></div><label style="display:flex;flex-direction:row;align-items:center"><input id="scaleContent" type="checkbox" checked>Rescale all slide content</label></div>`,[{label:'Cancel',action:()=>{}},{label:'Apply size',primary:true,action:()=>{const w=clamp(+$('#deckWidth').value||1280,320,4096),h=clamp(+$('#deckHeight').value||720,240,4096),sx=w/store.doc.width,sy=h/store.doc.height,scale=$('#scaleContent').checked;store.transaction('Resize presentation',()=>{if(scale)for(const s of store.doc.slides)for(const e of s.elements){e.x*=sx;e.y*=sy;e.w*=sx;e.h*=sy;if(e.fontSize)e.fontSize*=Math.min(sx,sy);e.radius*=Math.min(sx,sy);}store.doc.width=w;store.doc.height=h;});zoomTo('fit');}}]);
+ $('#sizePreset').addEventListener('change',event=>{if(event.target.value!=='custom'){const [w,h]=event.target.value.split(',');$('#deckWidth').value=w;$('#deckHeight').value=h;}});
+}
+function showSorter(){
+ openModal('Slide sorter',`<p class="modal-description">Choose a slide to edit it. Reorder slides by dragging their thumbnails in the left panel.</p><div class="sorter-grid">${store.doc.slides.map((s,i)=>`<button class="sorter-card ${s.id===store.active?'active':''}" data-sorter-id="${s.id}"><canvas width="480" height="${Math.round(480*store.doc.height/store.doc.width)}"></canvas><span>${String(i+1).padStart(2,'0')} &nbsp; ${escapeHTML(s.name)}</span></button>`).join('')}</div>`,[],920);
+ $$('[data-sorter-id]',modal).forEach(b=>{const s=store.doc.slides.find(s=>s.id===b.dataset.sorterId);paintSlide2D($('canvas',b),s,store.doc,thumbnailsImages,{scale:480/store.doc.width});b.addEventListener('click',()=>{store.activate(s.id);modal.close();renderInspector();});});
+}
+function showHelp(){
+ const keys=[['Undo / redo','Ctrl/⌘ Z · Ctrl/⌘ Shift Z'],['Save / open presentation','Ctrl/⌘ S · Ctrl/⌘ O'],['Find commands','Ctrl/⌘ K'],['Select all objects','Ctrl/⌘ A'],['Copy / paste / duplicate','Ctrl/⌘ C · V · D'],['Group / ungroup','Ctrl/⌘ G · Ctrl/⌘ Shift G'],['New slide','Ctrl/⌘ M'],['Edit text','Double-click a text box'],['Finish / cancel text edit','Ctrl/⌘ Enter · Escape'],['Select multiple objects','Shift-click or drag a marquee'],['Move with precision','Arrow keys · Shift = 10 px'],['Constrain resize / rotation','Hold Shift'],['Duplicate while dragging','Hold Alt/Option before dragging'],['Disable snapping for one drag','Hold Alt/Option'],['Zoom around pointer','Ctrl/⌘ + mouse wheel'],['Pan the workspace','Space + drag · middle drag'],['Present / present current','F5 · Shift F5'],['Presentation navigation','← → · Space · Esc'],['Laser / blackout','L · B']];
+ openModal('Make yourself at home',`<p class="modal-description">A familiar workspace for your next great story. All editing stays on this device. Export a file for an independent backup.</p><table class="help-table">${keys.map(([a,b])=>`<tr><td>${a}</td><td>${b}</td></tr>`).join('')}</table>`,[{label:'Start creating',primary:true,action:()=>{}}],630);
+}
+function showAbout(){openModal('Ideas in motion.',`<div class="about-logo"><span class="brand-mark">${icon('logo',36)}</span><div><strong>Aurelia Slides</strong><span class="version">Version 1.0 · A local-first creative workspace</span></div></div><p>A presentation editor written in plain JavaScript, with a real WebGPU scene renderer and a Canvas 2D compatibility path.</p><div class="feature-chips"><span>No framework</span><span>No account</span><span>No network dependencies</span><span>Editable PowerPoint export</span></div><p class="modal-description">An independent application inspired by familiar presentation workflows. It is not affiliated with Microsoft. This version supports editable text boxes, shapes, images, single-series charts, simple tables, slide organization, themes, transitions, and click-triggered entrance effects.</p><p class="modal-description">PowerPoint import is best-effort, not complete Office compatibility. No mixed-style text runs, media playback, comments, collaboration, SmartArt, macros, native Office chart embedding, or arbitrary master/layout inheritance. Charts and tables export as editable drawing objects; donut charts export as images. Aurelia-authored PPTX files also include a lossless native project.</p>`,[{label:'Keyboard shortcuts',action:()=>{showHelp();return false;}},{label:'Back to creating',primary:true,action:()=>{}}],620);}
+function showDiagnostics(){
+ const stats=renderer.lastStats;openModal('Rendering engine',`<p class="modal-description">${renderer.mode==='webgpu'?'WebGPU · direct instanced drawing with analytic shape coverage and cached text/image tiles.':'Canvas 2D compatibility renderer is active.'}</p><div class="diagnostic-grid"><div><strong>${renderer.mode==='webgpu'?'GPU':'2D'}</strong><span>Active renderer</span></div><div><strong>${stats.ms.toFixed(2)} ms</strong><span>Last CPU render / submission time</span></div><div><strong>${stats.objects}</strong><span>Flattened visible objects</span></div><div><strong>${stats.draws}</strong><span>Draw calls in last frame</span></div><div><strong>${(renderer.cacheBytes/1048576).toFixed(1)} MB</strong><span>GPU tile cache (96 MB soft limit)</span></div><div><strong>${store.past.length}</strong><span>Undo transactions retained</span></div></div><p class="modal-description" style="margin-top:16px">${escapeHTML(state.rendererReason)}<br>Render-on-demand; no continuous editing-frame loop. Timing above is CPU preparation and submission time, not measured GPU execution time or an FPS benchmark.</p>`,[{label:'Close',primary:true,action:()=>{}}],550);
+}
+const COMMANDS=[['New slide','new-slide','newslide','Ctrl M'],['Insert text box','insert-text','text'],['Insert picture','insert-image','image'],['Insert chart','insert-chart','chart'],['Insert table','insert-table','table'],['Insert process diagram','insert-diagram','group'],['Draw rectangle','draw:rect','rect'],['Draw ellipse','draw:ellipse','ellipse'],['Draw arrow','draw:arrow','arrow'],['Save Aurelia presentation','save','save','Ctrl S'],['Open presentation','open','folder','Ctrl O'],['Export PowerPoint','export-pptx','export'],['Export PNG image','export-png','image'],['Export vector SVG','export-svg','shapes'],['Print / Save as PDF','print','slide'],['Undo','undo','undo','Ctrl Z'],['Redo','redo','redo','Ctrl Shift Z'],['Duplicate selected objects','duplicate','copy','Ctrl D'],['Duplicate current slide','duplicate-slide','newslide'],['Delete current slide','delete-slide','trash'],['Select all objects','select-all','pointer','Ctrl A'],['Bring to front','front','front'],['Send to back','back','back'],['Align center','align:center','aligncenter'],['Align middle','align:middle','align'],['Group objects','group','group','Ctrl G'],['Ungroup objects','ungroup','shapes','Ctrl Shift G'],['Slide sorter','sorter','grid'],['Present from beginning','present-first','play','F5'],['Present from current slide','present','screen','Shift F5'],['Presenter notes view','present-notes','notes'],['Toggle grid','toggle-grid','grid'],['Toggle snap guides','toggle-snap','align'],['Toggle notes','toggle-notes','notes'],['Toggle appearance','toggle-dark','moon'],['Fit slide to window','zoom-fit','fit'],['Slide dimensions','slide-size','fit'],['Rendering diagnostics','diagnostics','code'],['Keyboard shortcuts','help','keyboard']];
+function showCommands(){
+ openModal('Find a command',`<input id="commandSearch" class="command-search" type="search" placeholder="Try “insert chart” or “export”…" aria-label="Search commands"><div id="commandResults"></div>`,[],550);
+ const draw=()=>{const query=$('#commandSearch').value.trim().toLowerCase(),items=COMMANDS.filter(c=>c[0].toLowerCase().includes(query));$('#commandResults').innerHTML=items.map(c=>`<button class="command-result" data-command-result="${c[1]}">${icon(c[2])}<span>${c[0]}</span>${c[3]?`<kbd>${c[3]}</kbd>`:''}</button>`).join('')||'<p class="modal-description">No matching commands.</p>';};draw();$('#commandSearch').addEventListener('input',draw);$('#commandSearch').addEventListener('keydown',event=>{if(event.key==='Enter'){const b=$('[data-command-result]',modal);if(b){event.preventDefault();modal.close();safeRun(command)(b.dataset.commandResult);}}if(event.key==='ArrowDown'){event.preventDefault();$('[data-command-result]',modal)?.focus();}});$('#commandResults').addEventListener('click',safeRun(async event=>{const b=event.target.closest('[data-command-result]');if(b){modal.close();await command(b.dataset.commandResult);}}));setTimeout(()=>$('#commandSearch')?.focus(),40);
+}
+async function rasterizeSlide(slide,scale=2){const canvas=document.createElement('canvas');canvas.width=Math.round(store.doc.width*scale);canvas.height=Math.round(store.doc.height*scale);await renderer.images.ready(slide.elements);paintSlide2D(canvas,slide,store.doc,renderer.images,{scale});return canvas;}
+async function exportPNG(){const canvas=await rasterizeSlide(store.slide);const blob=await new Promise(resolve=>canvas.toBlob(resolve,'image/png'));downloadBlob(blob,fileName(`slide-${store.doc.slides.indexOf(store.slide)+1}.png`));toast('Slide exported at 2× resolution.');}
+async function exportAllImages(){toast('Rendering slide images…');const files={};for(const [i,s]of store.doc.slides.entries()){const c=await rasterizeSlide(s);const b=await new Promise(resolve=>c.toBlob(resolve,'image/png'));files[`Slide-${String(i+1).padStart(3,'0')}.png`]=new Uint8Array(await b.arrayBuffer());}downloadBlob(zipStore(files),fileName('slides.zip'));toast(`Exported ${store.doc.slides.length} PNG images.`);}
+async function exportSVG(){
+ const doc=store.doc,s=store.slide,ctx=document.createElement('canvas').getContext('2d');let markup=`<rect width="${doc.width}" height="${doc.height}" fill="${color(s.bg,doc.theme)}"/>`,idx=0;
+ for(const e of flattenScene(s.elements)){
+  const clip='clip'+idx++,transform=`translate(${e.x+e.w/2} ${e.y+e.h/2}) rotate(${e.rotation||0}) translate(${-e.w/2} ${-e.h/2})`,style=`fill="${color(e.fill,doc.theme)}" stroke="${e.strokeWidth?color(e.stroke,doc.theme):'none'}" stroke-width="${e.strokeWidth||0}"`;let body='';
+  if(e.type==='text'){
+   ctx.font=fontCSS(e);const lines=wrapText(ctx,e.text,e.w-2*(e.padding||0)),lh=e.fontSize*(e.lineHeight||1.2),total=lines.length*lh,p=e.padding||0,x=e.align==='center'?e.w/2:e.align==='right'?e.w-p:p,top=e.valign==='middle'?Math.max(p,(e.h-total)/2):e.valign==='bottom'?Math.max(p,e.h-total-p):p;
+   body=`<text fill="${color(e.fill,doc.theme)}" font-family="${escapeHTML(e.fontFamily)}" font-size="${e.fontSize}" font-weight="${e.bold?'700':'400'}" font-style="${e.italic?'italic':'normal'}" text-decoration="${e.underline?'underline':'none'}" text-anchor="${e.align==='center'?'middle':e.align==='right'?'end':'start'}">${lines.map((line,i)=>`<tspan x="${x}" y="${top+i*lh+e.fontSize*.85}" xml:space="preserve">${escapeHTML(line)}</tspan>`).join('')}</text>`;
+  }else if(e.type==='image')body=`<image href="${e.src}" width="${e.w}" height="${e.h}" preserveAspectRatio="xMidYMid ${e.fit==='contain'?'meet':'slice'}"/>`;
+  else if(e.type==='chart'){const c=document.createElement('canvas');c.width=Math.ceil(e.w*2);c.height=Math.ceil(e.h*2);paintSlide2D(c,{bg:s.bg,elements:[{...e,x:0,y:0,rotation:0,opacity:1}]},{...doc,width:e.w,height:e.h},renderer.images,{scale:2});body=`<image href="${c.toDataURL('image/png')}" width="${e.w}" height="${e.h}"/>`;}
+  else if(e.type==='ellipse')body=`<ellipse cx="${e.w/2}" cy="${e.h/2}" rx="${e.w/2}" ry="${e.h/2}" ${style}/>`;
+  else if(['rect','roundRect','line'].includes(e.type))body=`<rect width="${e.w}" height="${e.h}" rx="${e.type==='roundRect'?Math.min(e.radius,e.w/2,e.h/2):0}" ${style}/>`;
+  else{let points;if(e.type==='triangle')points=[[e.w/2,0],[e.w,e.h],[0,e.h]];if(e.type==='diamond')points=[[e.w/2,0],[e.w,e.h/2],[e.w/2,e.h],[0,e.h/2]];if(e.type==='arrow')points=[[0,e.h*.32],[e.w*.6,e.h*.32],[e.w*.6,0],[e.w,e.h/2],[e.w*.6,e.h],[e.w*.6,e.h*.68],[0,e.h*.68]];if(e.type==='star')points=Array.from({length:10},(_,i)=>{const a=i*Math.PI/5-Math.PI/2,r=i%2?.44:1;return[e.w/2+Math.cos(a)*e.w/2*r,e.h/2+Math.sin(a)*e.h/2*r];});body=`<polygon points="${points.map(p=>p.join(',')).join(' ')}" ${style}/>`;}
+  markup+=`<g transform="${transform}" opacity="${e.opacity??1}"><defs><clipPath id="${clip}"><rect width="${e.w}" height="${e.h}"/></clipPath></defs><g clip-path="url(#${clip})">${body}</g></g>`;
+ }
+ downloadBlob(new Blob([`<?xml version="1.0" encoding="utf-8"?><svg xmlns="http://www.w3.org/2000/svg" width="${doc.width}" height="${doc.height}" viewBox="0 0 ${doc.width} ${doc.height}"><title>${escapeHTML(doc.title)}</title>${markup}</svg>`],{type:'image/svg+xml'}),fileName('svg'));toast('Editable vector SVG exported.');
+}
+async function printDeck(){
+ const win=window.open('','_blank');if(!win)throw new Error('Allow pop-up windows to print the presentation.');win.document.write('<!doctype html><title>Preparing presentation</title><body style="font:16px system-ui;padding:40px">Preparing slides for printing…</body>');let images='';for(const s of store.doc.slides){const c=await rasterizeSlide(s);images+=`<section><img src="${c.toDataURL('image/png')}" alt="${escapeHTML(s.name)}"></section>`;}
+ win.document.open();win.document.write(`<!doctype html><html><head><title>${escapeHTML(store.doc.title)}</title><style>@page{size:${store.doc.width/96}in ${store.doc.height/96}in;margin:0}*{box-sizing:border-box}body{margin:0;background:#e8e8e5;font:14px system-ui}section{break-after:page;page-break-after:always;width:${store.doc.width/96}in;height:${store.doc.height/96}in;margin:20px auto;background:white}section:last-child{break-after:auto}img{display:block;width:100%;height:100%}header{padding:20px;text-align:center}button{padding:10px 20px;cursor:pointer}@media print{header{display:none}body{background:white}section{margin:0}}</style></head><body><header><button onclick="window.print()">Print presentation / Save as PDF</button><p>Choose landscape, no margins, and background graphics. Slides are rendered images.</p></header>${images}</body></html>`);win.document.close();
+}
+async function command(cmd,anchor){
+ if(state.editing&&!['copy','paste'].includes(cmd))finishTextEditing();
+ if(cmd.startsWith('tab:')){state.tab=cmd.slice(4);renderRibbon();return;}
+ if(cmd.startsWith('panel:')){state.panel=cmd.slice(6);state.showInspector=true;renderInspector();resizeStage();return;}
+ if(cmd.startsWith('draw:')){setTool(cmd.slice(5));return;}
+ if(cmd.startsWith('theme:')){store.transaction('Apply theme',()=>store.doc.theme=cmd.slice(6));renderInspector();return;}
+ if(cmd.startsWith('new-layout:')){store.addSlide(cmd.slice(11));renderInspector();return;}
+ if(cmd.startsWith('text-align:')){formatText({align:cmd.slice(11)});return;}
+ if(cmd.startsWith('align:')){store.align(cmd.slice(6));return;}
+ if(cmd.startsWith('distribute:')){if(store.selected.length<3)toast('Select at least three objects to distribute.');else store.distribute(cmd.slice(11));return;}
+ if(cmd.startsWith('transition:')){store.transaction('Set transition',()=>store.slide.transition=cmd.slice(11));return;}
+ if(cmd.startsWith('animation:')){if(!store.selected.length)toast('Select one or more objects to animate.');else store.updateSelected({animation:cmd.slice(10)},'Set entrance animation');return;}
+ switch(cmd){
+  case'file':showFileMenu(anchor);break;
+  case'new-document':askReplace('Start a new presentation?',()=>store.replace(makeDocument()));break;
+  case'restore-demo':askReplace('Restore the example deck?',()=>store.replace(createDemo()));break;
+  case'open':$('#openFile').click();break;
+  case'save':nativeSave();break;
+  case'undo':store.undo();renderInspector();break;
+  case'redo':store.redo();renderInspector();break;
+  case'copy':await copySelection();break;
+  case'paste':await pasteSelection();break;
+  case'duplicate':store.duplicateSelected();break;
+  case'delete':store.deleteSelected();break;
+  case'select-all':store.select(store.slide.elements.filter(e=>!e.hidden).map(e=>e.id));break;
+  case'new-slide':store.addSlide('content');renderInspector();break;
+  case'duplicate-slide':store.duplicateSlide();renderInspector();break;
+  case'delete-slide':if(!store.deleteSlide())toast('Keep at least one slide in your presentation.');renderInspector();break;
+  case'rename-slide':openModal('Rename slide',`<div class="modal-form"><label>Slide name<input id="slideNameInput" maxlength="200" value="${escapeHTML(store.slide.name)}"></label></div>`,[{label:'Cancel',action:()=>{}},{label:'Rename',primary:true,action:()=>store.transaction('Rename slide',()=>store.slide.name=$('#slideNameInput').value.trim()||'Untitled slide')}]);break;
+  case'layout-menu':showLayoutMenu(anchor);break;
+  case'reset-layout':openModal('Reset current slide layout',`<p class="modal-description">This replaces the objects on the current slide. The change can be undone.</p><div class="modal-form"><label>Layout<select id="resetLayout"><option value="title">Title slide</option><option value="content">Title and content</option><option value="split">Two columns</option><option value="quote">Quote</option><option value="blank">Blank</option></select></label></div>`,[{label:'Cancel',action:()=>{}},{label:'Reset layout',primary:true,action:()=>{store.transaction('Reset slide layout',()=>store.slide.elements=makeSlide($('#resetLayout').value).elements);store.select([]);}}]);break;
+  case'insert-text':{const e=makeElement('text',{x:store.doc.width*.14,y:store.doc.height*.35,w:store.doc.width*.7,h:100,text:'Make your point.',fontSize:48});store.add(e);startTextEditing(e);break;}
+  case'insert-image':replaceImageId=null;$('#imageFile').click();break;
+  case'replace-image':if(store.selected[0]?.type==='image'){replaceImageId=store.selected[0].id;$('#imageFile').click();}break;
+  case'insert-chart':{const e=makeElement('chart',{x:store.doc.width*.15,y:store.doc.height*.2,w:store.doc.width*.7,h:store.doc.height*.6,chartType:'bar',labels:['Q1','Q2','Q3','Q4'],values:[28,46,57,84],showValues:true,fill:'@accent'});store.add(e);break;}
+  case'insert-table':{const e=makeElement('table',{x:store.doc.width*.12,y:store.doc.height*.24,w:store.doc.width*.76,h:store.doc.height*.46,fill:'@dark',fontSize:24,cells:[['Initiative','Owner','Status'],['Discover','Design team','In progress'],['Build','Engineering','Planned'],['Launch','Everyone','Up next']]});store.add(e);break;}
+  case'insert-diagram':insertDiagram();break;
+  case'insert-number':store.add(makeElement('text',{x:store.doc.width-110,y:store.doc.height-60,w:70,h:35,fontSize:18,align:'right',text:String(store.doc.slides.indexOf(store.slide)+1),fill:'@muted',name:'Slide number (static)'}));break;
+  case'insert-date':store.add(makeElement('text',{x:75,y:store.doc.height-60,w:450,h:35,fontSize:18,text:new Date().toLocaleDateString(undefined,{dateStyle:'long'}),fill:'@muted',name:'Date (static)'}));break;
+  case'edit-data':if(store.selected[0]&&['chart','table'].includes(store.selected[0].type))editData(store.selected[0]);break;
+  case'edit-text':startTextEditing(store.selected.find(e=>e.type==='text'));break;
+  case'shapes-menu':showShapeMenu(anchor);break;
+  case'arrange-menu':showArrangeMenu(anchor);break;
+  case'front':case'back':case'forward':case'backward':store.arrange(cmd);break;
+  case'group':if(store.selected.length<2)toast('Select two or more objects to group.');else store.group();break;
+  case'ungroup':store.ungroup();break;
+  case'lock':{const lock=!store.selected.every(e=>e.locked);store.transaction(lock?'Lock objects':'Unlock objects',()=>store.selected.forEach(e=>e.locked=lock));renderInspector();break;}
+  case'bold':case'italic':case'underline':formatText({[cmd]:!selectedText().every(e=>e[cmd])});break;
+  case'font-grow':case'font-shrink':if(selectedText().length)store.transaction('Change font size',()=>selectedText().forEach(e=>e.fontSize=clamp(e.fontSize+(cmd==='font-grow'?2:-2),4,600)));break;
+  case'bullets':if(selectedText().length){const remove=selectedText().every(e=>e.text.split('\n').every(l=>!l.trim()||l.startsWith('• ')));store.transaction('Toggle bullets',()=>selectedText().forEach(e=>e.text=e.text.split('\n').map(l=>!l.trim()?l:remove?l.replace(/^• /,''):l.startsWith('• ')?l:'• '+l).join('\n')));}break;
+  case'no-fill':store.updateSelected({fill:'none'},'Remove fill');break;
+  case'background':state.panel='format';state.showInspector=true;store.select([]);renderInspector();resizeStage();setTimeout(()=>$('[data-slide-prop="bg"]',$('#inspector'))?.click(),0);break;
+  case'slide-size':showSlideSize();break;
+  case'apply-transition':{const {transition,duration}=store.slide;store.transaction('Apply transition to all slides',()=>store.doc.slides.forEach(s=>Object.assign(s,{transition,duration})));toast('Transition applied to all slides.');break;}
+  case'preview-transition':animateTransition(stage,store.slide);break;
+  case'toggle-grid':state.showGrid=!state.showGrid;$('#gridButton').classList.toggle('active',state.showGrid);renderRibbon();invalidate();break;
+  case'toggle-snap':state.snap=!state.snap;toast(`Smart alignment guides ${state.snap?'on':'off'}.`);renderRibbon();break;
+  case'toggle-notes':state.showNotes=!state.showNotes;$('#notesPanel').hidden=!state.showNotes;renderRibbon();resizeStage();break;
+  case'toggle-inspector':state.showInspector=!state.showInspector;renderInspector();resizeStage();break;
+  case'toggle-dark':document.body.classList.toggle('dark');try{localStorage.setItem('aurelia-dark',document.body.classList.contains('dark')?'1':'0');}catch{}break;
+  case'normal':if(modal.open)modal.close();state.showInspector=true;state.showNotes=true;$('#notesPanel').hidden=false;renderInspector();zoomTo('fit');break;
+  case'sorter':showSorter();break;
+  case'zoom-fit':zoomTo('fit');break;
+  case'zoom-100':zoomTo(100);break;
+  case'zoom-in':zoomTo(state.scale*100+10);break;
+  case'zoom-out':zoomTo(state.scale*100-10);break;
+  case'export-pptx':toast('Building editable PowerPoint file…');downloadBlob(await exportPPTX(store.doc),fileName('pptx'));toast('PowerPoint file exported. Text and shapes remain editable.');break;
+  case'export-png':await exportPNG();break;
+  case'export-svg':await exportSVG();break;
+  case'export-images':await exportAllImages();break;
+  case'print':await printDeck();break;
+  case'present':await startPresentation(store.doc.slides.indexOf(store.slide));break;
+  case'present-first':await startPresentation(0);break;
+  case'present-notes':await startPresentation(store.doc.slides.indexOf(store.slide),true);break;
+  case'present-rehearse':await startPresentation(0,true);break;
+  case'commands':showCommands();break;
+  case'help':showHelp();break;
+  case'about':showAbout();break;
+  case'diagnostics':showDiagnostics();break;
+  default:console.warn('Unknown command:',cmd);
+ }
+}
+let presentationRenderer=null,presentationIndex=0,presentationStep=0,presentationStart=0,presentationAnim=null,presentationRAF=0,presentationTimerId=0,laserEnabled=false,numberBuffer='';
+function animateTransition(element,slide){
+ if(window.matchMedia('(prefers-reduced-motion: reduce)').matches||slide.transition==='none')return;
+ const first=slide.transition==='push'?{opacity:.2,transform:'translateX(8%)'}:slide.transition==='zoom'?{opacity:0,transform:'scale(.9)'}:{opacity:0};
+ element.animate([first,{opacity:1,transform:'none'}],{duration:(slide.duration||.45)*1000,easing:'cubic-bezier(.2,.8,.2,1)'});
+}
+function animationEntries(slide){return slide.elements.filter(e=>!e.hidden&&e.animation!=='none');}
+function presentationResize(){
+ if(!state.presenting)return;const notes=!$('#presenterNotes').hidden,width=window.innerWidth-(notes?300:0),height=window.innerHeight,scale=Math.min(width/store.doc.width,height/store.doc.height);Object.assign($('#presentStage').style,{width:store.doc.width*scale+'px',height:store.doc.height*scale+'px'});drawPresentation();
+}
+function drawPresentation(now=performance.now()){
+ if(!state.presenting||!presentationRenderer||presentationRenderer.mode==='initializing')return;
+ const slide=store.doc.slides[presentationIndex],entries=animationEntries(slide),positions=new Map(entries.map((e,i)=>[e.id,i]));let running=false;
+ const elements=slide.elements.map(e=>{
+  const idx=positions.get(e.id);if(idx===undefined)return e;if(idx>=presentationStep)return{...e,hidden:true};
+  if(presentationAnim&&idx===presentationStep-1){const p=clamp((now-presentationAnim.start)/500,0,1),t=1-(1-p)**3;running=p<1;if(p<1){if(e.animation==='rise')return{...e,y:e.y+(1-t)*45,opacity:(e.opacity??1)*t};if(e.animation==='zoom'){const scale=.75+.25*t;return{...e,x:e.x+e.w*(1-scale)/2,y:e.y+e.h*(1-scale)/2,w:e.w*scale,h:e.h*scale,opacity:(e.opacity??1)*t};}return{...e,opacity:(e.opacity??1)*t};}}
+  return e;
+ });
+ const b=$('#presentStage').getBoundingClientRect();presentationRenderer.render({...slide,elements},store.doc,{cssWidth:b.width,cssHeight:b.height});
+ if(running){cancelAnimationFrame(presentationRAF);presentationRAF=requestAnimationFrame(drawPresentation);}else presentationAnim=null;
+}
+function updatePresenterUI(){
+ const s=store.doc.slides[presentationIndex];$('#presentCounter').textContent=`${presentationIndex+1} / ${store.doc.slides.length}`;$('#presentNotesText').textContent=s.notes||'No speaker notes for this slide.';const next=store.doc.slides[presentationIndex+1]||s,c=$('#nextSlidePreview');c.width=440;c.height=Math.round(440*store.doc.height/store.doc.width);paintSlide2D(c,next,store.doc,thumbnailsImages,{scale:440/store.doc.width});
+}
+async function startPresentation(index=0,notes=false){
+ finishTextEditing();clearTool();closeMenu();if(modal.open)modal.close();presentationIndex=clamp(index,0,store.doc.slides.length-1);presentationStep=0;presentationAnim=null;state.presenting=true;$('#presentOverlay').hidden=false;$('#presenterNotes').hidden=!notes;$('#blackout').hidden=true;$('#laser').hidden=true;laserEnabled=false;presentationStart=performance.now();
+ try{const promise=$('#presentOverlay').requestFullscreen?.();promise?.catch(()=>{});}catch{}
+ if(!presentationRenderer){presentationRenderer=new SceneRenderer($('#presentCanvas'),()=>{},()=>{if(state.presenting)requestAnimationFrame(drawPresentation);});await presentationRenderer.init();}
+ updatePresenterUI();presentationResize();animateTransition($('#presentStage'),store.doc.slides[presentationIndex]);clearInterval(presentationTimerId);presentationTimerId=setInterval(()=>{const seconds=Math.floor((performance.now()-presentationStart)/1000);$('#presentTimer').textContent=`${String(Math.floor(seconds/60)).padStart(2,'0')}:${String(seconds%60).padStart(2,'0')}`;},1000);
+}
+function advancePresentation(direction=1){
+ $('#blackout').hidden=true;const entries=animationEntries(store.doc.slides[presentationIndex]);
+ if(direction>0&&presentationStep<entries.length){presentationStep++;presentationAnim={start:performance.now()};drawPresentation();return;}
+ if(direction<0&&presentationStep>0){presentationStep--;presentationAnim=null;drawPresentation();return;}
+ const next=presentationIndex+direction;if(next<0)return;if(next>=store.doc.slides.length){toast('End of presentation. Press Esc to return to editing.');return;}
+ presentationIndex=next;presentationStep=direction<0?animationEntries(store.doc.slides[next]).length:0;presentationAnim=null;updatePresenterUI();drawPresentation();animateTransition($('#presentStage'),store.doc.slides[presentationIndex]);
+}
+function exitPresentation(){if(!state.presenting)return;state.presenting=false;$('#presentOverlay').hidden=true;cancelAnimationFrame(presentationRAF);clearInterval(presentationTimerId);if(document.fullscreenElement)document.exitFullscreen().catch(()=>{});store.activate(store.doc.slides[presentationIndex].id);viewport.focus({preventScroll:true});resizeStage();}
+$('#presentStage').addEventListener('click',()=>advancePresentation(1));
+$('#presentStage').addEventListener('pointermove',event=>{if(!laserEnabled)return;const r=$('#presentStage').getBoundingClientRect();$('#laser').style.left=event.clientX-r.left+'px';$('#laser').style.top=event.clientY-r.top+'px';$('#laser').hidden=false;});
+$('#presentOverlay').addEventListener('click',event=>{const button=event.target.closest('[data-present]');if(!button)return;switch(button.dataset.present){case'exit':exitPresentation();break;case'prev':advancePresentation(-1);break;case'next':advancePresentation(1);break;case'notes':$('#presenterNotes').hidden=!$('#presenterNotes').hidden;presentationResize();break;case'laser':laserEnabled=!laserEnabled;$('#laser').hidden=!laserEnabled;break;case'black':$('#blackout').hidden=!$('#blackout').hidden;break;}});
+document.addEventListener('fullscreenchange',()=>{if(state.presenting&&!document.fullscreenElement)exitPresentation();else presentationResize();});
+window.addEventListener('resize',()=>{resizeStage();presentationResize();closeMenu();});
+window.addEventListener('blur',()=>{state.space=false;viewport.classList.remove('space-pan');});
+function keyTargetIsEditing(event){return event.target.closest('input,textarea,select,[contenteditable="true"]');}
+document.addEventListener('keydown',safeRun(async event=>{
+ if(state.presenting){
+  if(['ArrowRight','ArrowDown','PageDown',' ','Enter'].includes(event.key)){event.preventDefault();if(event.key==='Enter'&&numberBuffer){const index=+numberBuffer-1;numberBuffer='';if(index>=0&&index<store.doc.slides.length){presentationIndex=index;presentationStep=0;updatePresenterUI();drawPresentation();}}else advancePresentation(1);}
+  else if(['ArrowLeft','ArrowUp','PageUp','Backspace'].includes(event.key)){event.preventDefault();advancePresentation(-1);}
+  else if(event.key==='Escape'){event.preventDefault();exitPresentation();}
+  else if(event.key.toLowerCase()==='b')$('#blackout').hidden=!$('#blackout').hidden;
+  else if(event.key.toLowerCase()==='l'){laserEnabled=!laserEnabled;$('#laser').hidden=!laserEnabled;}
+  else if(event.key==='Home'){presentationIndex=0;presentationStep=0;updatePresenterUI();drawPresentation();}
+  else if(event.key==='End'){presentationIndex=store.doc.slides.length-1;presentationStep=0;updatePresenterUI();drawPresentation();}
+  else if(/^\d$/.test(event.key))numberBuffer=(numberBuffer+event.key).slice(-3);return;
+ }
+ if(modal.open||keyTargetIsEditing(event))return;
+ const ctrl=event.ctrlKey||event.metaKey,key=event.key.toLowerCase();
+ if(ctrl){
+  const map={z:event.shiftKey?'redo':'undo',y:'redo',s:'save',o:'open',d:'duplicate',a:'select-all',g:event.shiftKey?'ungroup':'group',m:'new-slide',k:'commands',b:'bold',i:'italic',u:'underline',c:'copy',n:'new-document'};
+  if(key==='v'){/* Native paste event is the authoritative source for system clipboard data. */return;}
+  if(key==='x'){event.preventDefault();await copySelection();store.deleteSelected();return;}
+  if(map[key]){event.preventDefault();await command(map[key]);return;}
+ }
+ if(event.key==='F5'){event.preventDefault();await command(event.shiftKey?'present':'present-first');return;}
+ if(event.key==='F1'){event.preventDefault();showHelp();return;}
+ if(event.key==='Escape'){event.preventDefault();cancelPointer();clearTool();closeMenu();store.select([]);return;}
+ if(event.key==='Delete'||event.key==='Backspace'){event.preventDefault();if(store.selected.length)store.deleteSelected();else if(document.activeElement?.closest('#thumbnails'))store.deleteSlide();return;}
+ if(event.key===' '){event.preventDefault();state.space=true;viewport.classList.add('space-pan');return;}
+ if(['ArrowLeft','ArrowRight','ArrowUp','ArrowDown'].includes(event.key)){
+  event.preventDefault();if(store.selected.length){const amount=event.shiftKey?10:1,dx=event.key==='ArrowLeft'?-amount:event.key==='ArrowRight'?amount:0,dy=event.key==='ArrowUp'?-amount:event.key==='ArrowDown'?amount:0;store.transaction('Nudge objects',()=>store.selected.forEach(e=>{if(!e.locked){e.x+=dx;e.y+=dy;}}));}
+  else{const i=store.doc.slides.indexOf(store.slide),delta=['ArrowLeft','ArrowUp'].includes(event.key)?-1:1;store.activate(store.doc.slides[clamp(i+delta,0,store.doc.slides.length-1)].id);}return;
+ }
+ if(event.key==='Enter'&&store.selected.length===1&&store.selected[0].type==='text'){event.preventDefault();startTextEditing(store.selected[0]);}
+ if(event.key==='Tab'){event.preventDefault();const els=store.slide.elements.filter(e=>!e.hidden);if(!els.length)return;const current=els.findIndex(e=>store.selection.has(e.id)),next=(current+(event.shiftKey?-1:1)+els.length)%els.length;store.select([els[next].id]);}
+}));
+document.addEventListener('keyup',event=>{if(event.key===' '){state.space=false;viewport.classList.remove('space-pan');}});
+window.addEventListener('beforeunload',event=>{if(store.pending)store.commit();if(store.revision!==lastPersistedRevision&&store.revision>0){persist();event.preventDefault();event.returnValue='';}});
+async function initialize(){
+ hydrateIcons();try{if(localStorage.getItem('aurelia-dark')==='1')document.body.classList.add('dark');}catch{}
+ const saved=await openStorage();if(saved){try{store.doc=validateDocument(saved);store.active=store.doc.slides[0].id;$('#saveText').textContent='Restored from this device';}catch(error){toast('The saved recovery copy could not be read. The example deck is open.',true);}}
+ syncUI();renderInspector();resizeStage();await renderer.init();resizeStage();scheduleThumbnails(true);
+ new ResizeObserver(()=>resizeStage()).observe(viewport);
+ window.Aurelia={version:'1.0.0',store,state,renderer,command,validateDocument,makeElement,exportPPTX,importPPTX,createDemo,startTextEditing,finishTextEditing,resizeStage,renderCount:()=>renderCount,ready:true};
+ if(!saved)await persist();lastPersistedRevision=store.revision;
+}
+initialize().catch(error=>{console.error(error);toast('Initialization failed: '+error.message,true);$('#rendererStatus').textContent='Initialization error';});
+
+})();
+</script>
+</body></html>
